@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Deep-Tech Startups - NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Supplementary specific layout configuration overrides for rich text components */
+        .page-banner {
+            background: linear-gradient(135deg, rgba(155, 32, 32, 0.04) 0%, rgba(10, 25, 47, 0.02) 100%);
+            padding: 80px 0 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .page-banner h1 {
+            font-size: 2.8rem;
+            color: var(--nasscom-red-dark);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .page-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        .content-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .growx-perks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+        .perk-card {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--dark-navy);
+            transition: transform 0.3s ease, border-top-color 0.3s ease;
+        }
+        .perk-card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--nasscom-red);
+        }
+        .perk-card i {
+            font-size: 2.2rem;
+            color: var(--nasscom-red);
+            margin-bottom: 15px;
+        }
+        .perk-card h3 {
+            font-size: 1.15rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .perk-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .startup-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .startup-card:hover {
+            box-shadow: 0 10px 25px rgba(10, 25, 47, 0.06);
+            border-color: #cbd5e1;
+        }
+        .startup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--nasscom-red);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .startup-card:hover::before {
+            opacity: 1;
+        }
+        .startup-name {
+            font-size: 1.3rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .startup-name i {
+            font-size: 0.9rem;
+            color: var(--nasscom-red);
+        }
+        .startup-desc {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            text-align: justify;
+        }
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        .structured-list {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        .structured-list li {
+            margin-bottom: 12px;
+            position: relative;
+            list-style-type: none;
+            line-height: 1.6;
+            color: #334155;
+        }
+        .structured-list li::before {
+            content: "■";
+            color: var(--nasscom-red);
+            font-size: 0.7rem;
+            position: absolute;
+            left: -18px;
+            top: 2px;
+        }
+        .structured-list strong {
+            color: var(--dark-navy);
+        }
+        .action-block-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .action-block-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .action-block-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .btn-nasscom-primary {
+            background-color: var(--nasscom-red);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .btn-nasscom-primary:hover {
+            background-color: var(--nasscom-red-dark);
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .modal-container {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            background: var(--dark-navy);
+            color: #ffffff;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .close-modal-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .close-modal-btn:hover {
+            opacity: 1;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .form-group-row {
+            margin-bottom: 20px;
+        }
+        .form-group-row label {
+            display: block;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-group-row input, .form-group-row select, .form-group-row textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #334155;
+            transition: border-color 0.2s;
+        }
+        .form-group-row input:focus, .form-group-row select:focus, .form-group-row textarea:focus {
+            outline: none;
+            border-color: var(--nasscom-red);
+        }
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+        .process-step {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(155, 32, 32, 0.1);
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            line-height: 1;
+        }
+        .process-step h4 {
+            font-size: 1.1rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-right: 30px;
+        }
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="nasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
+            </div>
+            <div class="logo-right-block">
+                <img src="gov_pic.png" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="research-reports.html">Research &amp; Reports</a></li>
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html" class="nav-cta-white">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <section class="page-banner">
+        <h1>AI &amp; Deep-Tech Startups Portfolio</h1>
+        <p>Through our dedicated flagship incubation track—the <strong>GrowX Acceleration Program</strong>—we cultivate, scale, and connect market-ready deep-tech innovators to high-impact enterprise workflows and public utility operational infrastructure.</p>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Why GrowX Acceleration?</h2>
+        <p style="color: var(--text-gray); text-align: center; max-width: 800px; margin: 0 auto;">Our system architecture provides critical computational resources, pilot market opportunities, and commercial deployment frameworks necessary to scale sophisticated engineering innovations.</p>
+        
+        <div class="growx-perks-grid">
+            <div class="perk-card">
+                <i class="fas fa-microchip"></i>
+                <h3>Computing Infrastructure</h3>
+                <p>Direct infrastructure allocation paths providing processing arrays to build, optimize, and evaluate heavy AI models.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-laptop-house"></i>
+                <h3>Co-Working Space</h3>
+                <p>Plug-and-play engineering office units located right within the high-tech corporate GIFT City ecosystem.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-vr-cardboard"></i>
+                <h3>AI Experience Zone</h3>
+                <p>Dedicated commercial display space to demonstrate functioning solution setups to incoming client networks.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-route"></i>
+                <h3>GTM Support</h3>
+                <p>Strategic structural assistance navigating targeted marketing vectors, corporate partnerships, and procurement setups.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h3>Funding Support</h3>
+                <p>Facilitated connection frameworks to venture capitals, angel networks, and government grant schemes.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-user-tie"></i>
+                <h3>Ecosystem Mentorship</h3>
+                <p>Direct one-on-one advising sessions with industry executives to solve operational, legal, and scaling hurdles.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" style="background-color: #f8fafc; padding: 60px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+        <h2 class="section-title">Incubated Startups Network</h2>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 10px;">The GrowX program currently serves as the structural accelerator for 22 high-impact deep-tech entities:</p>
+        
+        <div class="portfolio-grid">
+            
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-cube"></i> Atomo Innovation</div>
+                <div class="startup-desc">Engineers indigenous, AI-powered edge computing hardware purpose-built for real-time industrial automation. Delivers low-power, scalable, and highly interoperable operation within harsh manufacturing environments.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-users-cog"></i> Bigdatamatica Solutions</div>
+                <div class="startup-desc">Develops an AI-driven multi-agent platform designed to automate corporate support workflows, streamline complex information search, and enable faster, cost-effective administrative decision-making.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-dna"></i> Biolex Advisory</div>
+                <div class="startup-desc">Acts as a specialized catalyst for genome-edited agri-tech frameworks, bridging complex scientific research with policy validation and legal landscapes to foster responsible innovation.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-eye"></i> Bipolar Factory</div>
+                <div class="startup-desc">Deploys advanced AI-powered video intelligence layers that transform existing legacy CCTV surveillance networks into real-time, automated, and actionable insight platforms.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-file-invoice"></i> Cognifirst Technologies</div>
+                <div class="startup-desc">Provides a proprietary no-code Enterprise AI platform that enables corporations and governments to parse unstructured assets, extract deep insights, and automate document processing.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-notes-medical"></i> Docyantra</div>
+                <div class="startup-desc">Builds AI-powered clinical healthcare tools designed to enhance diagnostic decision precision, alleviate administrative compliance loads, and maximize access to equitable patient care.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-road"></i> HanuAI Pvt. Ltd.</div>
+                <div class="startup-desc">Provides an AI-powered road network digitization platform engineered for real-time pavement defect monitoring, infrastructure classification, and data-driven civic planning.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-comment-dots"></i> Ignited Wings Technology</div>
+                <div class="startup-desc">Engineers a voice-first Agentic AI operations platform designed to automate sequential business workflows and refine computational logic layers for enterprises and government units.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-phone-alt"></i> iQud</div>
+                <div class="startup-desc">Deploys an AI-driven conversational voice assistant architecture engineered to automate outbound patient triage, scheduling parameters, and administrative healthcare pipelines.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-gavel"></i> Karma AI</div>
+                <div class="startup-desc">An AI-powered legal copilot framework built specifically for police forces, prison authorities, and prosecutors to automate case legal drafting, document exploration, and deep statutory research.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-network-wired"></i> Lambodaray AiTech</div>
+                <div class="startup-desc">Integrates unified AI and IoT data platform engines to deliver real-time operational intelligence tracking variables across discrete manufacturing lines, utilities, and smart civic hubs.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-heartbeat"></i> LarkAI Healthcare</div>
+                <div class="startup-desc">Manufactures affordable, medical-grade AI-IoT devices optimized for persistent remote cardiopulmonary tracking and early-stage cardiac anomaly metric classification.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-search-plus"></i> MSense AI</div>
+                <div class="startup-desc">Deploys an AI-powered industrial visual and acoustic inspection suite engineered to enforce zero-defect quality control metrics across high-speed component fabrication plants.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-user-check"></i> Quantian Technologies</div>
+                <div class="startup-desc">Provides an AI analytics engine built for coordinating decentralized, remote workforce operations via automated task tracking, geofencing parameters, and predictive efficiency scoring.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-plane"></i> Sydorg</div>
+                <div class="startup-desc">Engineers an AI-powered air traffic coordination and localized meteorological intelligence system to enable safer, optimized, and sustainable flight vector routing patterns.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-balance-scale"></i> SettleSense</div>
+                <div class="startup-desc">An AI-driven online dispute resolution environment built to deliver highly accelerated, affordable, legally compliant, and enforceable arbitration conclusions using neural legal models.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-utensils"></i> UdyogYantra</div>
+                <div class="startup-desc">Leverages IoT sensors and computer vision algorithms to digitize, monitor, and optimize industrial-scale food manufacturing pipelines, ingredient tracing, and logistics tracking.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-seedling"></i> Upjao Agrotech</div>
+                <div class="startup-desc">Deploys automated, multi-parameter computer vision grain quality evaluation setups to ensure standardized, objective agricultural commodity grading and equitable marketplace pricing.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-industry"></i> Workroom Automation</div>
+                <div class="startup-desc">Provides a unified factory floor AI operations platform built to collect data streams, automate equipment configurations, and secure real-time end-to-end parts manufacturing lineage.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-child"></i> Yogify Smart Yoga Mats</div>
+                <div class="startup-desc">Manufactures sensory smart yoga equipment embedding spatial AI posture tracking arrays to render individualized physiological correction and biometric metrics within home routines.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-camera"></i> ZBox Technologies</div>
+                <div class="startup-desc">Builds and integrates high-precision smart camera array inspection systems tailored to isolate component variations and preserve manufacturing quality thresholds.</div>
+            </div>
+
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-chart-pie"></i> Premium Incubation Track</div>
+                <div class="startup-desc">The Center continues to review emerging computational applications across India to secure advanced ecosystem integration pipelines for our strategic national pilot installations.</div>
+            </div>
+
+        </div>
+
+        <div class="counter-strip-wrapper" style="margin-top: 50px; background: var(--dark-navy); padding: 30px; border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; text-align: center; color: #fff;">
+            <div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: var(--nasscom-red);"><span class="counter" data-target="75">0</span>+</div>
+                <div style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; margin-top: 5px; letter-spacing: 1px;">Functional Prototypes Demonstrated</div>
+            </div>
+            <div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: var(--nasscom-red);"><span class="counter" data-target="30">0</span>+</div>
+                <div style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; margin-top: 5px; letter-spacing: 1px;">Ecosystem Masterclasses &amp; Demo Days</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Personalized Enterprise Mentorship</h2>
+        <p style="text-align: center; color: var(--text-gray); max-width: 800px; margin: 0 auto; margin-bottom: 30px;">GrowX connected entities gain structural access to strategic technology executives through one-on-one consultation routines engineered to evaluate code stacks, regulatory steps, and commercial strategies.</p>
+        
+        <div class="split-layout" style="align-items: center;">
+            <div>
+                <h3 style="font-size: 1.4rem; color: var(--dark-navy); font-weight: 700;">Operational Engagement Framework:</h3>
+                <ul class="structured-list">
+                    <li><strong>Pre-Scoping Diagnostics:</strong> Growth entities file targeted functional bottlenecks and infrastructure scale demands ahead of sessions to lock down exact objectives.</li>
+                    <li><strong>Targeted Matching:</strong> The CoE program team schedules focused deep-dives matching specialized industry captains with the entity's core engineering problems.</li>
+                    <li><strong>Actionable Deployment Maps:</strong> Concrete technical steps, architectural recommendations, and upcoming validation goals are indexed and followed up by the platform team.</li>
+                </ul>
+            </div>
+            <div style="background: linear-gradient(135deg, #0a192f 0%, #1e293b 100%); padding: 40px; border-radius: 12px; color: #ffffff;">
+                <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #38bdf8;"><i class="fas fa-graduation-cap"></i> Dynamic Masterclass Tracks</h4>
+                <p style="font-size: 0.95rem; line-height: 1.6; opacity: 0.9; text-align: justify; margin-bottom: 15px;">The accelerator hosts programmatic cohort modules addressing crucial corporate milestones required to build sustainable deep-tech products:</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem; font-weight: 600;">
+                    <div><i class="fas fa-shield-alt" style="color: #38bdf8;"></i> Intellectual Property Rights</div>
+                    <div><i class="fas fa-funnel-dollar" style="color: #38bdf8;"></i> Investment Funding</div>
+                    <div><i class="fas fa-server" style="color: #38bdf8;"></i> Cloud &amp; Compute Tuning</div>
+                    <div><i class="fas fa-vial" style="color: #38bdf8;"></i> Product-Market Validation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" style="background-color: #f8fafc; padding: 50px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+        <div class="split-layout">
+            <div>
+                <h3 style="font-size: 1.5rem; color: var(--dark-navy); font-weight: 800; margin-bottom: 15px;">Incubation Admission Benchmarks</h3>
+                <p style="color: var(--text-gray); margin-bottom: 15px;">Startups requesting infrastructure allocation and market track onboarding must strictly align with the following criteria set by administrative rules:</p>
+                <ul class="structured-list">
+                    <li><strong>Legal Structure:</strong> Must be registered as a Private Limited Entity, standard Partnership, or a Limited Liability Partnership (LLP).</li>
+                    <li><strong>Ecosystem Tenure:</strong> The entity must sit under 10 years of operations computed from the certified date of incorporation.</li>
+                    <li><strong>Revenue Caps:</strong> Annual turnover markers must trace below INR 100 Crores within all completed fiscal years.</li>
+                    <li><strong>Core Objective:</strong> Operations must demonstrate core technical innovations or material enhancements over existing software, systems, or deployment mechanics.</li>
+                    <li><strong>Exclusion Profiles:</strong> Any venture organized by splitting up, restructuring, or renaming an existing corporate operation is strictly ineligible.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 1.5rem; color: var(--dark-navy); font-weight: 800; margin-bottom: 15px;">Onboarding Selection Pipeline</h3>
+                <div class="process-flow" style="grid-template-columns: 1fr; gap: 15px;">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <h4>Application Filing</h4>
+                        <p>Submit company metrics, capability indexes, and comprehensive pitch deck via the centralized digital forms portal.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <h4>Technical Assessment</h4>
+                        <p>The CoE engineering panel reviews applications to evaluate innovation parameters and platform match.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <h4>Ecosystem Interview</h4>
+                        <p>Shortlisted entities enter a 30-minute structured interactive review session to detail compute needs and GTM objectives.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <h4>Formal Entry</h4>
+                        <p>Approved applications complete legal documentation, compute rights allocation, and move directly into the workspace hub.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="split-layout" style="grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div class="action-block-card">
+                <div>
+                    <h3>Join the Ecosystem as a Mentor</h3>
+                    <p>We consistently seek experienced technology directors, product architects, and market specialists keen to guide upcoming deep-tech teams. If you possess core expertise across product management, international development, or AI architecture, align with us.</p>
+                </div>
+                <button class="btn-nasscom-primary" onclick="openModal('mentorModal')">
+                    <i class="fas fa-handshake"></i> Apply for Mentorship Track
+                </button>
+            </div>
+            <div class="action-block-card">
+                <div>
+                    <h3>Apply for GrowX Cohort Entry</h3>
+                    <p>If your startup engineers highly efficient, cost-optimized, and innovative deep-tech solutions capable of transforming enterprise workflows or governance operations, initiate your onboarding process today.</p>
+                </div>
+                <button class="btn-nasscom-primary" onclick="openModal('startupModal')">
+                    <i class="fas fa-rocket"></i> Apply for GrowX Acceleration
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div id="mentorModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'mentorModal')">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Ecosystem Mentor Application</h3>
+                <button class="close-modal-btn" onclick="closeModal('mentorModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="mentorForm" onsubmit="handleFormSubmission(event)">
+                    <div class="form-group-row">
+                        <label>Full Representative Name *</label>
+                        <input type="text" required placeholder="e.g., Dr. Rajesh Kumar">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Professional Designation *</label>
+                        <input type="text" required placeholder="e.g., Chief Technology Officer">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Parent Corporate Organization *</label>
+                        <input type="text" required placeholder="e.g., Enterprise DeepData Labs">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Direct Contact Telephone *</label>
+                        <input type="tel" required placeholder="e.g., +91 98765 43210">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Corporate Email Channel *</label>
+                        <input type="email" required placeholder="e.g., rajesh@deepdatalabs.com">
+                    </div>
+                    <div class="form-group-row">
+                        <label>LinkedIn Verification Link *</label>
+                        <input type="url" required placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Primary Strategic Domain Expertise *</label>
+                        <select required>
+                            <option value="">-- Choose Specialization --</option>
+                            <option value="gtm">Go-To-Market &amp; Scaling Strategy</option>
+                            <option value="bizdev">Business Development &amp; Partnerships</option>
+                            <option value="tech">AI Engineering &amp; Architecture</option>
+                            <option value="prod">Product Architecture &amp; Delivery</option>
+                        </select>
+                    </div>
+                    <div class="form-group-row">
+                        <label>How would you like to contribute to India's startup ecosystem? *</label>
+                        <textarea rows="4" required placeholder="Detail your mentoring approach, session availability, or technical validation preferences..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-nasscom-primary">Submit Application Dossier</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="startupModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'startupModal')">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>GrowX Platform Cohort Application</h3>
+                <button class="close-modal-btn" onclick="closeModal('startupModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="startupForm" onsubmit="handleFormSubmission(event)">
+                    <div class="form-group-row">
+                        <label>Founder / Representative Name *</label>
+                        <input type="text" required placeholder="e.g., Amit Patel">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Corporate Designation *</label>
+                        <input type="text" required placeholder="e.g., Technical Co-Founder">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Registered Venture Legal Name *</label>
+                        <input type="text" required placeholder="e.g., NexaVision Robotics Pvt Ltd">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Corporate Domain Link *</label>
+                        <input type="url" required placeholder="https://nexavision.ai">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Founder LinkedIn Profile URL *</label>
+                        <input type="url" required placeholder="https://linkedin.com/in/founderprofile">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Direct Mobile Number *</label>
+                        <input type="tel" required placeholder="e.g., +91 99887 76655">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Direct Contact Email Address *</label>
+                        <input type="email" required placeholder="e.g., contact@nexavision.ai">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Link to Comprehensive Pitch Deck *</label>
+                        <input type="url" required placeholder="Provide secure Google Drive, DocSend, or Dropbox file link">
+                    </div>
+                    <div class="form-group-row">
+                        <label>What are your core expectations from the GrowX Program? *</label>
+                        <textarea rows="4" required placeholder="Specify your requirements for compute architecture layers, physical office spaces, targeted enterprise validation channels, or seed connections..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-nasscom-primary">Submit Accelerator Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="image-mapped-footer">
+        <div class="footer-grid-wrapper">
+            
+            <div class="footer-col brand-column-area">
+                <img src="nasscom-logo.png" alt="NASSCOM logo White" class="footer-white-logo">
+                <p>Empowering digital transformation through collaborative deep-tech implementation models.</p>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Focus Areas</h4>
+                <ul>
+                    <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                    <li><a href="public.html">Public Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="startups.html">Startups</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-column-area">
+                <h4>Contact Us</h4>
+                <div class="contact-info-strip">
+                    <p>
+                        <i class="fa-solid fa-location-dot footer-cyan-icon"></i> 
+                        <span><strong>AI Centre of Excellence</strong><br>13th floor, GIFT One Tower,<br>GIFT City, Gandhinagar, Gujarat - 382355</span>
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-envelope footer-cyan-icon"></i> 
+                        <span>aicoe@nasscom.in</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            alert("Thank you. Your records have been captured successfully. The AI CoE Acceleration Team will review your dossier and update you shortly.");
+            event.target.reset();
+            const modal = event.target.closest('.modal-overlay');
+            if (modal) {
+                closeModal(modal.id);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            const animateCounter = (counter) => {
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                let current = 0;
+                const duration = 3000; 
+                const frameRate = 1000 / 60; 
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = target / totalFrames;
+                
+                let frame = 0;
+                const update = () => {
+                    frame++;
+                    current += increment;
+                    
+                    if (frame < totalFrames) {
+                        counter.innerText = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                requestAnimationFrame(update);
+            };
+
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetCounter = entry.target;
+                        animateCounter(targetCounter);
+                        observer.unobserve(targetCounter);
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(c => observer.observe(c));
+        });
+    </script>
+</body>
+</html>

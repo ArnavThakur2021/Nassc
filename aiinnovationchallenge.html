@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Innovation Challenge (AI-IC) - NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Supplementary layout typography & module specs for AI-IC components */
+        .challenge-hero {
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(155, 32, 32, 0.9) 100%), 
+                        url('https://unpkg.com/three-globe/example/img/night-sky.png');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 20px 80px 20px;
+            text-align: center;
+        }
+        .challenge-hero .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .challenge-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .challenge-hero p {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+        }
+        .badge-pill {
+            display: inline-block;
+            background-color: var(--nasscom-red);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+        }
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--nasscom-red);
+            margin-top: 10px;
+        }
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .impact-metrics-bar {
+            background-color: var(--dark-navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .metrics-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+        .metric-card h3 {
+            font-size: 2.8rem;
+            color: var(--white);
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .metric-card p {
+            color: #94a3b8;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .architecture-box {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .timeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .step-node {
+            display: flex;
+            gap: 20px;
+        }
+        .step-number {
+            background: var(--nasscom-red);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            font-size: 1.15rem;
+            color: var(--dark-navy);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        .step-content p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+        .eligibility-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border-left: 5px solid var(--nasscom-red);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .eligibility-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .eligibility-card ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+        .eligibility-card ul li i {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--nasscom-red);
+        }
+        .usecase-tabs-container {
+            margin-top: 40px;
+        }
+        .usecase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+        .usecase-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .usecase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .usecase-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .tag-public { background: #e0f2fe; color: #0369a1; }
+        .tag-private { background: #fef3c7; color: #b45309; }
+        .tag-closed { background: #fee2e2; color: #b91c1c; }
+        
+        .usecase-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .usecase-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        .cta-box-footer {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1e293b 100%);
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        .cta-box-footer h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .cta-box-footer p {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+        .btn-challenge-action {
+            background-color: var(--nasscom-red);
+            color: #ffffff;
+            padding: 14px 35px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-challenge-action:hover {
+            background-color: var(--nasscom-red-dark);
+        }
+        @media (max-width: 992px) {
+            .grid-two-col {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .challenge-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="nasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
+            </div>
+            <div class="logo-right-block">
+                <img src="ngov_pic.png" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="research-reports.html">Research &amp; Reports</a></li>
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html" class="nav-cta-white">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <section class="challenge-hero">
+        <div class="container">
+            <span class="badge-pill">Flagship Initiative</span>
+            <h1>AI Innovation Challenge (AI-IC)</h1>
+            <p>A structured bridge between real-world enterprise demand and deep-tech startup innovation launched by the Hon'ble Chief Minister of Gujarat.</p>
+            <a href="#open-statements" class="btn-challenge-action">
+                <i class="fas fa-search"></i> View Use Cases
+            </a>
+        </div>
+    </section>
+
+    <section class="section-wrapper">
+        <div class="grid-two-col">
+            <div class="intro-text">
+                <h2 class="section-title">Bridging Demand and Innovation</h2>
+                <p>The AI Innovation Challenge serves as a unified platform empowering enterprise stakeholders, MSMEs, and government departments to address their critical operational hurdles by collaborating with growth-stage AI and deep-tech startups across India.</p>
+                <p>This model eliminates traditional experimentation cycle risks. Stakeholders submit complex real-world problems, refine them with targeted domain expert support, and co-create validated, outcome-focused solutions deployed inside native live networks.</p>
+            </div>
+            
+            <div class="architecture-box">
+                <h3 style="font-size: 1.4rem; color: var(--dark-navy); font-weight: 800;">Program Framework Path</h3>
+                <div class="timeline-steps">
+                    <div class="step-node">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Problem Articulation</h4>
+                            <p>Enterprises and public departments submit operational challenges and dataset criteria.</p>
+                        </div>
+                    </div>
+                    <div class="step-node">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Solution Mapping</h4>
+                            <p>NASSCOM CoE experts screen and technical evaluation panels match criteria with vetted cohorts.</p>
+                        </div>
+                    </div>
+                    <div class="step-node">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Pilot Execution</h4>
+                            <p>Shortlisted deep-tech developers run milestone-driven on-ground pilots with compute support.</p>
+                        </div>
+                    </div>
+                    <div class="step-node">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Full Integration</h4>
+                            <p>Successful pilots scale to production deployment with continuous performance tracking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>450+</h3>
+                <p>Summit Ecosystem Delegates</p>
+            </div>
+            <div class="metric-card">
+                <h3>50K+</h3>
+                <p>Target Network Checkpoints</p>
+            </div>
+            <div class="metric-card">
+                <h3>100%</h3>
+                <p>Outcome-driven Deployments</p>
+            </div>
+            <div class="metric-card">
+                <h3>End-to-End</h3>
+                <p>Pilot Execution Governance</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrapper">
+        <div class="grid-two-col">
+            <div class="eligibility-card">
+                <h2 class="section-title">Startup Eligibility Criteria</h2>
+                <p style="margin-bottom: 20px; font-weight: 600; color: var(--dark-navy);">To align with the challenge ecosystem guidelines, applicant entities must satisfy the following:</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Incorporation Profile:</strong> Registered as a Private Limited Company, LLP, or Partnership Firm within the last 10 years.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Revenue Ceiling:</strong> Annual turnover must not exceed ₹25 Crores (or up to ₹100 Crores depending on specific sector challenge tiers) in any prior financial year.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Core Purpose:</strong> Working directly toward innovation, scaling, or measurable transformation of existing products, services, or workflow pipelines.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Operational Rule:</strong> The entity must not be formed by splitting up or reconstructing an existing pre-established business framework.</li>
+                </ul>
+            </div>
+            
+            <div class="intro-text">
+                <h2 class="section-title">Ecosystem Benefits</h2>
+                <p><strong>For Government Departments:</strong> Enhances service delivery models, maximizes fund utilization efficiency, and accelerates objective data-driven public choices.</p>
+                <p><strong>For MSMEs &amp; Enterprises:</strong> Offers immediate access to targeted innovations without requiring high capital infrastructure risks or extensive internal R&D loops.</p>
+                <p><strong>For Deep-Tech Startups:</strong> Provides direct customer market access channels, production deployment reference validation, and clear technology validation opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrapper" id="open-statements">
+        <h2 class="section-title">Track Use-Case Registries</h2>
+        <p style="color: var(--text-gray); margin-bottom: 30px; font-size: 1.1rem;">Explore the strategic problem statements defined across recent public and private innovation evaluation tracks.</p>
+        
+        <div class="usecase-tabs-container">
+            <div class="usecase-grid">
+                
+                <div class="usecase-card">
+                    <span class="usecase-tag tag-closed">Track Wave — Closed</span>
+                    <h3>AI for Anganwadi Infrastructure Tracking</h3>
+                    <p>Automating progress updates and tracking across 50,000 statewide care center construction sites. Leverages computer vision applied to drone/satellite scans to replace manual verification lags.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag tag-closed">Track Wave — Closed</span>
+                    <h3>Poshan Tracker Predictive Analytics</h3>
+                    <p>An artificial intelligence layer mapped over large-scale nutrition records. Detects risk anomalies, regional stunting trends, and growth risks early via structured predictive modeling matrices.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag tag-public">Public Sector</span>
+                    <h3>Schema &amp; Rule Automation for NSWS</h3>
+                    <p>Automating real-time regulatory schema and compliance mapping across diverse National Single Window System (NSWS) and central ministry integration endpoints.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag tag-public">Public Sector</span>
+                    <h3>eSarkar Mail Workflow Processing</h3>
+                    <p>Deploying conversational understanding algorithms and robotic process layers for the semantic routing and automated filing of eTappal communications inside state workflows.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag tag-private">Private Sector</span>
+                    <h3>Distribution Grid Power Theft Mitigation</h3>
+                    <p>Edge analytics tracking and ML-driven anomalies comparison over power distribution nodes to identify unauthorized draw points and load deviations automatically.</p>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag tag-private">Private Sector</span>
+                    <h3>Computer Vision Tube Quality Audits</h3>
+                    <p>Automated inline manufacturing check systems processing automated optical analysis to isolate microscopic structural micro-fissures in manufactured metal components.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="cta-box-footer">
+            <h2>Have a Problem Statement or a Solution?</h2>
+            <p>Connect with the AI Centre of Excellence acceleration office today to align your enterprise tracks or present your deep-tech startup deployment model.</p>
+            <a href="contact-us.html" class="btn-challenge-action" style="background-color: var(--white); color: var(--dark-navy);">
+                <i class="fas fa-envelope"></i> Contact Innovation Desk
+            </a>
+        </div>
+    </section>
+
+    <footer class="image-mapped-footer">
+        <div class="footer-grid-wrapper">
+            
+            <div class="footer-col brand-column-area">
+                <img src="nasscom-logo.png" alt="NASSCOM logo White" class="footer-white-logo">
+                <p>Empowering digital transformation through collaborative deep-tech implementation models.</p>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Focus Areas</h4>
+                <ul>
+                    <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                    <li><a href="public.html">Public Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="startups.html">Startups</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-column-area">
+                <h4>Contact Us</h4>
+                <div class="contact-info-strip">
+                    <p>
+                        <i class="fa-solid fa-location-dot footer-cyan-icon"></i> 
+                        <span><strong>AI Centre of Excellence</strong><br>13th floor, GIFT One Tower,<br>GIFT City, Gandhinagar, Gujarat - 382355</span>
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-envelope footer-cyan-icon"></i> 
+                        <span>aicoe@nasscom.in</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

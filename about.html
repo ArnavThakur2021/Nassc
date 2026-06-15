@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Supplementary layout typography & module specs for About components */
+        .about-hero {
+            background: linear-gradient(135deg, rgba(155, 32, 32, 0.05) 0%, rgba(10, 25, 47, 0.02) 100%);
+            padding: 90px 0 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .about-hero h1 {
+            font-size: 3rem;
+            color: var(--nasscom-red-dark);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .about-hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--nasscom-red);
+            margin-top: 10px;
+        }
+        .content-block p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .objective-bg-strip {
+            background-color: var(--dark-navy);
+            color: var(--white);
+            padding: 60px 20px;
+        }
+        .objective-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .objective-container h2 {
+            font-size: 2.2rem;
+            color: var(--white);
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .objective-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .objective-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .objective-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .objective-card .icon-box {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        .objective-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--white);
+            font-weight: 700;
+        }
+        .objective-card p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .pillar-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        }
+        .pillar-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pillar-card h3 i {
+            color: var(--nasscom-red);
+        }
+        .pillar-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        @media (max-width: 992px) {
+            .grid-two-col {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="nasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
+            </div>
+            <div class="logo-right-block">
+                <img src="gov_pic.png" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="research-reports.html">Research &amp; Reports</a></li>
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html" class="nav-cta-white">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <section class="about-hero">
+        <h1>About the Center of Excellence</h1>
+        <p>Driving institutional adoption of Deep-Tech solutions by bridging innovative startup architectures with corporate pipelines and public governance models.</p>
+    </section>
+
+    <section class="section-wrapper">
+        <div class="grid-two-col">
+            <div class="content-block">
+                <h2 class="section-title">Who We Are</h2>
+                <p>NASSCOM (National Association of Software and Service Companies) is the premier trade association and chamber of commerce for the tech industry in India. As a non-profit organization, NASSCOM spearheads the development of the digital economy, guiding the country towards achieving its global potential as a supreme technical innovation hub.</p>
+                <p>The <strong>NASSCOM Center of Excellence - IoT &amp; AI</strong> is a strategic flagship initiative sustained in joint alignment with national and state government authorities. Based in GIFT City, Gandhinagar, the CoE acts as an accelerated collaborative sanctuary created to cultivate deep-tech intelligence systems, incubate startup talent, and address production vulnerabilities across public systems and enterprise value chains.</p>
+            </div>
+            <div class="content-block">
+                <h2 class="section-title">Our Core Vision</h2>
+                <p>We envision a seamlessly integrated digital landscape where complex AI engines and Industrial Internet of Things (IIoT) protocols step out of isolated labs and manifest onto the live operational floors of micro, small, medium, and large-scale industries.</p>
+                <p>By curating structured integration spaces, providing shared cloud compute infrastructures, and standardizing security reference metrics, we empower ecosystem stakeholders to adapt to disruptive technological paradigms securely, cost-effectively, and at unprecedented scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="objective-bg-strip">
+        <div class="objective-container">
+            <h2>Strategic Objectives</h2>
+            <div class="objective-grid">
+                
+                <div class="objective-card">
+                    <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                    <h3>Accelerating AI Adoption</h3>
+                    <p>Driving deep artificial intelligence workflows into the operational core of public delivery services, ensuring rapid data handling and data-driven administrative systems.</p>
+                </div>
+
+                <div class="objective-card">
+                    <div class="icon-box"><i class="fas fa-handshake"></i></div>
+                    <h3>Industry-Startup Cohesion</h3>
+                    <p>Designing targeted procurement channels that allow legacy industries to match operational issues directly with validated deep-tech startup cohorts.</p>
+                </div>
+
+                <div class="objective-card">
+                    <div class="icon-box"><i class="fas fa-microchip"></i></div>
+                    <h3>Infrastructure Enablement</h3>
+                    <p>Lowering capital barriers for growth-stage ventures by supplying access to specialized prototyping environments, high-performance computing, and validation tools.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrapper">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 10px;">Our Operational Pillars</h2>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px; font-size: 1.1rem;">How the Center of Excellence impacts tech transformation ecosystems.</p>
+        
+        <div class="pillars-grid">
+            
+            <div class="pillar-card">
+                <h3><i class="fas fa-gavel"></i> Policy &amp; Standards Alignment</h3>
+                <p>We work tightly alongside public policy developers to explain emerging guidelines such as the DPDP Act and state-level IT/ITeS incentives, directly helping companies remain structurally aligned.</p>
+            </div>
+
+            <div class="pillar-card">
+                <h3><i class="fas fa-graduation-cap"></i> Ecosystem Capability Building</h3>
+                <p>Hosting regular technical design thinking forums, artificial intelligence roundtables, and specialized innovation challenges to consistently upgrade the digital acumen of engineering talent networks.</p>
+            </div>
+
+            <div class="pillar-card">
+                <h3><i class="fas fa-network-wired"></i> Global Market Routing</h3>
+                <p>Providing mature deep-tech solutions with an expansive global platform by leveraging NASSCOM's extensive international enterprise relations, expanding cross-border commercial opportunities.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="image-mapped-footer">
+        <div class="footer-grid-wrapper">
+            
+            <div class="footer-col brand-column-area">
+                <img src="nasscom-logo.png" alt="NASSCOM logo White" class="footer-white-logo">
+                <p>Empowering digital transformation through collaborative deep-tech implementation models.</p>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Focus Areas</h4>
+                <ul>
+                    <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                    <li><a href="public.html">Public Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="startups.html">Startups</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-column-area">
+                <h4>Contact Us</h4>
+                <div class="contact-info-strip">
+                    <p>
+                        <i class="fa-solid fa-location-dot footer-cyan-icon"></i> 
+                        <span><strong>AI Centre of Excellence</strong><br>13th floor, GIFT One Tower,<br>GIFT City, Gandhinagar, Gujarat - 382355</span>
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-envelope footer-cyan-icon"></i> 
+                        <span>aicoe@nasscom.in</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

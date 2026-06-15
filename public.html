@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Services - NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Supplementary specific layout configuration overrides for rich text components */
+        .page-banner {
+            background: linear-gradient(135deg, rgba(155, 32, 32, 0.04) 0%, rgba(10, 25, 47, 0.02) 100%);
+            padding: 80px 0 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .page-banner h1 {
+            font-size: 2.8rem;
+            color: var(--nasscom-red-dark);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .page-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        .content-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .story-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            padding: 40px;
+            margin-top: 30px;
+            border-left: 5px solid var(--nasscom-red);
+        }
+        .video-box iframe {
+            width: 100%;
+            height: 280px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: none;
+        }
+        .usecase-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .usecase-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: #fff;
+            font-size: 0.95rem;
+        }
+        .usecase-table th {
+            background-color: var(--dark-navy);
+            color: #ffffff;
+            padding: 16px 20px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .usecase-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #edf2f7;
+            color: #334155;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        .usecase-table tr:hover {
+            background-color: #f8fafc;
+        }
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .tech-card {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-bottom: 3px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--nasscom-red);
+            box-shadow: 0 8px 25px rgba(155,32,32,0.1);
+        }
+        .tech-card i {
+            font-size: 2.2rem;
+            color: var(--nasscom-red);
+            margin-bottom: 15px;
+        }
+        .tech-card h4 {
+            font-size: 1rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+        }
+        .faq-accordion {
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .faq-item {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #edf2f7;
+            overflow: hidden;
+        }
+        .faq-header {
+            padding: 20px 25px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            font-size: 1.05rem;
+            transition: background 0.2s ease;
+        }
+        .faq-header:hover {
+            background-color: #f8fafc;
+        }
+        .faq-content {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.98rem;
+            border-top: 1px solid transparent;
+        }
+        .faq-item.active .faq-content {
+            max-height: 1500px;
+            padding: 20px 25px;
+            border-top-color: #edf2f7;
+            transition: max-height 0.3s cubic-bezier(1, 0, 1, 0), padding 0.3s ease;
+        }
+        .faq-icon {
+            transition: transform 0.25s ease;
+            color: var(--nasscom-red);
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        .structured-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .structured-list li {
+            margin-bottom: 8px;
+            position: relative;
+            list-style-type: none;
+        }
+        .structured-list li::before {
+            content: "■";
+            color: var(--nasscom-red);
+            font-size: 0.7rem;
+            position: absolute;
+            left: -18px;
+            top: 2px;
+        }
+        .structured-list strong {
+            color: #1e293b;
+        }
+        .faq-subheading {
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .inline-link {
+            color: var(--nasscom-red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .inline-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="nasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
+            </div>
+            <div class="logo-right-block">
+                <img src="gov_pic.png" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="research-reports.html">Research &amp; Reports</a></li>
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html" class="nav-cta-white">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <section class="page-banner">
+        <h1>Empowering Public Services with AI</h1>
+        <p>The AI Centre of Excellence acts as an ecosystem enabler, helping departments identify, validate, and implement deep-tech frameworks that make governance and public service delivery more effective, transparent, and scalable.</p>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Featured Impact Story</h2>
+        <div class="story-container">
+            <div class="story-details">
+                <h3>Food-Grain Quality Inspection for APMCs</h3>
+                <p style="margin: 15px 0; text-align: justify;">Agricultural inspections have historically relied heavily on manual, subjective grading criteria. Outcomes fluctuated dynamically based on individual human judgment, which diminished trading standardisation and led to non-transparent, unpredictable pricing thresholds for farmers within localized marketplaces.</p>
+                <p style="margin-bottom: 15px; text-align: justify;">To bridge this baseline technology gap, the NASSCOM AI CoE successfully facilitated the scalable digital adoption of an advanced computer vision platform engineered by <strong>Upjao</strong>. The system processes raw images using machine learning networks to comprehensively evaluate more than ten discrete physical parameters—such as identifying broken kernels or extracting foreign organic material fractions—generating certifiable output datasets in under 30 seconds.</p>
+                <p style="font-weight: 600; color: var(--dark-navy);">On-Ground Implementations &amp; Outcomes:</p>
+                <ul class="structured-list">
+                    <li><strong>Grassroots Deployments:</strong> Seamlessly integrated and scaled across APMC hubs situated in Anand and Kheda, Gujarat.</li>
+                    <li><strong>Ecosystem Traction:</strong> Directly empowered over 1,000 regional farming operators.</li>
+                    <li><strong>Value Realized:</strong> Facilitated verified algorithmic grain commerce transactions exceeding ₹700+ crores while decreasing revenue leaks from random batch rejections.</li>
+                </ul>
+            </div>
+            <div class="video-box" style="margin-top: 15px;">
+                <iframe src="https://www.youtube.com/embed/_R_zBiva1a8" title="APMC AI Grain Assessment Use Case" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="stat-card-premium" style="margin-top: 30px; padding: 20px; border-top: 4px solid var(--dark-navy);">
+                    <div class="stat-number-wrapper" style="font-size: 2.5rem;">
+                        <span class="counter" data-target="350">0</span><span class="plus-sign">+</span>
+                    </div>
+                    <div class="stat-label" style="font-size: 0.8rem; text-align: center; margin-top: 5px;">Government Officials Trained Across Workflows</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" style="background-color: #f8fafc; padding: 50px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+        <h2 class="section-title">Active AI Innovation Challenge Platforms (AI-IC)</h2>
+        <p style="margin-left: 15px; color: var(--text-gray);">Our structural pipeline addresses active computational projects at various operational deployment, integration, or proof-of-concept exploration phases across government departments:</p>
+        
+        <div class="usecase-table-wrapper">
+            <table class="usecase-table">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Sr.</th>
+                        <th style="width: 25%">Use-Case Title</th>
+                        <th style="width: 25%">Nominated By</th>
+                        <th style="width: 45%">Operational Parameter Objectives</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>Detection of Illegal Encroachment</strong></td>
+                        <td>Development Commissionerate Office, Gandhinagar</td>
+                        <td>Automates land parcel encroachment parsing across large-scale image database matrix feeds using advanced visual analytics models. Dashboard layout targeting &gt;95% accuracy thresholds.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>Visitor Tracing using Facial Recognition</strong></td>
+                        <td>GIL &amp; DIT</td>
+                        <td>Real-time visitor identity authentication tracking system within high-profile state secure assets like the Sachivalay. Handles high-density entry volumes with 99% accuracy markers.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>Bilingual OCR for English &amp; Gujarati</strong></td>
+                        <td>GIL &amp; DIT</td>
+                        <td>Extracts text nodes accurately from handwritten or low-resolution scans supporting multi-font document parsing to automate regional department records extraction (&gt;95% accuracy targets).</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>Document Identification &amp; Recognition</strong></td>
+                        <td>GIL &amp; DIT</td>
+                        <td>Automated structure classification of unstructured files, tracking metadata values across legal certificates, business invoices, and national ID cards at a target metric of &gt;90% accuracy.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>AI Based Emergency Call Analytics</strong></td>
+                        <td>Home Department</td>
+                        <td>Applies algorithmic speech classification over ERSS 112 system files, detecting phonetic anomalies, call indicators, or hoaxes to optimize real-time routing logic.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>Integrated CCTV with Facial Recognition</strong></td>
+                        <td>Home Department</td>
+                        <td>Unifies visual stream nodes from facility networks and body-worn cameras to track authorized logistics control, security access profiles, and asset authentication matrices.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><strong>Digitization of Legacy Medical Documents</strong></td>
+                        <td>Rajiv Gandhi Cancer Research Institute</td>
+                        <td>Processes unstructured medical case histories with accelerated extraction architectures to secure patient data integrity under regulatory confidentiality profiles.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><strong>Object Identification and Tagging</strong></td>
+                        <td>Urban Development Department</td>
+                        <td>Employs CNN and transformer models over state visual records arrays to handle automated safety mapping, critical infrastructure tracking, and active transport telemetry data.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><strong>Trend, Seasonality, and Anomaly Detection</strong></td>
+                        <td>Statistics Department</td>
+                        <td>Leverages time-series LSTM and ARIMA model ensembles over public policy analytics data structures to surface real-time forecasting trends and planning variables.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><strong>Automated Blueprint Evaluation</strong></td>
+                        <td>Town Planning &amp; Valuation Department</td>
+                        <td>Automates technical standard checks over multi-layer CAD engineering drawings to accelerate Town Planning Schemes validation cycles.</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td><strong>AI-Driven Wetland Intelligence Platform</strong></td>
+                        <td>Forest &amp; Environment Department</td>
+                        <td>Evaluates physical, chemical, and environmental markers over historical multi-year records blocks generated by the GEER Foundation to preserve the Nal Sarovar Bird Sanctuary Ramsar site.</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td><strong>Theft Detection in Electricity Networks</strong></td>
+                        <td>GUVNL</td>
+                        <td>Eliminates manual review cycles by parsing meter network flows using automated anomaly filtering to tag revenue leakage and real-time theft profiles.</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td><strong>Sentiment Analysis from Newspapers</strong></td>
+                        <td>Information &amp; Broadcasting Department</td>
+                        <td>Processes daily regional press clippings across Gujarati, Hindi, and English to track publication vector categorizations dynamically.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Core Technology Capabilities</h2>
+        <div class="tech-stack-grid">
+            <div class="tech-card">
+                <i class="fas fa-brain"></i>
+                <h4>AI &amp; Machine Learning</h4>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-eye"></i>
+                <h4>Video Analytics</h4>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-comments"></i>
+                <h4>Conversational &amp; Language Tech</h4>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-leaf"></i>
+                <h4>Sustainability &amp; Energy AI</h4>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-database"></i>
+                <h4>Advanced Data Engineering</h4>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" style="margin-bottom: 80px;">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+            
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    1. How departments engage with AI CoE? What is the approach?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Government departments engage with AI CoE through a structured approach:</p>
+                    
+                    <div class="faq-subheading">Understanding the Challenge and Identifying AI Opportunities</div>
+                    <ul class="structured-list">
+                        <li>Understand in detail about the existing departmental processes</li>
+                        <li>Identify inefficiencies and functions where AI can add value</li>
+                        <li>Discuss with key stakeholders, define clear AI objectives, expected outcomes, and priorities</li>
+                    </ul>
+                    
+                    <div class="faq-subheading">Finding the Right AI Solutions</div>
+                    <ul class="structured-list">
+                        <li>Finalise functional requirements and success KPIs</li>
+                        <li>Identify and evaluate suitable AI startups and solution providers</li>
+                        <li>Support the department in selecting the right startup to develop the solution</li>
+                    </ul>
+                    
+                    <div class="faq-subheading">Implementing AI Solutions</div>
+                    <ul class="structured-list">
+                        <li>Support proof-of-concept and pilot deployments</li>
+                        <li>Ensure alignment with IT and operational teams</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    2. If, as a decision maker of a government department, I go ahead with AI adoption, what kind of ROI should I expect and by when?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Adopting AI across the department can improve speed, precision, and overall process quality. The return on investment varies by use case and depends on your requirements.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    3. Which are the departments AI CoE works with?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>AI CoE is sector-agnostic.</p>
+                    <p style="margin-top: 10px;">CoE is currently working on multiple use-cases from various departments in the state government including Urban Development, Food &amp; Civil Supplies, Forest &amp; Environment, and more.</p>
+                    <p style="margin-top: 10px;"><a href="#" class="inline-link">Click here to know more</a> (leads to AI-IC microsite)</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    4. What technologies does AI CoE enable for government?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>AI CoE supports adoption across a broad technology stack:</p>
+                    <ul class="structured-list">
+                        <li>AI &amp; Machine Learning</li>
+                        <li>Video Analytics</li>
+                        <li>Conversational &amp; Language Technologies</li>
+                        <li>Sustainability &amp; Energy AI</li>
+                        <li>Data Engineering &amp; Advanced Analytics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    5. What kind of impact has the CoE made in public sector AI adoption?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Impact includes:</p>
+                    <p style="margin-top: 10px;">Till December 2025, AI CoE has initiated 40+ use cases, out of which 25+ are hosted on AI Innovation Challenge platform. There are 25 startups incubated at CoE, however, being connected across the country, CoE facilitated showcase of 60 prototypes (startup solutions) in various forums.</p>
+                    <p style="margin-top: 10px;">After the launch, CoE organized 30+ events and workshops for ecosystem building and also hosted 40+ delegations at the centre from Government, Foreign delegates, Academia, Industry Associations, etc.</p>
+                    <p style="margin-top: 10px;">Moreover, we have conducted AI training programs for government officials focused on applications in governance and public services. The sessions were customised for both administrative and technical roles, and so far, 350+ officials have been trained.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    6. Who supports and governs AI CoE?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>AI CoE operates with strong institutional backing:</p>
+                    <ul class="structured-list">
+                        <li>Department of Science &amp; Technology, Government of Gujarat</li>
+                        <li>Gujarat Informatics Limited</li>
+                        <li>Nasscom</li>
+                        <li>Microsoft</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    7. What other activities AI CoE does for government departments like us?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>The AI CoE does various activities for departments that helps both the entities to stay connected and updated with on-ground challenges as well as new technologies.</p>
+                    <p style="margin-top: 10px;">Activities like AI training &amp; workshops for officials, Conducting department specific Demo days by startups, inviting government officials to relevant events; encouraging departments to participate in AI Innovation Challenge by nominating their problem statements.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    8. What are these training programs?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>The CoE conducts AI Literacy and Training Workshops to build capacity among officials. These sessions cover:</p>
+                    <ul class="structured-list">
+                        <li>Fundamentals of AI and its applications</li>
+                        <li>Hands-on demos</li>
+                        <li>Policy and ethical considerations</li>
+                        <li>Use case development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    9. What is the Demo Day for Government Officials?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>Demo Day is a curated event where startups present their AI solutions tailored for governance. Officials can:</p>
+                    <ul class="structured-list">
+                        <li>Interact with innovators</li>
+                        <li>Evaluate solutions</li>
+                        <li>Explore pilot opportunities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    10. How does a department get started?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>For you to get started, I’ll simply set up a meeting with the concerned person in the team so that you can have one-on-one discussion about the challenges you’re facing and how can AI help in resolving those.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="image-mapped-footer">
+        <div class="footer-grid-wrapper">
+            
+            <div class="footer-col brand-column-area">
+                <img src="nasscom-logo.png" alt="NASSCOM logo White" class="footer-white-logo">
+                <p>Empowering digital transformation through collaborative deep-tech implementation models.</p>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col link-column-area">
+                <h4>Focus Areas</h4>
+                <ul>
+                    <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                    <li><a href="public.html">Public Services</a></li>
+                    <li><a href="industries.html">Industries</a></li>
+                    <li><a href="startups.html">Startups</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-column-area">
+                <h4>Contact Us</h4>
+                <div class="contact-info-strip">
+                    <p>
+                        <i class="fa-solid fa-location-dot footer-cyan-icon"></i> 
+                        <span><strong>AI Centre of Excellence</strong><br>13th floor, GIFT One Tower,<br>GIFT City, Gandhinagar, Gujarat - 382355</span>
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-envelope footer-cyan-icon"></i> 
+                        <span>aicoe@nasscom.in</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Custom smooth accordion toggling logic for opaque FAQ rows
+        function toggleFaq(headerElement) {
+            const currentItem = headerElement.parentElement;
+            const isActive = currentItem.classList.contains('active');
+            
+            // Close any open adjacent entries safely
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                currentItem.classList.add('active');
+            }
+        }
+
+        // Numeric increment engine initialized on viewport threshold intersection
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            const animateCounter = (counter) => {
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                let current = 0;
+                const duration = 4000; 
+                const frameRate = 1000 / 60; 
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = target / totalFrames;
+                
+                let frame = 0;
+                const update = () => {
+                    frame++;
+                    current += increment;
+                    
+                    if (frame < totalFrames) {
+                        counter.innerText = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                requestAnimationFrame(update);
+            };
+
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetCounter = entry.target;
+                        animateCounter(targetCounter);
+                        observer.unobserve(targetCounter);
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(c => observer.observe(c));
+        });
+    </script>
+</body>
+</html>

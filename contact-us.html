@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/three"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+    <style>
+        /* Supplementary specific layout configuration overrides for rich text components */
+        .page-banner {
+            background: linear-gradient(135deg, rgba(155, 32, 32, 0.04) 0%, rgba(10, 25, 47, 0.02) 100%);
+            padding: 80px 0 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .page-banner h1 {
+            font-size: 2.8rem;
+            color: var(--nasscom-red-dark);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .page-banner p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        .contact-content-layout {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+        }
+        .contact-form-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+        .contact-form-card h2 {
+            font-size: 1.8rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .contact-form-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--nasscom-red);
+        }
+        .form-row {
+            margin-bottom: 20px;
+        }
+        .form-row label {
+            display: block;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-row input, .form-row textarea, .form-row select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #334155;
+            transition: border-color 0.2s;
+        }
+        .form-row select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px;
+            padding-right: 42px;
+            cursor: pointer;
+        }
+        .form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+            outline: none;
+            border-color: var(--nasscom-red);
+        }
+        .btn-submit-nasscom {
+            background-color: var(--nasscom-red);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .btn-submit-nasscom:hover {
+            background-color: var(--nasscom-red-dark);
+        }
+        .map-component-box {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            height: 620px;
+            width:auto;
+        }
+        .map-component-box .logo-header {
+            background: var(--dark-navy);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+        }
+        .map-component-box .logo-header img {
+            height: 35px;
+        }
+        .map-viewport {
+            position: relative;
+            flex-grow: 1;
+            background: #000;
+            overflow: hidden;
+        }
+        #globeViz {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            transition: opacity 1s ease;
+        }
+        #globeViz.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #openMapView {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        #openMapView.fade-in {
+            opacity: 1;
+            z-index: 2;
+        }
+        #address-card {
+            position: absolute;
+            height:150px;
+            width:280px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: -1;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease, z-index 0s linear 0.5s;
+        }
+        #address-card.show {
+            z-index: 3;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease, z-index 0s linear 0s;
+        }
+        #address-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--dark-navy);
+            line-height: 1.5;
+        }
+        @media (max-width: 992px) {
+            .contact-content-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .map-component-box {
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="newnasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
+            </div>
+            <div class="logo-right-block">
+                <img src="gil_logo.jpg" alt="CoE Partner Branding" class="secondary-logo">
+                <img src="dst_logo.jpg" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href=#>AI Experience Zone</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+                    
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="research-reports.html">Research &amp; Reports</a></li>
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <section class="page-banner">
+        <h1>Connect With Us</h1>
+        <p>Get in touch with the NASSCOM Center of Excellence to explore deep-tech partnerships, pilot program alignments, resource infrastructure allocations, or integration tracks.</p>
+    </section>
+
+    <section class="contact-content-layout">
+        
+        <div class="contact-form-card">
+            <h2>Send a Message</h2>
+            <form id="hubContactForm" onsubmit="handleFormSubmission(event)">
+                <div class="form-row">
+                    <label for="aboutYourself">About Yourself *</label>
+                    <select id="aboutYourself" required>
+                        <option value="" disabled selected>Please select an option</option>
+                        <option value="startup">I work at a startup</option>
+                        <option value="corporation">I work in a major corporation</option>
+                        <option value="vc-angel">I am a venture capitalist or angel investor</option>
+                        <option value="government">I work for government or public sector entity</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required placeholder="e.g., Rajesh Kumar">
+                </div>
+                
+                <div class="form-row">
+                    <label for="email">E-Mail Address *</label>
+                    <input type="email" id="email" required placeholder="e.g., rajesh@organization.in">
+                </div>
+                
+                <div class="form-row">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="e.g., +91 98765 43210">
+                </div>
+                
+                <div class="form-row">
+                    <label for="message">Message Text *</label>
+                    <textarea id="message" rows="6" required placeholder="Please outline your query or proposal details..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit-nasscom">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+
+        <div class="map-component-box">
+            <div class="logo-header">
+                <img src="newnasscom-logo.png" alt="NASSCOM CoE Header">
+            </div>
+            <div class="map-viewport">
+                
+                <div id="globeViz"></div>
+                <iframe id="openMapView" src=""></iframe>
+                 <div id="address-card">
+                <p><br><strong>AI COE 13 Floor GIFT One Tower</strong><br>  GIFT City, Gandhinagar<br> Gujarat, India</p></div>
+                
+            </div>
+            
+        </div>
+
+    </section>
+
+    <footer class="image-mapped-footer new-footer">
+        <!-- Top CTA bar -->
+        <div class="footer-cta-bar">
+            <div class="footer-cta-inner">
+                <div>
+                    <h3 class="footer-cta-heading">Ready to transform your industry with AI?</h3>
+                    <p class="footer-cta-sub">Visit the AI COE Office or reach out to our team today.</p>
+                </div>
+                <a href="contact-us.html" class="footer-cta-btn">
+                    Get in Touch <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main footer grid -->
+        <div class="footer-main-wrap">
+            <div class="footer-main-grid">
+
+                <!-- Brand + logos column -->
+                <div class="footer-col footer-brand-col">
+                    <p class="footer-initiative-label">An Initiative of</p>
+                    <div class="footer-logos-row">
+                        <div class="footer-logo-pill">
+                            <img src="dst_logo.jpg" alt="DST Gujarat" onerror="this.parentElement.innerHTML='<span class='flogo-text'>DST Gujarat</span>'">
+                        </div>
+                        <div class="footer-logo-pill">
+                            <img src="gil_logo.jpg" alt="GIL" onerror="this.parentElement.innerHTML='<span class='flogo-text'>GIL</span>'">
+                        </div>
+                    </div>
+                    <p class="footer-initiative-label" style="margin-top:16px">In Collaboration with</p>
+                    <div class="footer-logos-row logos-row-solo">
+                        <div class="footer-logo-pill">
+                            <img src="nasscom-logo.png" alt="NASSCOM CoE" onerror="this.parentElement.innerHTML='<span class='flogo-text'>NASSCOM CoE</span>'">
+                        </div>
+                    </div>
+                    <div class="footer-logos-row">
+                        
+                        <div class="footer-logo-pill">
+                            <img src="microsoft.png" alt="Microsoft" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Microsoft</span>'">
+                        </div>
+                        <div class="footer-logo-pill">
+                            <img src="google.webp" alt="Google" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Google</span>'">
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Follow Us -->
+                <div class="footer-col link-column-area">
+                    <h4 style="margin-top:28px">Follow Us</h4>
+                    <div class="footer-social-row">
+                        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="fsoc-btn fsoc-li"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="fsoc-btn fsoc-yt"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="fsoc-btn fsoc-tw"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col footer-contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-stack">
+                        <div class="fcs-item">
+                            <i class="fa-solid fa-location-dot footer-cyan-icon"></i>
+                            <div>
+                                <strong>AI Centre of Excellence</strong><br>
+                                13th Floor, GIFT One Tower,<br>
+                                GIFT City, Gandhinagar,<br>
+                                Gujarat – 382355
+                            </div>
+                        </div>
+                        <div class="fcs-item">
+                            <i class="fa-regular fa-envelope footer-cyan-icon"></i>
+                            <a href="mailto:aicoe@nasscom.in" class="footer-email-link">aicoe@nasscom.in</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <p align="center">&copy; 2025 NASSCOM Centre of Excellence — IoT &amp; AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            alert("Thank you. Your message has been routed successfully. The CoE administration office will contact you through your registered email channel shortly.");
+            event.target.reset();
+        }
+
+        const destLat = 23.1644923;
+        const destLng = 72.6801305;
+
+        const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${destLng-0.003}%2C${destLat-0.002}%2C${destLng+0.003}%2C${destLat+0.002}&layer=mapnik&marker=${destLat}%2C${destLng}`;
+        const brightDayTopographicalImg = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'; 
+
+        const viewportContainer = document.querySelector('.map-viewport');
+        const boxWidth = viewportContainer.clientWidth;
+        const boxHeight = viewportContainer.clientHeight;
+
+        const world = Globe()
+            (document.getElementById('globeViz'))
+            .width(boxWidth)
+            .height(boxHeight)
+            .globeImageUrl(brightDayTopographicalImg) 
+            .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+            .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
+            .showAtmosphere(true)
+            .atmosphereColor('#bbf3ff') 
+            .atmosphereAltitude(0.25);  
+
+        world.htmlElementsData([{ lat: destLat, lng: destLng }])
+            .htmlElement(d => {
+                const el = document.createElement('div');
+                el.style.position = 'absolute';
+                el.style.transform = 'translate(-50%, -50%)';
+                
+                const ring = document.createElement('div');
+                ring.style.width = '24px'; ring.style.height = '24px';
+                ring.style.borderRadius = '50%';
+                ring.style.border = '2.5px solid #ff3333';
+                ring.style.boxShadow = '0 0 12px #ff3333';
+                ring.style.animation = 'pulse 3.2s infinite ease-in-out';
+                
+                const style = document.createElement('style');
+                style.textContent = `@keyframes pulse { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }`;
+                document.head.appendChild(style);
+
+                const dot = document.createElement('div');
+                dot.style.width = '8px'; dot.style.height = '8px';
+                dot.style.borderRadius = '50%';
+                dot.style.backgroundColor = '#ff3333';
+                dot.style.position = 'absolute';
+                dot.style.top = '50%'; dot.style.left = '50%';
+                dot.style.transform = 'translate(-50%, -50%)';
+
+                el.appendChild(ring); el.appendChild(dot);
+                return el;
+            });
+
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 6.0; 
+        world.controls().enableZoom = false;
+
+        setTimeout(() => {
+            world.controls().autoRotate = false;
+            world.pointOfView({ lat: destLat, lng: destLng, altitude: 0.22 }, 3500);
+            document.getElementById('openMapView').src = osmEmbedUrl;
+
+            setTimeout(() => {
+                document.getElementById('globeViz').classList.add('fade-out');
+                document.getElementById('openMapView').classList.add('fade-in');
+                setTimeout(() => {
+                    document.getElementById('address-card').classList.add('show');
+                }, 500);
+            }, 3400); 
+        }, 1000); 
+
+        // Adjust dimensions dynamically on screen layout shifts
+        window.addEventListener('resize', () => {
+            const currentWidth = viewportContainer.clientWidth;
+            const currentHeight = viewportContainer.clientHeight;
+            world.width(currentWidth).height(currentHeight);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/three"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="nasscom-logo.png" alt="NASSCOM CoE Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Focus Areas</a></li>
+                    <li><a href="#">AI Innovation Challenge</a></li>
+                    <li><a href="#">AI Experience Zone</a></li>
+                    <li><a href="#">News & Resources</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <main class="hero-section">
+        <h1 class="section-title">Latest Updates & Announcements</h1>
+        <div class="banner-grid">
+            
+            <div class="main-banner">
+                <h2>AI Innovation Challenge (AI-IC)</h2>
+                <p>Discover the latest high-impact use cases designed by deep-tech innovators transforming industries across the globe.</p>
+            </div>
+
+            <div class="side-banners">
+                <a href="https://youtube.com" target="_blank" class="video-card">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=500&q=80" alt="Inauguration">
+                    <div class="video-overlay">
+                        <span><i class="fas fa-camera"></i> Success Stories & Showcase</span>
+                        <i class="fas fa-play-circle play-btn"></i>
+                        <small>Launch of GrowX Enterprise AI Solutions</small>
+                    </div>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="video-card">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" alt="Introduction">
+                    <div class="video-overlay">
+                        <span><i class="fas fa-video"></i> CoE Introduction Overview</span>
+                        <i class="fas fa-play-circle play-btn"></i>
+                        <small>Explore our state-of-the-art innovation lab</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <section class="adoption-hub">
+        <div class="hub-container">
+            <div class="hub-text">
+                <h2>Accelerating AI Adoption for Public Services and Industries</h2>
+                <p>NASSCOM CoE fosters collaborative engineering frameworks designed to unlock automation potential. We align strategic corporate demands directly with scalable deep-tech deployment.</p>
+            </div>
+
+            <div class="map-component-box">
+                <div class="logo-header">
+                    <img src="nasscom-logo.png" alt="NASSCOM CoE Header">
+                </div>
+                <div class="map-viewport">
+                    <div id="globeViz"></div>
+                    <iframe id="openMapView" src=""></iframe>
+                    <div id="address-card">
+                        <p><strong>GIFT One Tower</strong>, GIFT City, Gandhinagar, Gujarat, India</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="tiles-section">
+        <div class="tiles-grid">
+            
+            <a href="public-services.html" class="info-tile">
+                <div>
+                    <div class="tile-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Public Services</h3>
+                    <p>AI CoE works with government departments to identify high-impact problem areas, bridge technology gaps, and facilitate the deployment of scalable AI solutions for effective governance and public service delivery.</p>
+                </div>
+                <div class="tile-link">Learn More <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="industries.html" class="info-tile">
+                <div>
+                    <div class="tile-icon"><i class="fas fa-industry"></i></div>
+                    <h3>Industries</h3>
+                    <p>AI CoE partners with industries to understand their operational challenges, identify the right use cases, connect them with suitable solution providers, and guide them throughout their digital transformation journey.</p>
+                </div>
+                <div class="tile-link">Learn More <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="startups.html" class="info-tile">
+                <div>
+                    <div class="tile-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Startups</h3>
+                    <p>AI CoE accelerates mature AI and deep-tech startups by enabling market access, GTM support, co-working spaces, access to compute infrastructure and more.</p>
+                </div>
+                <div class="tile-link">Learn More <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="https://i.ibb.co/VpybbyC/image-5a92e2.png" alt="NASSCOM logo White">
+                <p>Empowering digital transformation through collaborative deep-tech implementation models.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-building"></i> <span><strong>AI Centre of Excellence</strong><br>13th floor, GIFT One Tower,<br>GIFT City, Gandhinagar, Gujarat</span></p>
+                <p><i class="fas fa-envelope"></i> <span>aicoe@nasscom.in</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Exact Geolocation coordinate setup for GIFT One Tower
+        const destLat = 23.1644923;
+        const destLng = 72.6801305;
+
+        // OpenStreetMap bounding-box generation algorithm
+        const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${destLng-0.003}%2C${destLat-0.002}%2C${destLng+0.003}%2C${destLat+0.002}&layer=mapnik&marker=${destLat}%2C${destLng}`;
+        const brightDayTopographicalImg = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'; 
+
+        const viewportContainer = document.querySelector('.map-viewport');
+        const boxWidth = viewportContainer.clientWidth;
+        const boxHeight = viewportContainer.clientHeight;
+
+        // Load 3D WebGL structural mapping
+        const world = Globe()
+            (document.getElementById('globeViz'))
+            .width(boxWidth)
+            .height(boxHeight)
+            .globeImageUrl(brightDayTopographicalImg) 
+            .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+            .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
+            .showAtmosphere(true)
+            .atmosphereColor('#bbf3ff') 
+            .atmosphereAltitude(0.25);  
+
+        // Pin overlay render engine
+        world.htmlElementsData([{ lat: destLat, lng: destLng }])
+            .htmlElement(d => {
+                const el = document.createElement('div');
+                el.style.position = 'absolute';
+                el.style.transform = 'translate(-50%, -50%)';
+                
+                const ring = document.createElement('div');
+                ring.style.width = '24px'; ring.style.height = '24px';
+                ring.style.borderRadius = '50%';
+                ring.style.border = '2.5px solid #ff3333';
+                ring.style.boxShadow = '0 0 12px #ff3333';
+                ring.style.animation = 'pulse 1.2s infinite ease-in-out';
+                
+                const style = document.createElement('style');
+                style.textContent = `@keyframes pulse { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }`;
+                document.head.appendChild(style);
+
+                const dot = document.createElement('div');
+                dot.style.width = '8px'; dot.style.height = '8px';
+                dot.style.borderRadius = '50%';
+                dot.style.backgroundColor = '#ff3333';
+                dot.style.position = 'absolute';
+                dot.style.top = '50%'; dot.style.left = '50%';
+                dot.style.transform = 'translate(-50%, -50%)';
+
+                el.appendChild(ring); el.appendChild(dot);
+                return el;
+            });
+
+        // Autoplay sequence controller
+        world.controls().autoRotate = true;
+        world.controls().autoRotateSpeed = 6.0; 
+        world.controls().enableZoom = false;
+
+        setTimeout(() => {
+            world.controls().autoRotate = false;
+            world.pointOfView({ lat: destLat, lng: destLng, altitude: 0.22 }, 3500);
+            document.getElementById('openMapView').src = osmEmbedUrl;
+
+            setTimeout(() => {
+                document.getElementById('globeViz').classList.add('fade-out');
+                document.getElementById('openMapView').classList.add('fade-in');
+                setTimeout(() => {
+                    document.getElementById('address-card').classList.add('show');
+                }, 500);
+            }, 3400); 
+        }, 1000); 
+    </script>
+</body>
+</html>
