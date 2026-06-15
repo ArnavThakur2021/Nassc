@@ -1893,12 +1893,12 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
 /* --- TILES --- */
 .tiles-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
 
-.tiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.tiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
 
 .info-tile {
     background-color: var(--white);
-    border-radius: 12px;
-    padding: 35px 30px;
+    border-radius: 22px;
+    padding: 26px 22px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     border-top: 4px solid var(--dark-navy);
     display: flex;
@@ -1921,13 +1921,14 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
     inset: 0;
     background: linear-gradient(160deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.75) 55%, rgba(255,255,255,0.70) 100%);
     z-index: 0;
-    transition: opacity 0.3s ease;
+    transition: background 0.3s ease, opacity 0.3s ease;
 }
 
 .info-tile > div,
 .info-tile > .tile-link {
     position: relative;
     z-index: 1;
+    transition: color 0.3s ease;
 }
 
 /* Themed background imagery per tile */
@@ -1941,19 +1942,28 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
     background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=60');
 }
 
+/* Hover: full red wash over the background image */
 .info-tile:hover::before {
-    background: linear-gradient(160deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.60) 55%, rgba(255,255,255,0.55) 100%);
+    background: linear-gradient(160deg, rgba(195,53,49,0.92) 0%, rgba(195,53,49,0.90) 55%, rgba(122,30,27,0.92) 100%);
 }
 
 .info-tile:hover {
     transform: translateY(-5px);
-    border-top-color: var(--nasscom-red);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-top-color: var(--dark-navy);
+    box-shadow: 0 10px 25px rgba(195,53,49,0.25);
 }
 
-.tile-icon { font-size: 2.5rem; color: var(--nasscom-red); margin-bottom: 20px; }
-.info-tile h3 { color: var(--dark-navy); font-size: 1.3rem; margin-bottom: 15px; font-weight: 700; }
-.info-tile p  { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 20px; flex-grow: 1; text-align: justify; }
+/* Flip text/icon colours on hover for contrast against the red */
+.info-tile:hover .tile-icon,
+.info-tile:hover h3,
+.info-tile:hover p,
+.info-tile:hover .tile-link {
+    color: #ffffff;
+}
+
+.tile-icon { font-size: 2.3rem; color: var(--nasscom-red); margin-bottom: 16px; }
+.info-tile h3 { color: var(--dark-navy); font-size: 1.2rem; margin-bottom: 12px; font-weight: 700; }
+.info-tile p  { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 16px; flex-grow: 1; text-align: justify; }
 .tile-link    { font-weight: 700; color: var(--nasscom-red); display: flex; align-items: center; gap: 8px; font-size: 0.9rem; letter-spacing: 0.03em; }
 
 /* --- FOOTER --- */
