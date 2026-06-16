@@ -1,31 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NASSCOM Center of Excellence - IoT & AI</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
-    <script src="https://unpkg.com/three"></script>
-    <script src="https://unpkg.com/globe.gl"></script>
 </head>
 <body>
 
-    <header>
-        <div class="nav-container">
-            <div class="logo-area">
-                <img src="nasscom-logo.png" alt="NASSCOM CoE Logo">
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="newnasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Focus Areas</a></li>
-                    <li><a href="#">AI Innovation Challenge</a></li>
-                    <li><a href="#">AI Experience Zone</a></li>
-                    <li><a href="#">News & Resources</a></li>
-                    <li><a href="#">Contact Us</a></li>
+            <div class="logo-right-block">
+                <img src="gil_logo.jpg" alt="CoE Partner Branding" class="secondary-logo">
+                <img src="">
+                <img src="dst_logo.jpg" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href=#>AI Experience Zone</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+                    
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <!-- <li><a href="research-reports.html">Research &amp; Reports</a></li> -->
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,181 +66,619 @@
     <div class="social-sidebar">
         <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
     </div>
 
-    <main class="hero-section">
-        <h1 class="section-title">Latest Updates & Announcements</h1>
-        <div class="banner-grid">
-            
-            <div class="main-banner">
-                <h2>AI Innovation Challenge (AI-IC)</h2>
-                <p>Discover the latest high-impact use cases designed by deep-tech innovators transforming industries across the globe.</p>
-            </div>
+    <!-- ===== HERO SECTION: AI FOR IMPACT ===== -->
+    <section class="hero-impact-section">
+        <canvas id="heroCanvas"></canvas>
 
-            <div class="side-banners">
-                <a href="https://youtube.com" target="_blank" class="video-card">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=500&q=80" alt="Inauguration">
-                    <div class="video-overlay">
-                        <span><i class="fas fa-camera"></i> Success Stories & Showcase</span>
-                        <i class="fas fa-play-circle play-btn"></i>
-                        <small>Launch of GrowX Enterprise AI Solutions</small>
-                    </div>
-                </a>
-                <a href="https://youtube.com" target="_blank" class="video-card">
-                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" alt="Introduction">
-                    <div class="video-overlay">
-                        <span><i class="fas fa-video"></i> CoE Introduction Overview</span>
-                        <i class="fas fa-play-circle play-btn"></i>
-                        <small>Explore our state-of-the-art innovation lab</small>
-                    </div>
+        <div class="hero-impact-inner">
+            
+
+            <h1 class="hero-impact-title">
+                <span class="title-line-2"><em>AI for Impact</em></span>
+            </h1>
+
+            <p class="hero-impact-sub">
+                <strong>Accelerating AI Adoption for Public Services and Industries </strong>
+            </p>
+            <div class="hero-cta-row">
+                <a href="contact-us.html" class="btn-get-in-touch">
+                    <span>Get in Touch</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
-    </main>
 
-    <section class="adoption-hub">
-        <div class="hub-container">
-            <div class="hub-text">
-                <h2>Accelerating AI Adoption for Public Services and Industries</h2>
-                <p>NASSCOM CoE fosters collaborative engineering frameworks designed to unlock automation potential. We align strategic corporate demands directly with scalable deep-tech deployment.</p>
+        <!-- Stats Cards -->
+        <div class="hero-stats-grid">
+            <div class="hero-stat-card">
+                <div class="hsc-icon"><i class="fas fa-flask"></i></div>
+                <div class="hsc-number-row">
+                    <span class="counter hsc-counter" data-target="64">0</span><span class="hsc-plus">+</span>
+                </div>
+                <div class="hsc-label">Use Cases Pursued in Public Services and Industries</div>
             </div>
-
-            <div class="map-component-box">
-                <div class="logo-header">
-                    <img src="nasscom-logo.png" alt="NASSCOM CoE Header">
+            <div class="hero-stat-card">
+                <div class="hsc-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="hsc-number-row">
+                    <span class="counter hsc-counter" data-target="100">0</span><span class="hsc-plus">+</span>
                 </div>
-                <div class="map-viewport">
-                    <div id="globeViz"></div>
-                    <iframe id="openMapView" src=""></iframe>
-                    <div id="address-card">
-                        <p><strong>GIFT One Tower</strong>, GIFT City, Gandhinagar, Gujarat, India</p>
-                    </div>
+                <div class="hsc-label">Deep Tech Startup Solutions Showcased</div>
+            </div>
+            <div class="hero-stat-card">
+                <div class="hsc-icon"><i class="fas fa-rocket"></i></div>
+                <div class="hsc-number-row">
+                    <span class="counter hsc-counter" data-target="440">0</span><span class="hsc-plus">+</span>
                 </div>
+                <div class="hsc-label">Government Officials Trained On AI</div>
+            </div>
+            
+            <div class="hero-stat-card">
+                <div class="hsc-icon"><i class="fas fa-industry"></i></div>
+                <div class="hsc-number-row">
+                    <span class="counter hsc-counter" data-target="1600">0</span><span class="hsc-plus">+</span>
+                </div>
+                <div class="hsc-label">Industry Leaders MAde Aware On Industry 4.0</div>
+            </div>
+            <div class="hero-stat-card">
+                <div class="hsc-icon"><i class="fas fa-users"></i></div>
+                <div class="hsc-number-row">
+                    <span class="counter hsc-counter" data-target="500">0</span><span class="hsc-plus">+</span>
+                </div>
+                <div class="hsc-label">Delegates Hosted AT AI COE</div>
             </div>
 
         </div>
     </section>
 
+
+    <!-- ===== OVERVIEW SECTION ===== -->
+    <section class="brief-overview-section">
+        <div class="brief-container">
+            <div class="brief-section-label">About the Initiative</div>
+            <h2 class="brief-main-heading">AI Centre of Excellence</h2>
+            <p class="brief-intro-text">
+                A pioneering initiative by the <strong>Department of Science and Technology </strong> and 
+                <strong>Gujarat Informatics Limited</strong>, 
+                in collaboration with <strong>Nasscom , Microsoft </strong> and <strong>Google</strong>. <br>
+                Aligned with the IndiaAI mission, the CoE accelerates AI adoption across SMEs, industries 
+                and citizen-centric services <br>Driving sector-specific AI use case creation, pilot projects, 
+                and AI model facilitation in Manufacturing, Healthcare, Agriculture, Logistics, Public Services, and more.
+            </p>
+            
+
+            <!-- Key Functions grid -->
+            <div class="kf-grid">
+                <div class="kf-card">
+                    <div class="kf-icon"><i class="fas fa-industry"></i></div>
+                    <div class="kf-text">Technology adoption in SMEs, Public and Private Sectors</div>
+                </div>
+                <div class="kf-card">
+                    <div class="kf-icon"><i class="fas fa-users"></i></div>
+                    <div class="kf-text">Solution Co-creation</div>
+                </div>
+                <div class="kf-card">
+                    <div class="kf-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="kf-text">Deep Tech Startup Acceleration</div>
+                </div>
+                <div class="kf-card">
+                    <div class="kf-icon"><i class="fas fa-vr-cardboard"></i></div>
+                    <div class="kf-text">AI Experience Zone of Cutting-Edge Solutions</div>
+                </div>
+                <div class="kf-card">
+                    <div class="kf-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="kf-text">AI Literacy and Training Workshops</div>
+                </div>
+                <div class="kf-card">
+                    <div class="kf-icon"><i class="fas fa-building"></i></div>
+                    <div class="kf-text">Infrastructure Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="tiles-section">
         <div class="tiles-grid">
-            
-            <a href="public-services.html" class="info-tile">
+            <a href="public.html" class="info-tile tile-public">
                 <div>
                     <div class="tile-icon"><i class="fas fa-landmark"></i></div>
                     <h3>Public Services</h3>
-                    <p>AI CoE works with government departments to identify high-impact problem areas, bridge technology gaps, and facilitate the deployment of scalable AI solutions for effective governance and public service delivery.</p>
+                    <p><strong>AI CoE works with government departments to identify high-impact problem areas, bridge technology gaps, and facilitate the deployment of scalable AI solutions for effective governance and public service delivery.</strong></p>
                 </div>
                 <div class="tile-link">Learn More <i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="industries.html" class="info-tile">
+            <a href="industries.html" class="info-tile tile-industries">
                 <div>
                     <div class="tile-icon"><i class="fas fa-industry"></i></div>
                     <h3>Industries</h3>
-                    <p>AI CoE partners with industries to understand their operational challenges, identify the right use cases, connect them with suitable solution providers, and guide them throughout their digital transformation journey.</p>
+                    <p><strong>AI CoE partners with industries to understand their operational challenges, identify the right use cases, connect them with suitable solution providers, and guide them throughout their digital transformation journey.</strong></p>
                 </div>
                 <div class="tile-link">Learn More <i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="startups.html" class="info-tile">
+            <a href="startups.html" class="info-tile tile-startups">
                 <div>
                     <div class="tile-icon"><i class="fas fa-rocket"></i></div>
                     <h3>Startups</h3>
-                    <p>AI CoE accelerates mature AI and deep-tech startups by enabling market access, GTM support, co-working spaces, access to compute infrastructure and more.</p>
+                    <p><strong>AI CoE accelerates mature AI and deep-tech startups by enabling market access, GTM support, co-working spaces, access to compute infrastructure and more.</strong></p>
                 </div>
                 <div class="tile-link">Learn More <i class="fas fa-arrow-right"></i></div>
             </a>
-
         </div>
     </section>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-brand">
-                <img src="https://i.ibb.co/VpybbyC/image-5a92e2.png" alt="NASSCOM logo White">
-                <p>Empowering digital transformation through collaborative deep-tech implementation models.</p>
+    
+
+    <!-- ===== AI EXPERIENCE ZONE ===== -->
+    <section class="aiz-section">
+        <div class="brief-container">
+            <div class="brief-section-label">Visit Us</div>
+            <h2 class="brief-main-heading">Explore the Future at the<br>AI Experience Zone</h2>
+            <p class="brief-intro-text">Immerse yourself in a first-of-its-kind AI Experience Zone, showcasing cutting-edge AI applications revolutionising industries.</p>
+
+            <div class="aiz-grid">
+                <div class="aiz-card">
+                    <div class="aiz-icon-wrap"><i class="fas fa-cogs"></i></div>
+                    <h4>Smart Manufacturing &amp; Industrial AI</h4>
+                    <p>Advanced automation and quality intelligence for modern factories.</p>
+                </div>
+                <div class="aiz-card">
+                    <div class="aiz-icon-wrap"><i class="fas fa-heartbeat"></i></div>
+                    <h4>AI in Healthcare &amp; Diagnostics</h4>
+                    <p>Real-time diagnostics, patient management and clinical AI tools.</p>
+                </div>
+                <div class="aiz-card">
+                    <div class="aiz-icon-wrap"><i class="fas fa-seedling"></i></div>
+                    <h4>AI for Agriculture &amp; Quality Control</h4>
+                    <p>Precision farming, crop monitoring and food-grade quality systems.</p>
+                </div>
+                <div class="aiz-card">
+                    <div class="aiz-icon-wrap"><i class="fas fa-vr-cardboard"></i></div>
+                    <h4>Immersive &amp; Augmented AI Solutions</h4>
+                    <p>AR/VR-powered experiences reshaping training, retail and services.</p>
+                </div>
             </div>
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p><i class="fas fa-building"></i> <span><strong>AI Centre of Excellence</strong><br>13th floor, GIFT One Tower,<br>GIFT City, Gandhinagar, Gujarat</span></p>
-                <p><i class="fas fa-envelope"></i> <span>aicoe@nasscom.in</span></p>
+
+            <!-- Why Visit strip -->
+             <h2 class="brief-main-heading">Why to Visit ?</h2>
+            <div class="aiz-why-grid">
+                <div class="aiz-why-card">
+                    <i class="fas fa-search aiz-why-icon"></i>
+                    <h5>Explore AI in Action</h5>
+                    <p>Understand cutting-edge AI applications transforming industries and public services.</p>
+                </div>
+                <div class="aiz-why-card">
+                    <i class="fas fa-hand-paper aiz-why-icon"></i>
+                    <h5>Hands-On Experience</h5>
+                    <p>Engage with real-world AI solutions designed for efficiency, scalability and sustainability.</p>
+                </div>
+                <div class="aiz-why-card">
+                    <i class="fas fa-compass aiz-why-icon"></i>
+                    <h5>Strategic AI Guidance</h5>
+                    <p>Discuss challenges with AI specialists and explore tailored AI adoption strategies.</p>
+                </div>
+                <div class="aiz-why-card">
+                    <i class="fas fa-coins aiz-why-icon"></i>
+                    <h5>Innovative &amp; Cost-Effective</h5>
+                    <p>Discover advanced AI solutions that ensure high impact with optimised costs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="hero-section">
+        <h1 class="section-title">COE Insights &amp; Success Stories</h1>
+        <div class="yt-videos-grid">
+
+           <a href="https://www.youtube.com/watch?v=RD8zGmT2LMc&t=1s" target="_blank" class="yt-card">
+                <div class="yt-thumb-wrap">
+                    <img
+                        src="https://img.youtube.com/vi/wb72kfmG8MU/maxresdefault.jpg"
+                        onerror="this.src='https://img.youtube.com/vi/wb72kfmG8MU/hqdefault.jpg'"
+                        alt="CoE Industry Delegation & Lab Visit">
+                    <div class="yt-play-overlay">
+                        <div class="yt-play-btn"><i class="fab fa-youtube"></i></div>
+                    </div>
+                </div>
+                <div class="yt-card-body">
+                    <div class="yt-tag"><i class="fas fa-circle-dot"></i>AI COE Inaugration</div>
+                    <h3 class="yt-title">Inauguration of AI Centre of Excellence & Launch of AI Innovation Challenge</h3>
+                    <p class="yt-desc">Highlights from the inauguration event and the launch of AI COE.<br>The AI CoE is an initiative by the Department of Science and Technology (DST), Gujarat Informatics Limited (GIL) and Ministry of Electronics and IT (MeitY), in collaboration with nasscom and Microsoft.</p>
+                    <span class="yt-watch-link">Watch on YouTube <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=wb72kfmG8MU&t=13s" target="_blank" class="yt-card">
+                <div class="yt-thumb-wrap">
+                    <img
+                        src="aicoe.png"
+                        alt="AI COE Highlights 2024">
+            
+                    <div class="yt-play-overlay">
+                        <div class="yt-play-btn"><i class="fab fa-youtube"></i></div>
+                    </div>
+                </div>
+                <div class="yt-card-body">
+                    <div class="yt-tag"><i class="fas fa-circle-dot"></i>AI Adoption</div>
+                    <h3 class="yt-title">Accelerating AI Adoption at AI CoE</h3>
+                    <p class="yt-desc">Aligned with IndiaAI mission, the CoE accelerates AI adoption across SMEs, industries and citizen-centric services. It drives sector-specific AI usecase creations, pilot projects, and AI model facilitation in key areas such as Manufacturing, Healthcare, Agriculture, Logistics, Public services etc.</p>
+                    <span class="yt-watch-link">Watch on YouTube <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=_R_zBiva1a8" target="_blank" class="yt-card">
+                <div class="yt-thumb-wrap">
+                    <img
+                        src="https://img.youtube.com/vi/_R_zBiva1a8/maxresdefault.jpg"
+                        onerror="this.src='https://img.youtube.com/vi/_R_zBiva1a8/hqdefault.jpg'"
+                        alt="NASSCOM CoE AI Experience Zone Launch">
+                    <div class="yt-play-overlay">
+                        <div class="yt-play-btn"><i class="fab fa-youtube"></i></div>
+                    </div>
+                </div>
+                <div class="yt-card-body">
+                    <div class="yt-tag"><i class="fas fa-circle-dot"></i>Empowering with AI </div>
+                    <h3 class="yt-title">Empowering Farmers with AI-Powered Tech</h3>
+                    <p class="yt-desc">Agriculture is evolving, and so are the challenges farmers face every day! Upjao Agrotech Private Limited has introduced a breakthrough AI technology that is changing the game by making grain quality assessment SIMPLE, FAST and FAIR for farmers across India.</p>
+                    <span class="yt-watch-link">Watch on YouTube <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="https://gujarat.coe-iot.com/wp-content/uploads/2026/03/CogniFirst-Case-Study.pdf" target="_blank" class="yt-card yt-card-pdf">
+                <div class="yt-thumb-wrap">
+                    <img
+                        src="pdfps.png"
+                        alt="Case Study Thumbnail">
+                    <div class="yt-pdf-thumb">
+                        <div class="yt-pdf-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="yt-pdf-label">Case Study</div>
+                    </div>
+                </div>
+                <div class="yt-card-body">
+                    <div class="yt-tag yt-tag-pdf"><i class="fas fa-circle-dot"></i> Case Study</div>
+                    <h3 class="yt-title">Intelligent Document Processing for Scalable Automation</h3>
+                    <p class="yt-desc">Read the AI case study exploring how AI-powered solutions are driving measurable impact across industries in the NASSCOM CoE ecosystem.</p>
+                    <span class="yt-watch-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            
+
+        </div>
+    </main>
+
+ 
+
+    <!-- ===== PARTNERS MARQUEE SECTION ===== -->
+    <section class="partners-section">
+        <div class="partners-container">
+
+            <!-- Strategic Partners -->
+            <div class="partners-group">
+                <div class="partners-group-label">Industrial Partners</div>
+                <div class="partners-track-wrapper">
+                    <div class="partners-track">
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/AstraZeneca-1.png" alt="AstraZeneca"><span class="partner-name-fallback">AstraZeneca</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/BOSCH.png" alt="Bosch"><span class="partner-name-fallback">Bosch</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/GE-health-care.png" alt="GE Healthcare"><span class="partner-name-fallback">GE Healthcare</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Qualcomm.png" alt="Qualcomm"><span class="partner-name-fallback">Qualcomm</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/lti-1.png" alt="LTI"><span class="partner-name-fallback">LTI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/YOKOGAWA.png" alt="Yokogawa"><span class="partner-name-fallback">Yokogawa</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/07/TATA.png" alt="TATA"><span class="partner-name-fallback">TATA</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Intel-1.png" alt="Intel"><span class="partner-name-fallback">Intel</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/LT.png" alt="L&T"><span class="partner-name-fallback">L&amp;T</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Accenture-1.png" alt="Accenture"><span class="partner-name-fallback">Accenture</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Cisco-1.png" alt="Cisco"><span class="partner-name-fallback">Cisco</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Microsoft-Logo_0011.png" alt="Microsoft"><span class="partner-name-fallback">Microsoft</span></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/AstraZeneca-1.png" alt="AstraZeneca"><span class="partner-name-fallback">AstraZeneca</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/BOSCH.png" alt="Bosch"><span class="partner-name-fallback">Bosch</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/GE-health-care.png" alt="GE Healthcare"><span class="partner-name-fallback">GE Healthcare</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Qualcomm.png" alt="Qualcomm"><span class="partner-name-fallback">Qualcomm</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/lti-1.png" alt="LTI"><span class="partner-name-fallback">LTI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/YOKOGAWA.png" alt="Yokogawa"><span class="partner-name-fallback">Yokogawa</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/07/TATA.png" alt="TATA"><span class="partner-name-fallback">TATA</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Intel-1.png" alt="Intel"><span class="partner-name-fallback">Intel</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/LT.png" alt="L&T"><span class="partner-name-fallback">L&amp;T</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Accenture-1.png" alt="Accenture"><span class="partner-name-fallback">Accenture</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Cisco-1.png" alt="Cisco"><span class="partner-name-fallback">Cisco</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Microsoft-Logo_0011.png" alt="Microsoft"><span class="partner-name-fallback">Microsoft</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation Partners -->
+            <div class="partners-group">
+                <div class="partners-group-label">Innovation Partners</div>
+                <div class="partners-track-wrapper">
+                    <div class="partners-track track-reverse">
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/SIEMENS.png" alt="Siemens"><span class="partner-name-fallback">Siemens</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Schneider.png" alt="Schneider Electric"><span class="partner-name-fallback">Schneider Electric</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/LG.png" alt="LG"><span class="partner-name-fallback">LG</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Bayer-1.png" alt="Bayer"><span class="partner-name-fallback">Bayer</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Mitsubishi.png" alt="Mitsubishi"><span class="partner-name-fallback">Mitsubishi</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Diageo.png" alt="Diageo"><span class="partner-name-fallback">Diageo</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/JK-Cement.png" alt="JK Cement"><span class="partner-name-fallback">JK Cement</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Manipal.png" alt="Manipal"><span class="partner-name-fallback">Manipal</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/BEML.png" alt="BEML"><span class="partner-name-fallback">BEML</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Napino.png" alt="Napino"><span class="partner-name-fallback">Napino</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/JBM.png" alt="JBM"><span class="partner-name-fallback">JBM</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2023/07/Sodexo-Logo.png" alt="Sodexo"><span class="partner-name-fallback">Sodexo</span></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/SIEMENS.png" alt="Siemens"><span class="partner-name-fallback">Siemens</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Schneider.png" alt="Schneider Electric"><span class="partner-name-fallback">Schneider Electric</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/LG.png" alt="LG"><span class="partner-name-fallback">LG</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Bayer-1.png" alt="Bayer"><span class="partner-name-fallback">Bayer</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Mitsubishi.png" alt="Mitsubishi"><span class="partner-name-fallback">Mitsubishi</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Diageo.png" alt="Diageo"><span class="partner-name-fallback">Diageo</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/JK-Cement.png" alt="JK Cement"><span class="partner-name-fallback">JK Cement</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Manipal.png" alt="Manipal"><span class="partner-name-fallback">Manipal</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/BEML.png" alt="BEML"><span class="partner-name-fallback">BEML</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/Napino.png" alt="Napino"><span class="partner-name-fallback">Napino</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/JBM.png" alt="JBM"><span class="partner-name-fallback">JBM</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2023/07/Sodexo-Logo.png" alt="Sodexo"><span class="partner-name-fallback">Sodexo</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Association Partners -->
+            <div class="partners-group">
+                <div class="partners-group-label">Association Partners</div>
+                <div class="partners-track-wrapper">
+                    <div class="partners-track">
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/CIOs.png" alt="CIOs"><span class="partner-name-fallback">CIOs</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/ACMA.png" alt="ACMA"><span class="partner-name-fallback">ACMA</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/GCCI.png" alt="GCCI"><span class="partner-name-fallback">GCCI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/ASSOCHAM.png" alt="ASSOCHAM"><span class="partner-name-fallback">ASSOCHAM</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/FICCI.png" alt="FICCI"><span class="partner-name-fallback">FICCI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/TIE_Ahmedabad.png" alt="TiE Ahmedabad"><span class="partner-name-fallback">TiE Ahmedabad</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/TIE_bARODA.png" alt="TiE Baroda"><span class="partner-name-fallback">TiE Baroda</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/IACC-E3-Full-PNG.png" alt="IACC"><span class="partner-name-fallback">IACC</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/logo-isme.jpg" alt="ISME"><span class="partner-name-fallback">ISME</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/fii.png" alt="FII"><span class="partner-name-fallback">FII</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/sgcci.png" alt="SGCCI"><span class="partner-name-fallback">SGCCI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/msme-bharat.png" alt="MSME Bharat"><span class="partner-name-fallback">MSME Bharat</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/msme-dev.png" alt="MSME Development"><span class="partner-name-fallback">MSME Development</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/TUV-1.png" alt="TÜV"><span class="partner-name-fallback">TÜV</span></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/CIOs.png" alt="CIOs"><span class="partner-name-fallback">CIOs</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/ACMA.png" alt="ACMA"><span class="partner-name-fallback">ACMA</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/GCCI.png" alt="GCCI"><span class="partner-name-fallback">GCCI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/ASSOCHAM.png" alt="ASSOCHAM"><span class="partner-name-fallback">ASSOCHAM</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/FICCI.png" alt="FICCI"><span class="partner-name-fallback">FICCI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/TIE_Ahmedabad.png" alt="TiE Ahmedabad"><span class="partner-name-fallback">TiE Ahmedabad</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2021/08/TIE_bARODA.png" alt="TiE Baroda"><span class="partner-name-fallback">TiE Baroda</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/IACC-E3-Full-PNG.png" alt="IACC"><span class="partner-name-fallback">IACC</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/logo-isme.jpg" alt="ISME"><span class="partner-name-fallback">ISME</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/fii.png" alt="FII"><span class="partner-name-fallback">FII</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/sgcci.png" alt="SGCCI"><span class="partner-name-fallback">SGCCI</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/msme-bharat.png" alt="MSME Bharat"><span class="partner-name-fallback">MSME Bharat</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/msme-dev.png" alt="MSME Development"><span class="partner-name-fallback">MSME Development</span></div>
+                        <div class="partner-logo-card"><img src="https://gujarat.coe-iot.com/wp-content/uploads/2022/10/TUV-1.png" alt="TÜV"><span class="partner-name-fallback">TÜV</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ===== END PARTNERS SECTION ===== -->
+
+    <footer class="image-mapped-footer new-footer">
+        <!-- Top CTA bar -->
+        <div class="footer-cta-bar">
+            <div class="footer-cta-inner">
+                <div>
+                    <h3 class="footer-cta-heading">Ready to turn your ideas into impact ?</h3>
+                </div>
+                <a href="contact-us.html" class="footer-cta-btn">
+                    Get in Touch <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main footer grid -->
+        <div class="footer-main-wrap">
+            <div class="footer-main-grid">
+
+                <!-- Brand + logos column -->
+                <div class="footer-col footer-brand-col">
+                    <p class="footer-initiative-label">An Initiative of</p>
+                    <div class="footer-logos-row">
+                        <div class="footer-logo-pill">
+                            <img src="dst_logo.jpg" alt="DST Gujarat" onerror="this.parentElement.innerHTML='<span class='flogo-text'>DST Gujarat</span>'">
+                        </div>
+                        <div class="footer-logo-pill">
+                            <img src="gil_logo.jpg" alt="GIL" onerror="this.parentElement.innerHTML='<span class='flogo-text'>GIL</span>'">
+                        </div>
+                    </div>
+                    <p class="footer-initiative-label" style="margin-top:16px">In Collaboration with</p>
+                    <div class="footer-logos-row logos-row-solo">
+                        <div class="footer-logo-pill">
+                            <img src="nasscom-logo.png" alt="NASSCOM CoE" onerror="this.parentElement.innerHTML='<span class='flogo-text'>NASSCOM CoE</span>'">
+                        </div>
+                    </div>
+                    <div class="footer-logos-row">
+                        
+                        <div class="footer-logo-pill">
+                            <img src="microsoft.png" alt="Microsoft" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Microsoft</span>'">
+                        </div>
+                        <div class="footer-logo-pill">
+                            <img src="google.webp" alt="Google" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Google</span>'">
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Knowledge Hub -->
+                <div class="footer-col link-column-area">
+                    <h4 style="margin-top:28px">Follow Us</h4>
+                    <div class="footer-social-row">
+                        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="fsoc-btn fsoc-li"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="fsoc-btn fsoc-yt"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="fsoc-btn fsoc-tw"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col footer-contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-stack">
+                        <div class="fcs-item">
+                            <i class="fa-solid fa-location-dot footer-cyan-icon"></i>
+                            <div>
+                                <strong>AI Centre of Excellence</strong><br>
+                                13th Floor, GIFT One Tower,<br>
+                                GIFT City, Gandhinagar,<br>
+                                Gujarat – 382355
+                            </div>
+                        </div>
+                        <div class="fcs-item">
+                            <i class="fa-regular fa-envelope footer-cyan-icon"></i>
+                            <a href="mailto:aicoe@nasscom.in" class="footer-email-link">aicoe@nasscom.in</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <p align="center">&copy; 2025 NASSCOM Centre of Excellence — IoT &amp; AI. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Exact Geolocation coordinate setup for GIFT One Tower
-        const destLat = 23.1644923;
-        const destLng = 72.6801305;
+    /* Hero canvas: neural-network particle field */
+    (function() {
+        const canvas = document.getElementById('heroCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let W, H, particles;
+        const mouse = {x: -9999, y: -9999};
 
-        // OpenStreetMap bounding-box generation algorithm
-        const osmEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${destLng-0.003}%2C${destLat-0.002}%2C${destLng+0.003}%2C${destLat+0.002}&layer=mapnik&marker=${destLat}%2C${destLng}`;
-        const brightDayTopographicalImg = 'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'; 
+        function resize() {
+            W = canvas.width  = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+        }
+        window.addEventListener('resize', () => { resize(); init(); });
+        const section = canvas.parentElement;
+        section.addEventListener('mousemove', e => {
+            const r = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - r.left;
+            mouse.y = e.clientY - r.top;
+        });
+        section.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
 
-        const viewportContainer = document.querySelector('.map-viewport');
-        const boxWidth = viewportContainer.clientWidth;
-        const boxHeight = viewportContainer.clientHeight;
+        function init() {
+            const count = Math.max(60, Math.floor((W * H) / 8000));
+            particles = Array.from({length: count}, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.55,
+                vy: (Math.random() - 0.5) * 0.55,
+                r: Math.random() * 1.8 + 0.6,
+                alpha: Math.random() * 0.6 + 0.35
+            }));
+        }
 
-        // Load 3D WebGL structural mapping
-        const world = Globe()
-            (document.getElementById('globeViz'))
-            .width(boxWidth)
-            .height(boxHeight)
-            .globeImageUrl(brightDayTopographicalImg) 
-            .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
-            .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
-            .showAtmosphere(true)
-            .atmosphereColor('#bbf3ff') 
-            .atmosphereAltitude(0.25);  
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            const DIST = 130, MOUSE_DIST = 160;
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                const dx = mouse.x - p.x, dy = mouse.y - p.y;
+                const md = Math.hypot(dx, dy);
+                if (md < MOUSE_DIST && md > 0) {
+                    p.vx += dx / md * 0.012;
+                    p.vy += dy / md * 0.012;
+                }
+                const spd = Math.hypot(p.vx, p.vy);
+                if (spd > 1.8) { p.vx = p.vx/spd*1.8; p.vy = p.vy/spd*1.8; }
+                for (let j = i + 1; j < particles.length; j++) {
+                    const q = particles[j];
+                    const ex = p.x - q.x, ey = p.y - q.y;
+                    const d = Math.hypot(ex, ey);
+                    if (d < DIST) {
+                        const t = 1 - d / DIST;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(q.x, q.y);
+                        ctx.strokeStyle = "rgba(15,50,120," + (t * 0.38) + ")";
+                        ctx.lineWidth = t * 1.8;
+                        ctx.stroke();
+                    }
+                }
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(15,50,120," + (p.alpha * 0.85) + ")";
+                ctx.fill();
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+                if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+            }
+            requestAnimationFrame(draw);
+        }
 
-        // Pin overlay render engine
-        world.htmlElementsData([{ lat: destLat, lng: destLng }])
-            .htmlElement(d => {
-                const el = document.createElement('div');
-                el.style.position = 'absolute';
-                el.style.transform = 'translate(-50%, -50%)';
+        resize(); init(); draw();
+    })();
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            const animateCounter = (counter) => {
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                let current = 0;
+                const duration = 3000; 
+                const frameRate = 1000 / 60; 
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = target / totalFrames;
                 
-                const ring = document.createElement('div');
-                ring.style.width = '24px'; ring.style.height = '24px';
-                ring.style.borderRadius = '50%';
-                ring.style.border = '2.5px solid #ff3333';
-                ring.style.boxShadow = '0 0 12px #ff3333';
-                ring.style.animation = 'pulse 1.2s infinite ease-in-out';
-                
-                const style = document.createElement('style');
-                style.textContent = `@keyframes pulse { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }`;
-                document.head.appendChild(style);
+                let frame = 0;
+                const update = () => {
+                    frame++;
+                    current += increment;
+                    
+                    if (frame < totalFrames) {
+                        counter.innerText = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                requestAnimationFrame(update);
+            };
 
-                const dot = document.createElement('div');
-                dot.style.width = '8px'; dot.style.height = '8px';
-                dot.style.borderRadius = '50%';
-                dot.style.backgroundColor = '#ff3333';
-                dot.style.position = 'absolute';
-                dot.style.top = '50%'; dot.style.left = '50%';
-                dot.style.transform = 'translate(-50%, -50%)';
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetCounter = entry.target;
+                        animateCounter(targetCounter);
+                        observer.unobserve(targetCounter);
+                    }
+                });
+            }, observerOptions);
 
-                el.appendChild(ring); el.appendChild(dot);
-                return el;
-            });
-
-        // Autoplay sequence controller
-        world.controls().autoRotate = true;
-        world.controls().autoRotateSpeed = 6.0; 
-        world.controls().enableZoom = false;
-
-        setTimeout(() => {
-            world.controls().autoRotate = false;
-            world.pointOfView({ lat: destLat, lng: destLng, altitude: 0.22 }, 3500);
-            document.getElementById('openMapView').src = osmEmbedUrl;
-
-            setTimeout(() => {
-                document.getElementById('globeViz').classList.add('fade-out');
-                document.getElementById('openMapView').classList.add('fade-in');
-                setTimeout(() => {
-                    document.getElementById('address-card').classList.add('show');
-                }, 500);
-            }, 3400); 
-        }, 1000); 
+            counters.forEach(c => observer.observe(c));
+        });
+    </script>
+    <script>
+    /* Partners: show text fallback if logo image fails to load */
+    document.querySelectorAll('.partner-logo-card img').forEach(function(img) {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            var fallback = this.nextElementSibling;
+            if (fallback && fallback.classList.contains('partner-name-fallback')) {
+                fallback.style.display = 'flex';
+            }
+        });
+    });
     </script>
 </body>
 </html>

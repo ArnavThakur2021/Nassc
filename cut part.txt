@@ -676,3 +676,477 @@
     </script>
 </body>
 </html>
+
+
+ <section class="section-wrapper">
+        <div class="grid-two-col">
+            <div class="content-block">
+                <h2 class="section-title">Who We Are</h2>
+                <p>NASSCOM (National Association of Software and Service Companies) is the premier trade association and chamber of commerce for the tech industry in India. As a non-profit organization, NASSCOM spearheads the development of the digital economy, guiding the country towards achieving its global potential as a supreme technical innovation hub.</p>
+                <p>The <strong>NASSCOM Center of Excellence - IoT &amp; AI</strong> is a strategic flagship initiative sustained in joint alignment with national and state government authorities. Based in GIFT City, Gandhinagar, the CoE acts as an accelerated collaborative sanctuary created to cultivate deep-tech intelligence systems, incubate startup talent, and address production vulnerabilities across public systems and enterprise value chains.</p>
+            </div>
+            <div class="content-block">
+                <h2 class="section-title">Our Core Vision</h2>
+                <p>We envision a seamlessly integrated digital landscape where complex AI engines and Industrial Internet of Things (IIoT) protocols step out of isolated labs and manifest onto the live operational floors of micro, small, medium, and large-scale industries.</p>
+                <p>By curating structured integration spaces, providing shared cloud compute infrastructures, and standardizing security reference metrics, we empower ecosystem stakeholders to adapt to disruptive technological paradigms securely, cost-effectively, and at unprecedented scale.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - NASSCOM Center of Excellence - IoT & AI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Supplementary layout typography & module specs for About components */
+        .about-hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(88, 18, 18, 0.05) 0%, rgba(10, 25, 47, 0.02) 100%);
+            padding: 90px 20px 60px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        #aboutHeroCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .about-hero h1,
+        .about-hero p {
+            position: relative;
+            z-index: 1;
+        }
+        .about-hero h1 {
+            font-size: 3rem;
+            color: var(--nasscom-red-dark);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .about-hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--nasscom-red);
+            margin-top: 10px;
+        }
+        .content-block p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .objective-bg-strip {
+            background-color: var(--nasscom-red); /* red */
+            color: var(--white);
+            padding: 60px 20px;
+        }
+        .objective-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .objective-container h2 {
+            font-size: 2.2rem;
+            color: var(--white);
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .objective-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .objective-card {
+            background: var(--nasscom-red-dark); /* deep red */
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .objective-card:hover {
+            transform: translateY(-5px);
+            background: var(--nasscom-red-mid);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.25);
+        }
+        .objective-card .icon-box {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .objective-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--white);
+            font-weight: 700;
+        }
+        .objective-card p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .pillar-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 36px rgba(88,18,18,0.12);
+            border-color: rgba(88,18,18,0.25);
+        }
+        .pillar-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-navy);
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pillar-card h3 i {
+            color: var(--nasscom-red);
+        }
+        .pillar-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        @media (max-width: 992px) {
+            .grid-two-col {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="master-header">
+        <div class="top-branding-strip">
+            <div class="logo-left-block">
+                <a href="web.html" class="logo-link-wrapper">
+                    <img src="newnasscom-logo.png" alt="NASSCOM CoE Header" class="primary-logo">
+                </a>
+                <div class="logo-tagline">Center of Excellence — IoT &amp; AI</div>
+            </div>
+            <div class="logo-right-block">
+                <img src="gil_logo.jpg" alt="CoE Partner Branding" class="secondary-logo">
+                <img src="">
+                <img src="dst_logo.jpg" alt="CoE Partner Branding" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="nav-container-bar red-nav-theme">
+            <nav class="centered-navbar">
+                <ul class="main-nav-links">
+                    <li><a href="web.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href=#>AI Experience Zone</a></li>
+                    
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
+                            <li><a href="public.html">Public Services</a></li>
+                            <li><a href="industries.html">Industries</a></li>
+                            <li><a href="startups.html">Startups</a></li>
+                        </ul>
+                    </li>
+                    
+
+                    <li class="dropdown-item">
+                        <a href="javascript:void(0)" class="dropdown-trigger">
+                            Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu solid-dropdown">
+                            <!-- <li><a href="research-reports.html">Research &amp; Reports</a></li> -->
+                            <li><a href="case-studies.html">Case Studies</a></li>
+                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="newsletters.html">Newsletters</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="social-sidebar">
+        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <section class="section-wrapper">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">Who We Are</h2><br>
+        <p style="text-align: left; color: var(--text-gray); margin-bottom: 40px; font-size: 1.1rem;">The AI Centre of Excellence is a pioneering initiative by the Department of Science and
+Technology, Gujarat Informatics Limited, in collaboration with Nasscom and in support of
+Microsoft and Google.<br>
+Aligned with IndiaAI mission, the CoE accelerates AI adoption across SMEs, industries and
+citizen-centric services. It drives sector-specific AI use-case creations, pilot projects, and AI
+model facilitation in key areas such as Manufacturing, Healthcare, Agriculture, Logistics,
+Public services etc.</p>
+    </section>
+   
+
+    <section class="section-wrapper">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">Key Functions</h2><br><br>
+        
+        <div class="kf-grid">
+            <div class="kf-card">
+                <div class="kf-icon"><i class="fas fa-industry"></i></div>
+                <div class="kf-text">Technology adoption in SMEs, Public and Private Sectors</div>
+            </div>
+            <div class="kf-card">
+                <div class="kf-icon"><i class="fas fa-users"></i></div>
+                <div class="kf-text">Solution Co-creation</div>
+            </div>
+            <div class="kf-card">
+                <div class="kf-icon"><i class="fas fa-rocket"></i></div>
+                <div class="kf-text">Deep Tech Startup Acceleration</div>
+            </div>
+            <div class="kf-card">
+                <div class="kf-icon"><i class="fas fa-vr-cardboard"></i></div>
+                <div class="kf-text">AI Experience Zone of Cutting-Edge Solutions</div>
+            </div>
+            <div class="kf-card">
+                <div class="kf-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <div class="kf-text">AI Literacy and Training Workshops</div>
+            </div>
+            <div class="kf-card">
+                <div class="kf-icon"><i class="fas fa-building"></i></div>
+                <div class="kf-text">Infrastructure Support</div>
+            </div>
+        </div>
+    </section>
+     <section class="section-wrapper">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">What We Do</h2>
+        <p style="text-align: left; color: var(--text-gray); margin-bottom: 40px; font-size: 1.1rem;">1.We source problem statements directly from departments and MSMEs, ensuring challenges
+come straight from actual end users.
+<br>2.We use authentic, user-provided datasets, making solutions accurate, and deployment-ready.
+<br>3.We open these challenges on a national Innovation Platform, enabling competitive
+participation from startups across the country to bring the best ideas forward.
+<br>4.Shortlisted startups are then handheld through the journey, receiving support and funding
+from Government/MSMEs to build PoCs, run pilots, and move toward full-scale
+implementation.</p>
+
+    
+
+    <footer class="image-mapped-footer new-footer">
+        <!-- Top CTA bar -->
+        <div class="footer-cta-bar">
+            <div class="footer-cta-inner">
+                <div>
+                    <h3 class="footer-cta-heading">Ready to turn your ideas into impact ?</h3>
+                </div>
+                <a href="contact-us.html" class="footer-cta-btn">
+                    Get in Touch <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main footer grid -->
+        <div class="footer-main-wrap">
+            <div class="footer-main-grid">
+
+                <!-- Brand + logos column -->
+                <div class="footer-col footer-brand-col">
+                    <p class="footer-initiative-label">An Initiative of</p>
+                    <div class="footer-logos-row">
+                        <div class="footer-logo-pill">
+                            <img src="dst_logo.jpg" alt="DST Gujarat" onerror="this.parentElement.innerHTML='<span class='flogo-text'>DST Gujarat</span>'">
+                        </div>
+                        <div class="footer-logo-pill">
+                            <img src="gil_logo.jpg" alt="GIL" onerror="this.parentElement.innerHTML='<span class='flogo-text'>GIL</span>'">
+                        </div>
+                    </div>
+                    <p class="footer-initiative-label" style="margin-top:16px">In Collaboration with</p>
+                    <div class="footer-logos-row logos-row-solo">
+                        <div class="footer-logo-pill">
+                            <img src="nasscom-logo.png" alt="NASSCOM CoE" onerror="this.parentElement.innerHTML='<span class='flogo-text'>NASSCOM CoE</span>'">
+                        </div>
+                    </div>
+                    <div class="footer-logos-row">
+                        
+                        <div class="footer-logo-pill">
+                            <img src="microsoft.png" alt="Microsoft" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Microsoft</span>'">
+                        </div>
+                        <div class="footer-logo-pill">
+                            <img src="google.webp" alt="Google" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Google</span>'">
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Knowledge Hub -->
+                <div class="footer-col link-column-area">
+                    <h4 style="margin-top:28px">Follow Us</h4>
+                    <div class="footer-social-row">
+                        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="fsoc-btn fsoc-li"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="fsoc-btn fsoc-yt"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="fsoc-btn fsoc-tw"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-col footer-contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-stack">
+                        <div class="fcs-item">
+                            <i class="fa-solid fa-location-dot footer-cyan-icon"></i>
+                            <div>
+                                <strong>AI Centre of Excellence</strong><br>
+                                13th Floor, GIFT One Tower,<br>
+                                GIFT City, Gandhinagar,<br>
+                                Gujarat – 382355
+                            </div>
+                        </div>
+                        <div class="fcs-item">
+                            <i class="fa-regular fa-envelope footer-cyan-icon"></i>
+                            <a href="mailto:aicoe@nasscom.in" class="footer-email-link">aicoe@nasscom.in</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <p align="center">&copy; 2025 NASSCOM Centre of Excellence — IoT &amp; AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    /* About hero canvas: neural-network particle field (maroon theme) */
+    (function() {
+        const canvas = document.getElementById('aboutHeroCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let W, H, particles;
+        const mouse = {x: -9999, y: -9999};
+
+        function resize() {
+            W = canvas.width  = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+        }
+        window.addEventListener('resize', () => { resize(); init(); });
+        const section = canvas.parentElement;
+        section.addEventListener('mousemove', e => {
+            const r = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - r.left;
+            mouse.y = e.clientY - r.top;
+        });
+        section.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+        function init() {
+            const count = Math.max(50, Math.floor((W * H) / 9000));
+            particles = Array.from({length: count}, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.55,
+                vy: (Math.random() - 0.5) * 0.55,
+                r: Math.random() * 1.8 + 0.6,
+                alpha: Math.random() * 0.6 + 0.35
+            }));
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            const DIST = 130, MOUSE_DIST = 160;
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                const dx = mouse.x - p.x, dy = mouse.y - p.y;
+                const md = Math.hypot(dx, dy);
+                if (md < MOUSE_DIST && md > 0) {
+                    p.vx += dx / md * 0.012;
+                    p.vy += dy / md * 0.012;
+                }
+                const spd = Math.hypot(p.vx, p.vy);
+                if (spd > 1.8) { p.vx = p.vx/spd*1.8; p.vy = p.vy/spd*1.8; }
+                for (let j = i + 1; j < particles.length; j++) {
+                    const q = particles[j];
+                    const ex = p.x - q.x, ey = p.y - q.y;
+                    const d = Math.hypot(ex, ey);
+                    if (d < DIST) {
+                        const t = 1 - d / DIST;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(q.x, q.y);
+                        ctx.strokeStyle = "rgba(88,18,18," + (t * 0.34) + ")";
+                        ctx.lineWidth = t * 1.8;
+                        ctx.stroke();
+                    }
+                }
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(88,18,18," + (p.alpha * 0.8) + ")";
+                ctx.fill();
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+                if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+            }
+            requestAnimationFrame(draw);
+        }
+
+        resize(); init(); draw();
+    })();
+    </script>
+
+</body>
+</html>
