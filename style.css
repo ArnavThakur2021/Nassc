@@ -1905,15 +1905,14 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
 .tiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
 .info-tile {
-    background-color: var(--white);
     border-radius: 12px;
-    padding: 35px 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border-top: 4px solid var(--dark-navy);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s ease;
+    justify-content: flex-end;
+    transition: transform 0.38s ease, box-shadow 0.38s ease, border-top-color 0.3s ease;
     text-decoration: none;
     color: inherit;
     position: relative;
@@ -1921,22 +1920,7 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-/* Soft white wash so background art doesn't fight with text */
-.info-tile::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.75) 55%, rgba(255,255,255,0.70) 100%);
-    z-index: 0;
-    transition: opacity 0.3s ease;
-}
-
-.info-tile > div,
-.info-tile > .tile-link {
-    position: relative;
-    z-index: 1;
+    min-height: 340px;
 }
 
 /* Themed background imagery per tile */
@@ -1950,39 +1934,90 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
     background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=60');
 }
 
-/* Solid red fill that fades in on hover (above the image, below the text) */
+/* Dark gradient overlay — always visible so heading is readable against photo */
+.info-tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 25, 47, 0.18) 0%,
+        rgba(10, 25, 47, 0.55) 55%,
+        rgba(10, 25, 47, 0.82) 100%
+    );
+    z-index: 0;
+    transition: opacity 0.38s ease;
+}
+
+/* Red fill that slides in on hover */
 .info-tile::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: #C33531;
+    background: rgba(195, 53, 49, 0.90);
     opacity: 0;
     z-index: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.38s ease;
     pointer-events: none;
 }
-.info-tile:hover::after { opacity: 1; }
+.info-tile:hover::after  { opacity: 1; }
+.info-tile:hover::before { opacity: 0; }
 
+/* All direct children sit above the overlays */
+.info-tile > div,
+.info-tile > .tile-link {
+    position: relative;
+    z-index: 1;
+}
+
+/* Content wrapper — the inner div that holds icon + h3 + p */
+.info-tile > div {
+    padding: 28px 28px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Learn More link sits at bottom */
+.info-tile > .tile-link {
+    padding: 16px 28px 28px;
+}
+
+/* ── Default state: paragraph hidden ── */
+.info-tile p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 0;
+    text-align: justify;
+    line-height: 1.65;
+    /* hidden by default — clip + opacity */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease, opacity 0.38s ease, margin-bottom 0.38s ease;
+}
+
+/* ── Hover state: paragraph revealed ── */
+.info-tile:hover p {
+    max-height: 200px;
+    opacity: 1;
+    margin-bottom: 14px;
+}
+
+/* Default text colours (over the photo + dark gradient) */
+.tile-icon { font-size: 2.5rem; color: #ffffff; margin-bottom: 16px; transition: transform 0.3s ease, color 0.3s ease; }
+.info-tile h3 { color: #ffffff; font-size: 1.35rem; margin-bottom: 10px; font-weight: 700; transition: color 0.3s ease; }
+.tile-link { font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; letter-spacing: 0.03em; transition: gap 0.25s ease, color 0.25s ease; }
+.tile-link i { transition: transform 0.25s ease; }
+
+/* Hover refinements */
 .info-tile:hover {
     transform: translateY(-8px) scale(1.02);
     border-top-color: #C33531;
-    box-shadow: 0 18px 40px rgba(195,53,49,0.30), 0 6px 18px rgba(0,0,0,0.12);
+    box-shadow: 0 20px 44px rgba(195,53,49,0.32), 0 6px 18px rgba(0,0,0,0.14);
 }
 .info-tile:hover .tile-icon { transform: scale(1.12) rotate(-4deg); }
 .info-tile:hover .tile-link { gap: 14px; }
 .info-tile:hover .tile-link i { transform: translateX(4px); }
-
-/* On hover the tile is solid red — all text & icons turn white */
-.info-tile:hover .tile-icon,
-.info-tile:hover h3,
-.info-tile:hover p,
-.info-tile:hover .tile-link { color: #ffffff; }
-
-.tile-icon { font-size: 2.5rem; color: #C33531; margin-bottom: 20px; transition: transform 0.3s ease, color 0.3s ease; }
-.info-tile h3 { color: var(--dark-navy); font-size: 1.3rem; margin-bottom: 15px; font-weight: 700; transition: color 0.3s ease; }
-.info-tile p  { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 20px; flex-grow: 1; text-align: justify; transition: color 0.3s ease; }
-.tile-link    { font-weight: 700; color: #C33531; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; letter-spacing: 0.03em; transition: gap 0.25s ease, color 0.25s ease; }
-.tile-link i  { transition: transform 0.25s ease; }
 
 /* --- FOOTER --- */
 footer { background-color: var(--dark-navy); color: var(--white); padding: 50px 20px; margin-top: 60px; }
