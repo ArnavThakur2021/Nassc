@@ -10,22 +10,46 @@
     <style>
         /* Supplementary specific layout configuration overrides for rich text components */
         .page-banner {
-            background: linear-gradient(135deg, rgba(155, 32, 32, 0.04) 0%, rgba(10, 25, 47, 0.02) 100%);
-            padding: 80px 0 60px 0;
-            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+        }
+        .page-banner .banner-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .page-banner .banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.62) 0%, rgba(155, 32, 32, 0.52) 100%);
+        }
+        .page-banner .banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
         }
         .page-banner h1 {
             font-size: 2.8rem;
-            color: var(--nasscom-red-dark);
+            color: #fafafa;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 0;
+            text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+            letter-spacing: -0.01em;
         }
         .page-banner p {
             max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            color: var(--text-gray);
+            margin: 14px auto 0 auto;
+            font-size: 1.15rem;
+            color: rgba(236, 230, 230, 0.85);
             line-height: 1.6;
         }
         .content-section {
@@ -196,8 +220,76 @@
             text-decoration: none;
             font-weight: 600;
         }
+        .image-box img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
         .inline-link:hover {
             text-decoration: underline;
+        }
+        /* AI Literacy Workshop Slider */
+        .workshop-slider-section {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            padding: 0 20px;
+        }
+        .workshop-slider-section .section-title {
+            margin-bottom: 8px;
+        }
+        .workshop-slider-section .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: auto;
+        }
+        .ws-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .ws-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .ws-slide {
+            min-width: calc(33.333% - 10px);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .ws-slide img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        }
+        .ws-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 22px;
+        }
+        .ws-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .ws-dot.active {
+            background: var(--nasscom-red);
+            transform: scale(1.25);
+        }
+        @media (max-width: 768px) {
+            .ws-slide { min-width: calc(100% - 0px); margin-right: 15px; }
         }
     </style>
 </head>
@@ -221,23 +313,19 @@
         <div class="nav-container-bar red-nav-theme">
             <nav class="centered-navbar">
                 <ul class="main-nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="aiexperiencezone.html">AI Experience Zone</a></li>
-                    
+                    <!--<li><a href="index.html">Home</a></li>-->
                     <li class="dropdown-item">
                         <a href="javascript:void(0)" class="dropdown-trigger">
                             Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
                         </a>
                         <ul class="dropdown-menu solid-dropdown">
                             <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
-                            <li><a href="public.html">Public Services</a></li>
-                            <li><a href="industries.html">Industries</a></li>
-                            <li><a href="startups.html">Startups</a></li>
+                            <li><a href="public.html">AI in Public Services</a></li>
+                            <li><a href="industries.html">AI in Industries</a></li>
+                            <li><a href="startups.html">Startup Acceleration</a></li>
                         </ul>
                     </li>
-                    
-
+                    <li><a href="aiexperiencezone.html">AI Experience Zone</a></li>
                     <li class="dropdown-item">
                         <a href="javascript:void(0)" class="dropdown-trigger">
                             Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
@@ -249,7 +337,7 @@
                             <li><a href="newsletters.html">Newsletters</a></li>
                         </ul>
                     </li>
-
+                    <li><a href="about.html">About</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
                 </ul>
             </nav>
@@ -263,15 +351,19 @@
     </div>
 
     <section class="page-banner">
-        <h1>Empowering Public Services with AI</h1>
-        </section>
+        <img src="focus/pcp.png" alt="Empowering Public Services with AI" class="banner-bg">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>Empowering Public Services with AI</h1>
+        </div>
+    </section>
 
     <!-- ===== APPROACH ===== -->
     <section class="content-section">
-        <h2 class="section-title">Our Approach</h2>
-        <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>AI CoE also conducts workshops and training sessions for government officials to help them understand and drive AI projects — with customised training on AI applications in governance covering both administrative and technical roles.</strong></p>
-        <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>The centre helps departments identify, validate, and implement AI solutions that make governance and public services easier and more efficient . It acts as an ecosystem enabler — understanding departmental processes , strategising AI adoption , and guiding end-to-end deployment.</strong></p>
+         <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>The Centre helps departments identify, validate, and implement AI solutions that make governance and public services easier and more efficient . It acts as an ecosystem enabler — understanding departmental processes , strategising AI adoption , and guiding end-to-end deployment.</strong></p>
     
+        <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>AI CoE also conducts workshops and training sessions for government officials to help them understand and drive AI projects — with customised training on AI applications in governance covering both administrative and technical roles.</strong></p>
+       
         <div class="tech-stack-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
             <div class="tech-card" style="text-align:left; padding: 30px 25px;">
                 <i class="fas fa-search" style="font-size:2rem; color:var(--nasscom-red); margin-bottom:12px; display:block;"></i>
@@ -296,15 +388,13 @@
         <h2 class="section-title">Impact Stories</h2>
         <div class="story-container">
             <div class="story-details">
-                <h3>Food-Grain Quality Inspection for APMCs</h3>
-                <p style="margin: 15px 0; text-align: justify;">This use case focused on grain quality inspection, where evaluation was largely manual and subjective. Because assessments depended on individual judgment, outcomes were often inconsistent. This lack of standardisation reduced transparency in quality grading and contributed to unfair pricing for farmers, especially at local marketplaces.</p>
-                <p style="margin-bottom: 15px; text-align: justify;">At NASSCOM AI CoE, we facilitated the digital adoption of an AI-powered grain quality assessment solution developed by <strong>Upjao</strong>. The solution uses computer vision to assess more than ten physical parameters of grains — such as broken grains and foreign material — and delivers results within 30 seconds. The key shift was moving from subjective inspection to a scientific, data-driven process.</p>
-                <p style="margin-bottom: 15px; text-align: justify;">The system was deployed at APMCs in <strong>Kheda and Anand in Gujarat</strong>, enabling more objective quality evaluation at the grassroots level and improving transparency in pricing decisions.</p>
+                <h3>Food-Grain Quality Inspection for APMCs</h3><br>
                 <ul class="structured-list">
-                    <li><strong>1,000+ farmers</strong> empowered through objective quality grading</li>
-                    <li>Grain trade worth <strong>₹700+ crore</strong> facilitated</li>
-                    <li>Losses from quality-related rejections significantly reduced</li>
+                    <li>AI CoE facilitated the AI-based grain quality inspection deployed at APMCs in Kheda and Anand, enabling 30-second grading, empowering 1,000+ farmers, and facilitating ₹700+ crore in fair trade.</li>
+                    <li>The solution has been further deployed at 10 locations across the state by Gujarat State Civil Supplies Corporation Limited during paddy procurement for the PDS scheme benefitting around 3,300 farmers.</li>
+                    <li>5-7% avg. price improvements for participating farmers</li>
                 </ul>
+                <!--<p style="margin: 15px 0; text-align: justify;">This use case focused on grain quality inspection, where evaluation was largely manual and subjective. Because assessments depended on individual judgment, outcomes were often inconsistent. This lack of standardisation reduced transparency in quality grading and contributed to unfair pricing for farmers, especially at local marketplaces.</p>-->
             </div>
             <div class="video-box" style="margin-top: 15px;"><a href="https://www.youtube.com/watch?v=_R_zBiva1a8" target="_blank" class="yt-card">
                 <div class="yt-thumb-wrap">
@@ -316,21 +406,44 @@
                         <div class="yt-play-btn"><i class="fab fa-youtube"></i></div>
                     </div>
                 </div></a>
-                <div class="stat-card-premium" style="margin-top: 30px; padding: 20px; border-top: 4px solid var(--dark-navy);">
-                    <div class="stat-number-wrapper" style="font-size: 2.5rem; font-weight:800; color: var(--nasscom-red);">
-                        <span class="counter" data-target="440">0</span><span class="plus-sign">+</span>
-                    </div>
-                    <div class="stat-label" style="font-size: 0.85rem; text-align: center; margin-top: 5px; color: var(--text-gray);">Government Officials Trained on AI</div>
-                </div>
             </div>
         </div>
-        <p style="color: var(--text-gray); font-style: italic; margin-top: 20px; text-align:center;">More impact stories will be added soon.</p>
-    </section>
 
-    <!-- ===== USE CASES TABLE ===== -->
+        <!-- Story 2: Intelligent Document Processing -->
+        <div class="story-container">
+            <div class="story-details">
+                <h3>Intelligent Document Processing for Scalable Automation</h3><br>
+                <p style="font-size:0.95rem; color:var(--text-gray); margin-bottom:14px; line-height:1.6;">Built a production-ready bilingual (English–Gujarati) document processing system for accurate OCR, classification, and data extraction across diverse document types.</p>
+                <strong style="color:var(--dark-navy); font-size:0.95rem;">Impact:</strong>
+                <ul class="structured-list" style="margin-top:10px;">
+                    <li>Processed 3,000+ documents saving 750 hours — 12–17 minutes saved per page, 150× faster data extraction with 100% system uptime.</li>
+                    <li>Demonstrated extraction of 17+ fields across document types.</li>
+                    <li>Delivered 96% classification accuracy with results in under 3 seconds across four categories.</li>
+                    <li>Tested four OCR pipelines for English and Gujarati (including handwritten Gujarati) and provided recommendations.</li>
+                </ul>
+            </div>
+            <div class="image-box" style="margin-top: 15px;">
+                <img src="focus/is2.png" alt="Intelligent Document Processing">
+            </div>
+        </div>
+
+        <!-- Story 3: Face Recognition & Attendance -->
+        <div class="story-container">
+            <div class="story-details">
+                <h3>Face Recognition, Attendance & Real-Time Person Tracking</h3><br>
+                <p style="font-size:0.95rem; color:var(--text-gray); margin-bottom:14px; line-height:1.6;">Enabled centralized surveillance, automated attendance, and intelligent analytics for improved security, monitoring, and operational efficiency.</p>
+                <ul class="structured-list">
+                    <li>Achieved 98.2% overall face recognition accuracy with 0% false positives, ensuring highly reliable identification and monitoring.</li>
+                    <li>Enabled automated attendance and real-time tracking, eliminating manual processes and improving workforce visibility.</li>
+                    <li>Strengthened security through real-time alerts and classification (authorized, unauthorized, blacklisted, unknown) across all monitored zones.</li>
+                </ul>
+            </div>
+            <div class="image-box" style="margin-top: 15px;">
+                <img src="focus/is3.png" alt="Face Recognition and Real-Time Person Tracking">
+            </div>
+        </div>
     <section class="content-section" style="background-color: #f8fafc; padding: 50px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
-        <h2 class="section-title">Some of the Other Use Cases</h2>
-        <p style="color: var(--text-gray); margin-bottom: 5px;">Currently, we have multiple ongoing use cases for various government departments. These are at different stages of development — some in implementation, some evaluating solutions with AI startups.</p>
+        <h2 class="section-title">Use Cases Pursued In Public Services</h2>
         <div class="usecase-table-wrapper">
             <table class="usecase-table">
                 <thead>
@@ -344,87 +457,98 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><strong>Detection of Illegal Encroachment</strong></td>
-                        <td>Development Commissionerate Office, Gandhinagar</td>
-                        <td>An AI-driven solution to automate encroachment detection on public or private land using image analytics. Targets urban development authorities with &gt;95% accuracy and a user-friendly visualization dashboard.</td>
+                        <td><strong>AI Based Emergency Call Analytics</strong></td>
+                        <td>Home Dept.</td>
+                        <td>The use case focuses on leveraging AI to identify fake calls made to Emergency Response Support System (ERSS) 112. By analyzing call recordings and extracting Call Data Records (CDR), AI-powered speech recognition detects specific keywords, patterns, or anomalies in spoken words that may indicate a hoax. The system flags such calls in real-time and alerts authorities to prioritize genuine emergencies, improving response efficiency and reducing operational strain on emergency services.</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><strong>Visitor Tracing using Facial Recognition</strong></td>
-                        <td>GIL &amp; DIT</td>
-                        <td>A secure facial recognition system for real-time visitor authentication and tracking in high-profile government buildings like Sachivalay, achieving 99% accuracy while complying with data protection laws.</td>
+                        <td><strong>Object Identification and Tagging</strong></td>
+                        <td>Urban Development Department</td>
+                        <td>Government departments struggle to manually monitor cattle across cities and districts, leading to inefficiencies and inaccuracies. This AI-based solution automates cattle identification and tagging in images and videos using deep learning techniques like CNNs and transformers, supporting real-time processing and large datasets. Applications include surveillance, infrastructure monitoring, and public safety. Deliverables include an AI model, documentation, and a demo. The solution improves decision-making, boosts efficiency, and establishes a scalable, accurate framework for intelligent cattle monitoring across urban and rural regions.</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><strong>Bilingual OCR for English &amp; Gujarati</strong></td>
-                        <td>GIL &amp; DIT</td>
-                        <td>A bi-lingual OCR system to accurately extract text in English and Gujarati from scanned documents and images, targeting &gt;95% accuracy, handling low-quality scans and handwritten text.</td>
+                        <td><strong>Trend, Seasonality, and Anomaly Detection</strong></td>
+                        <td>Statistics Department</td>
+                        <td>Government departments rely on structured and time-series data for decision-making, yet identifying trends, seasonality, and anomalies manually is inefficient and error-prone. This AI-powered solution automates data analysis to uncover hidden patterns, detect anomalies, and enhance forecasting accuracy. Using advanced AI/ML techniques such as LSTM, ARIMA, and ensemble learning, the model ensures real-time insights via a dashboard. The solution supports large datasets, missing values, and diverse data types while adhering to security regulations. By improving operational efficiency and resource allocation, this innovation drives data-driven policymaking, ensuring timely trend detection for better governance and strategic planning.</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td><strong>Document Identification &amp; Recognition</strong></td>
-                        <td>GIL &amp; DIT</td>
-                        <td>An AI-driven solution to automatically identify, classify, and extract key metadata from document types like invoices, ID cards, and certificates — with &gt;90% accuracy for government agencies and banks.</td>
+                        <td><strong>Automated Blueprint Evaluation</strong></td>
+                        <td>Town Planning &amp; Valuation Department</td>
+                        <td>Develop an AI-based solution for CAD drawings that assists Town Planning and Validation Department (TPVD) in drafting, analyzing, and speedy finalization of Town Planning Schemes (TPS). The system should automate the evaluation of TPS to reduce manual review time, increase accuracy in decision-making, and enhance the efficiency of planning processes.</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td><strong>AI-Based Emergency Call Analytics</strong></td>
-                        <td>Home Department</td>
-                        <td>Leverages AI to identify fake calls made to ERSS 112 by analysing call recordings and CDR data. Flags hoax calls in real-time, alerting authorities to prioritize genuine emergencies.</td>
+                        <td><strong>AI-Driven Wetland Intelligence &amp; Digital Platform for Nal Sarovar Bird Sanctuary (Ramsar Site)</strong></td>
+                        <td>Forest &amp; Environment Department</td>
+                        <td>The project aims to build an AI-powered digital intelligence platform using multi-year ecological data collected from Nalsarovar Bird Sanctuary &mdash; a designated Ramsar site in Gujarat. Leveraging historical physico-chemical and biological data published by GEER Foundation, the solution will digitize, analyze, and visualize wetland parameters, provide trend analysis, and predict critical ecological indicators. The platform will serve as a scientific tool for informed decision-making, policy design, and resource optimization in wetland management.</td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td><strong>Integrated CCTV Surveillance with Facial Recognition</strong></td>
-                        <td>Home Department</td>
-                        <td>Integrates CCTV surveillance with Facial Recognition Systems (FRS) using body-worn cameras for real-time inmate and visitor monitoring, reducing manual verification and unauthorized access risks.</td>
+                        <td><strong>AI Powered Theft Detection in Electricity Distribution Network</strong></td>
+                        <td>GUVNL</td>
+                        <td>Electricity theft remains a persistent challenge in the power sector, leading to substantial commercial losses, unstable supply, and increased operational costs. Traditional theft detection relies heavily on manual audits, delayed billing reconciliations, and consumer complaints. These methods are reactive, slow, and often ineffective in identifying theft in real-time. The absence of a smart, automated, and scalable theft detection system prevents utility providers from proactively addressing theft hotspots, leading to unbilled consumption and significant revenue leakage.</td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td><strong>Digitization of Legacy Medical Documents</strong></td>
-                        <td>Rajiv Gandhi Cancer Research Institute</td>
-                        <td>An AI-led solution enabling automated extraction, classification, and digitization of legacy medical records with stringent privacy frameworks, improving operational efficiency and long-term data accessibility.</td>
+                        <td><strong>AI-Powered Smart CCTV Surveillance System</strong></td>
+                        <td>Food and Civil Supplies</td>
+                        <td>The Department seeks an AI-powered Smart CCTV Surveillance System to automate real-time monitoring across 250+ foodgrain godowns. Startups are expected to build an intelligent solution that detects unauthorized vehicles/persons, animal intrusion, unallocated foodgrain movement, delays in dispatch, and camera blackout/tampering. The system must generate instant alerts, enhance transparency, and reduce pilferage while improving operational efficiency across the Public Distribution System (PDS).</td>
                     </tr>
                     <tr>
                         <td>8</td>
-                        <td><strong>Object Identification and Tagging</strong></td>
-                        <td>Urban Development Department</td>
-                        <td>Automates object identification and tagging in images and videos using deep learning (CNNs and transformers) for surveillance, infrastructure monitoring, and public safety with real-time processing.</td>
+                        <td><strong>AI-Enabled Industrial Effluent &amp; Emission Monitoring</strong></td>
+                        <td>Gujarat Pollution Control Board</td>
+                        <td>The Board seeks an AI-driven system to automate compliance monitoring using real-time OEMS and CEMS data. Startups must build a model that detects anomalies, predicts potential violations, and flags non-compliance without relying on manual inspections or drone/satellite inputs. The solution should integrate multi-source industrial datasets, generate compliance scores and dashboards, and support scalable, proactive monitoring to strengthen pollution control and enforcement efficiency.</td>
                     </tr>
                     <tr>
                         <td>9</td>
-                        <td><strong>Trend, Seasonality &amp; Anomaly Detection</strong></td>
-                        <td>Statistics Department</td>
-                        <td>An AI/ML solution using LSTM, ARIMA, and ensemble models to automate analysis of government time-series data, detect anomalies, and provide real-time forecasting insights for better policy decisions.</td>
+                        <td><strong>AI-Powered AR/VR Heritage Engagement using 3D Mapping</strong></td>
+                        <td>Directorate of Archeology</td>
+                        <td>The Department is seeking an AR/VR-based solution to digitally recreate heritage sites&mdash;starting with Kera Temple&mdash;for immersive exploration. The system should use existing 3D scans to build accurate visualisations and allow visitors to experience the site virtually, understand its history, and interact with key architectural elements. The goal is to support preservation, enhance public engagement, improve accessibility for remote visitors, and create a scalable digital heritage model for future sites.</td>
                     </tr>
                     <tr>
                         <td>10</td>
-                        <td><strong>Automated Blueprint Evaluation</strong></td>
-                        <td>Town Planning &amp; Valuation Department</td>
-                        <td>An AI-based solution for CAD drawings that assists TPVD in drafting, analysing, and speedy finalisation of Town Planning Schemes, reducing manual review time and improving accuracy.</td>
+                        <td><strong>AI Based Monitoring of Anganwadi Infrastructure Projects</strong></td>
+                        <td>Women and Child Development</td>
+                        <td>A large statewide network of over 50,000 Anganwadi centres is undergoing continuous construction, renovation, and maintenance, but current monitoring relies on manual field reports and periodic photo uploads, leading to inaccurate status updates, delayed interventions, and weak quality control. Reported progress often does not match on-ground reality, making planning and fund utilization reactive rather than data-driven. The required solution is an AI-powered infrastructure monitoring system that uses drone or satellite imagery and IoT data to automatically verify project progress, detect deviations, and generate real-time alerts and dashboards. The goal is to enable transparent, scalable, and predictive project tracking for faster decisions and better resource utilization.</td>
                     </tr>
                     <tr>
                         <td>11</td>
-                        <td><strong>AI-Driven Wetland Intelligence Platform for Nal Sarovar</strong></td>
-                        <td>Forest &amp; Environment Department</td>
-                        <td>An AI-powered digital platform using multi-year ecological data from Nal Sarovar Bird Sanctuary (Ramsar Site) to digitise, analyse, and visualise wetland parameters for informed conservation decision-making.</td>
+                        <td><strong>Analytics of Poshan Tracker Data for Identification of Growth Risks</strong></td>
+                        <td>Women and Child Development</td>
+                        <td>Large-scale maternal and child health data is collected across over 50,000 field centres through a nutrition tracking platform, but insights remain limited due to manual analysis and static dashboards. As a result, critical trends like undernutrition, anemia, stunting, and growth risks are often identified late, delaying targeted interventions. The required solution is an AI-driven analytics layer that can process high-volume health and nutrition data in real time, detect anomalies, predict risk patterns, and identify vulnerable populations early. Using machine learning and predictive modeling, the system should generate actionable insights, trend forecasts, and region-wise risk indicators to enable faster, evidence-based decisions and more effective nutrition program outcomes.</td>
                     </tr>
                     <tr>
                         <td>12</td>
-                        <td><strong>AI-Powered Theft Detection in Electricity Distribution</strong></td>
-                        <td>GUVNL</td>
-                        <td>An automated, scalable theft detection system that proactively identifies electricity theft hotspots in real-time, reducing unbilled consumption and revenue leakage across the distribution network.</td>
-                    </tr>
-                    <tr>
-                        <td>13</td>
-                        <td><strong>AI-Powered Sentiment Analysis from Newspaper Publications</strong></td>
-                        <td>Information &amp; Broadcasting Department</td>
-                        <td>An AI system that processes daily press clippings from regional and national newspapers (Gujarati, Hindi, and English) to classify sentiments and track public opinion trends for the department.</td>
+                        <td><strong>Automated Order Drafting System</strong></td>
+                        <td>Special Secretary Revenue Department</td>
+                        <td>A high volume of land revenue appeal orders is currently drafted manually, leading to inconsistent language, formatting variations, interpretation gaps, and avoidable legal escalations. The absence of standardized templates and automated drafting tools results in repetitive effort, longer turnaround times, and non-uniform government orders. The required solution is an AI-assisted order drafting system that uses structured templates, dynamic inputs, OCR, and language models to automatically generate legally consistent, well-formatted orders in Gujarati. The system should provide smart suggestions, enforce departmental style and terminology, and integrate with existing case and land record systems&mdash;enabling faster, accurate, and uniform order generation at scale.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
+    <!-- ===== AI LITERACY WORKSHOP SLIDER ===== -->
+    <section class="workshop-slider-section">
+        <h2 class="section-title">AI Literacy Workshops for Government Officials</h2>
+        <p class="section-subtitle">The AI CoE prioritized capacity building among government officials to enable them to understand and effectively drive AI-led initiatives. The CoE conducted training programs for government officials on AI and its applications in governance and public service delivery. These trainings included customized sessions tailored for officials from both administrative and technical functions.</p>
+        <div class="ws-slider-wrapper">
+            <div class="ws-track" id="wsTrack">
+                <div class="ws-slide"><img src="focus/ps1.png" alt="AI Workshop for Government Officials"></div>
+                <div class="ws-slide"><img src="focus/ps6.png" alt="AI Workshop Session"></div>
+                <div class="ws-slide"><img src="focus/ps3.png" alt="AI Literacy Training"></div>
+                <div class="ws-slide"><img src="focus/ps4.png" alt="Government Officials Training"></div>
+                <div class="ws-slide"><img src="focus/ps5.png" alt="AI Workshop Participants"></div>
+                <div class="ws-slide"><img src="focus/ps2.png" alt="AI Governance Workshop"></div>
+            </div>
+        </div>
+        <div class="ws-dots" id="wsDots"></div>
+    </section>
+    
     <!-- ===== IMPACT CREATED ===== -->
     <section class="content-section">
         <h2 class="section-title">Impact Created</h2>
@@ -743,6 +867,59 @@
 
             counters.forEach(c => observer.observe(c));
         });
+        // AI Literacy Workshop Slider
+        (function() {
+            const track = document.getElementById('wsTrack');
+            const dotsContainer = document.getElementById('wsDots');
+            const slides = track ? track.querySelectorAll('.ws-slide') : [];
+            const total = slides.length;
+            if (!track || total === 0) return;
+
+            const visibleCount = () => window.innerWidth <= 768 ? 1 : 3;
+            let current = 0;
+            let autoTimer;
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const pages = Math.ceil(total / visibleCount());
+                for (let i = 0; i < pages; i++) {
+                    const d = document.createElement('span');
+                    d.className = 'ws-dot' + (i === 0 ? ' active' : '');
+                    dotsContainer.appendChild(d);
+                }
+            }
+
+            function updateDots() {
+                const vc = visibleCount();
+                const activePage = Math.round(current / vc);
+                dotsContainer.querySelectorAll('.ws-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === activePage);
+                });
+            }
+
+            function goTo(idx) {
+                const vc = visibleCount();
+                const maxIdx = total - vc;
+                current = Math.max(0, Math.min(idx, maxIdx));
+                const slideW = slides[0].offsetWidth + 15;
+                track.style.transform = `translateX(-${current * slideW}px)`;
+                updateDots();
+            }
+
+            function next() {
+                const vc = visibleCount();
+                if (current + vc >= total) {
+                    goTo(0);
+                } else {
+                    goTo(current + vc);
+                }
+            }
+
+            window.addEventListener('resize', () => { buildDots(); goTo(0); });
+
+            buildDots();
+            autoTimer = setInterval(next, 4000);
+        })();
     </script>
 </body>
 </html>

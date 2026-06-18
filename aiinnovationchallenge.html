@@ -10,17 +10,20 @@
     <style>
         /* Supplementary layout typography & module specs for AI-IC components */
         .challenge-hero {
-            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(155, 32, 32, 0.9) 100%), 
-                        url('https://unpkg.com/three-globe/example/img/night-sky.png');
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.80) 0%, rgba(155, 32, 32, 0.75) 100%), 
+                        url('aiic.jpeg');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: var(--white);
             padding: 100px 20px 80px 20px;
             text-align: center;
         }
         .challenge-hero .container {
-            max-width: 1000px;
+            max-width: auto;
             margin: 0 auto;
+            align-items: center;
+            text-align: center;
         }
         .challenge-hero h1 {
             font-size: 3rem;
@@ -28,16 +31,22 @@
             margin-bottom: 20px;
             letter-spacing: -0.02em;
             line-height: 1.2;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 2px 12px rgba(228, 113, 113, 0.4);
         }
         .challenge-hero p {
             font-size: 1.3rem;
             color: #cbd5e1;
-            max-width: 800px;
+            max-width: auto;
             margin: 0 auto 30px auto;
             line-height: 1.6;
+            text-align: center;
         }
         .badge-pill {
-            display: inline-block;
+            display: block;
+            width: fit-content;
+            margin: 0 auto 20px auto;
             background-color: var(--nasscom-red);
             color: var(--white);
             padding: 6px 16px;
@@ -46,7 +55,6 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 20px;
         }
         .section-wrapper {
             max-width: 1200px;
@@ -234,22 +242,66 @@
             font-size: 1.1rem;
         }
         .btn-challenge-action {
-            background-color: var(--nasscom-red);
-            color: #ffffff;
-            padding: 14px 35px;
+            background-color: #6e0707;
+            color: #f8f8f8;
+            padding: 12px 28px;
             border-radius: 6px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: background-color 0.2s ease;
-            border: none;
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            border: 2px solid #ffffff;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            margin: 0 auto;
         }
         .btn-challenge-action:hover {
-            background-color: var(--nasscom-red-dark);
+            background-color: #f8f8f8;
+            color: #3d0b0b;
+            box-shadow: 0 6px 28px rgba(0,0,0,0.35);
+
+        }
+        .footer-cta-bar {
+            background: #ffffff !important;
+            box-shadow: 0 4px 24px rgba(155,32,32,0.10);
+        }
+        .footer-cta-heading {
+            background: linear-gradient(135deg, #9b2020 0%, #e53e3e 60%, #c0392b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent !important;
+        }
+        .footer-cta-btn {
+            background: #ffffff !important;
+            color: transparent !important;
+            background-image: linear-gradient(135deg, #9b2020 0%, #e53e3e 60%, #c0392b 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            border: 2px solid #c0392b !important;
+            box-shadow: 0 2px 12px rgba(155,32,32,0.13);
+        }
+        .footer-cta-btn i {
+            background: linear-gradient(135deg, #9b2020 0%, #e53e3e 60%, #c0392b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .footer-cta-btn:hover {
+            background: linear-gradient(135deg, #9b2020 0%, #c0392b 100%) !important;
+            -webkit-text-fill-color: #ffffff !important;
+            color: #ffffff !important;
+            background-image: none !important;
+            background-clip: unset !important;
+            -webkit-background-clip: unset !important;
+        }
+        .footer-cta-btn:hover i {
+            -webkit-text-fill-color: #ffffff !important;
+            background: none;
         }
         @media (max-width: 992px) {
             .grid-two-col {
@@ -282,23 +334,19 @@
         <div class="nav-container-bar red-nav-theme">
             <nav class="centered-navbar">
                 <ul class="main-nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="aiexperiencezone.html">AI Experience Zone</a></li>
-                    
+                    <!--<li><a href="index.html">Home</a></li>-->
                     <li class="dropdown-item">
                         <a href="javascript:void(0)" class="dropdown-trigger">
                             Focus Areas <i class="fas fa-chevron-down nav-arrow-icon"></i>
                         </a>
                         <ul class="dropdown-menu solid-dropdown">
                             <li><a href="aiinnovationchallenge.html">AI Innovation Challenge</a></li>
-                            <li><a href="public.html">Public Services</a></li>
-                            <li><a href="industries.html">Industries</a></li>
-                            <li><a href="startups.html">Startups</a></li>
+                            <li><a href="public.html">AI in Public Services</a></li>
+                            <li><a href="industries.html">AI in Industries</a></li>
+                            <li><a href="startups.html">Startup Acceleration</a></li>
                         </ul>
                     </li>
-                    
-
+                    <li><a href="aiexperiencezone.html">AI Experience Zone</a></li>
                     <li class="dropdown-item">
                         <a href="javascript:void(0)" class="dropdown-trigger">
                             Knowledge Hub <i class="fas fa-chevron-down nav-arrow-icon"></i>
@@ -310,7 +358,7 @@
                             <li><a href="newsletters.html">Newsletters</a></li>
                         </ul>
                     </li>
-
+                    <li><a href="about.html">About</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
                 </ul>
             </nav>
@@ -326,15 +374,19 @@
     <section class="challenge-hero">
         <div class="container">
             <span class="badge-pill">Flagship Initiative</span>
-            <h1>AI Innovation Challenge (AI-IC)</h1>
-            <p>The AI Innovation Challenge (AI-IC) is a flagship initiative of AI Center of Excellence, established by Department of Science & Technology and Gujarat Informatics Limited – Govt. of Gujarat in partnership with nasscom and Microsoft, to be a cornerstone of AI innovation, driving solution co-creation and impactful use cases to improve efficiency and quality in the public and private sectors.
-<br><br>AI Innovation Challenge is aimed at connecting India’s most promising AI and Deep-tech startups with real-world challenges from both Public & Private Sector organizations. The challenge provides a unique opportunity to showcase their cutting-edge solutions, collaborate with key stakeholders, and create meaningful impact in areas such as agriculture, healthcare, manufacturing, governance, and beyond
-</p><a href="https://gujarat.coe-iot.com/ai-coe-ai-innovation-challenge/" class="btn-challenge-action">
-                <i class="fas fa-search"></i> View AI Innovation Challenge (AI-IC) Site 
-            </a>
-        </div><br>
+            <h1>AI Innovation Challenge</h1>
+        
+            <p><strong>The AI Innovation Challenge (AI-IC) is a flagship initiative of AI CoE, aimed at connecting India’s most promising AI and Deep-tech startups with real-world challenges from both Public & Private Sector organizations. The challenge provides a unique opportunity to showcase their cutting-edge solutions, collaborate with key stakeholders, and create meaningful impact in areas such as agriculture, healthcare, manufacturing, governance, and beyond
+</strong></p>
+            <div style="text-align: center;">
+                <a href="https://gujarat.coe-iot.com/ai-coe-ai-innovation-challenge/" class="btn-challenge-action" target="_blank">
+                    <i class="fas fa-search"></i> Visit For More Details
+                </a>
+            </div>
+            
+            </div><br>
     </section>
-
+    
         <footer class="image-mapped-footer new-footer">
         <!-- Top CTA bar -->
         <div class="footer-cta-bar">
