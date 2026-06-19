@@ -2921,12 +2921,12 @@ footer {
     align-items: center;
     justify-content: center;
     height: 70px;
-    width: 100%;
+    width: 250px;
     box-sizing: border-box;
 }
 .footer-logo-pill img {
     height: 50px;
-    max-width: 100%;
+    max-width: 200px;
     object-fit: contain;
     display: block;
 }

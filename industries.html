@@ -10,22 +10,46 @@
     <style>
         /* Supplementary specific layout configuration overrides for rich text components */
         .page-banner {
-            background: linear-gradient(135deg, rgba(155, 32, 32, 0.04) 0%, rgba(10, 25, 47, 0.02) 100%);
-            padding: 80px 0 60px 0;
-            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+        }
+        .page-banner .banner-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .page-banner .banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.62) 0%, rgba(155, 32, 32, 0.52) 100%);
+        }
+        .page-banner .banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
         }
         .page-banner h1 {
             font-size: 2.8rem;
-            color: var(--nasscom-red-dark);
+            color: #fafafa;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 0;
+            text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+            letter-spacing: -0.01em;
         }
         .page-banner p {
             max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            color: var(--text-gray);
+            margin: 14px auto 0 auto;
+            font-size: 1.15rem;
+            color: rgba(236, 230, 230, 0.85);
             line-height: 1.6;
         }
         .content-section {
@@ -242,9 +266,14 @@
         <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
     </div>
 
+
     <section class="page-banner">
-        <h1>Co-Creating Value for Industries</h1>
-        </section>
+        <img src="focus/icp.png" alt="Empowering Industries with AI" class="banner-bg">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>Co-Creating Value for Industries</h1>
+        </div>
+    </section>
 
     <!-- ===== WHAT WE FOCUS ON ===== -->
     <section class="content-section">
