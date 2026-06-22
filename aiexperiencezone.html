@@ -27,6 +27,27 @@
             object-fit: cover;
             object-position: center;
         }
+        /* ===== AUTO-SLIDING BANNER IMAGE SLIDER (ex1-ex8) ===== */
+        .page-banner .banner-slider {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .page-banner .banner-slider img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+        }
+        .page-banner .banner-slider img.aiez-active {
+            opacity: 0.85;
+        }
         .page-banner .banner-overlay {
             position: absolute;
             inset: 0;
@@ -515,7 +536,16 @@
 
     <!-- ===== PAGE BANNER ===== -->
     <section class="page-banner">
-        <img src="aiezcp.png" alt="AI Experience Zone" class="banner-bg">
+        <div class="banner-slider">
+            <img src="aiez/ex1.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex2.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex3.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex4.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex5.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex6.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex7.JPG" alt="AI Experience Zone">
+            <img src="aiez/ex8.JPG" alt="AI Experience Zone">
+        </div>
         <div class="banner-overlay"></div>
         <div class="banner-content">
             <h1>Explore the Future At The AI Experience Zone</h1>
@@ -768,6 +798,19 @@
                 this.querySelector('.dropdown-menu').style.display = 'none';
             });
         });
+
+        /* ===== AI Experience Zone banner slider (ex1-ex8) — continuous loop ===== */
+        (function () {
+            var slides = document.querySelectorAll('.page-banner .banner-slider img');
+            if (!slides.length) return;
+            var current = 0;
+            slides[current].classList.add('aiez-active');
+            setInterval(function () {
+                slides[current].classList.remove('aiez-active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('aiez-active');
+            }, 2000);
+        })();
     </script>
 
 </body>

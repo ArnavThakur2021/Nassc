@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open aiexperiencezone.html",
-            "file": "c:\\Users\\truea\\Documents\\Nassc\\aiexperiencezone.html"
+            "file": "c:\\Users\\truea\\Documents\\Nassc\\index.html"
         }
     ]
 }

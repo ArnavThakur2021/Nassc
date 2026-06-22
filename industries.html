@@ -46,7 +46,7 @@
             letter-spacing: -0.01em;
         }
         .page-banner p {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 14px auto 0 auto;
             font-size: 1.15rem;
             color: rgba(236, 230, 230, 0.85);
@@ -54,9 +54,10 @@
         }
         .content-section {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 0 0;
             padding: 0 20px;
         }
+        
         .story-container {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -207,6 +208,73 @@
         .structured-list strong {
             color: #1e293b;
         }
+         .image-box img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
+        .workshop-slider-section {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            padding: 0 20px;
+        }
+        .workshop-slider-section .section-title {
+            margin-bottom: 8px;
+        }
+        .workshop-slider-section .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: auto;
+        }
+        .ws-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .ws-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .ws-slide {
+            min-width: calc(33.333% - 10px);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .ws-slide img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        }
+        .ws-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 22px;
+        }
+        .ws-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .ws-dot.active {
+            background: var(--nasscom-red);
+            transform: scale(1.25);
+        }
+        @media (max-width: 768px) {
+            .ws-slide { min-width: calc(100% - 0px); margin-right: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -272,15 +340,14 @@
         <div class="banner-overlay"></div>
         <div class="banner-content">
             <h1>Co-Creating Value for Industries</h1>
+            <p ><strong>AI CoE accelerates enterprise success by identifying, validating, and deploying AI solutions that drive measurable business impact.
+It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption, enabling digitalization at scale.</strong></p><br>
         </div>
     </section>
 
     <!-- ===== WHAT WE FOCUS ON ===== -->
-    <section class="content-section">
+    <!--<section class="content-section">
         
-        <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>AI CoE makes significant efforts towards helping enterprises identify, validate, and implement AI solutions that deliver measurable business impact. It acts as an ecosystem enabler, helping industries to assess their processes, strategize AI adoption and guide them for an end-to-end deployment. 
-For MSMEs, it makes enhanced efforts to make them aware about Industry 4.0 and smart manufacturing solutions through workshops and training sessions.
-</strong></p><br>
     <h4 class="section-title">AI CoE focuses on practical, high-impact AI adoption, including : </h4>
         <div class="tech-stack-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
             <div class="tech-card" style="text-align:left; padding:28px 24px;">
@@ -309,7 +376,7 @@ For MSMEs, it makes enhanced efforts to make them aware about Industry 4.0 and s
                 <h4 style="margin-bottom:8px;">Scaling Digital Initiatives Beyond Pilots</h4>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <!-- ===== HOW WE ENGAGE ===== -->
     <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
@@ -371,38 +438,39 @@ For MSMEs, it makes enhanced efforts to make them aware about Industry 4.0 and s
     </section>
 
     <!-- ===== IMPACT STORIES ===== -->
-    <section class="content-section">
+     <section class="content-section" style="margin-top: 60px; margin-bottom: 80px;">
         <h2 class="section-title">Impact Stories</h2>
         <div class="story-container">
+            
             <div class="story-details">
-                <div class="yt-tag yt-tag-pdf" style="display:inline-flex; align-items:center; gap:6px; margin-bottom:16px;"><i class="fas fa-file-pdf"></i> Case Study</div>
-                <h3 style="font-size:1.4rem; color:var(--dark-navy); font-weight:800; margin-bottom:14px;">Intelligent Document Processing for Scalable Automation</h3>
-                <p style="color:var(--text-gray); line-height:1.7; margin-bottom:24px;">Read the AI case study exploring how AI-powered solutions are driving measurable impact across industries in the NASSCOM CoE ecosystem.</p>
-                <a href="https://gujarat.coe-iot.com/wp-content/uploads/2026/03/CogniFirst-Case-Study.pdf" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:var(--nasscom-red); color:#fff; padding:12px 24px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; transition:background 0.2s;" onmouseover="this.style.background='var(--nasscom-red-dark)'" onmouseout="this.style.background='var(--nasscom-red)'">
-                    Read Case Study <i class="fas fa-arrow-right"></i>
-                </a>
+                <h3>VR Tech Demonstration for Textile Industry</h3><br>
+                <p style="font-size:0.95rem; color:var(--text-gray); margin-bottom:14px; line-height:1.6;">To communicate textile research and its application done by Ahmedabad Textile Industry's Research Association (ATIRA) for a broad audience with enhanced experience.</p>
+                <ul class="structured-list" style="margin-top:10px;">
+                    <li>The resulting VR experience presents the full HEPA filters' lifecycle—covering concept, material science, nanofiber filtration, testing, validation, and real-world applications.</li>
+                    <li>Demonstrated the solution at textile conference where 300+ people experienced the complex science</li>
+                    <li>This solution is permanently housed at ATIRA as a knowledge asset.</li>
+                </ul>
             </div>
-            <div style="display:flex; align-items:center; justify-content:center;">
-                <a href="https://gujarat.coe-iot.com/wp-content/uploads/2026/03/CogniFirst-Case-Study.pdf" target="_blank" style="display:block; position:relative; border-radius:8px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.10); transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(155,32,32,0.18)'" onmouseout="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.10)'">
-                    <img src="pdfps.png" alt="Case Study Thumbnail" style="width:100%; max-width:320px; display:block; border-radius:8px;">
-                    <div style="position:absolute; top:12px; right:12px; background:var(--nasscom-red); color:#fff; padding:6px 12px; border-radius:4px; font-size:0.8rem; font-weight:700; display:flex; align-items:center; gap:6px;">
-                        <i class="fas fa-file-pdf"></i> PDF
-                    </div>
-                </a>
+            <div class="image-box" style="margin-top: 15px;">
+                <img src="focus/ind1.jpeg" alt="Intelligent Document Processing">
             </div>
         </div>
-    </section>
+        </section>
+    <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+        <h2 class="section-title">What Industry Leaders Say About Us</h2><br>
+        <div class="ws-slide"><img src="focus/atira.jpeg" alt="ATIRA"></div>
+        </section>
 
     <!-- ===== IMPACT NUMBERS ===== -->
     <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
         <h2 class="section-title">Impact Created</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 25px; margin-top: 30px;">
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
-                <div style="font-size:2.5rem; font-weight:900; color:var(--nasscom-red);"><span class="counter" data-target="75">0</span>+</div>
+                <div style="font-size:2.5rem; font-weight:900; color:var(--nasscom-red);"><span class="counter" data-target="100">0</span>+</div>
                 <div style="font-size:0.9rem; color:var(--text-gray); margin-top:8px; line-height:1.4;">AI Prototypes Demonstrated</div>
             </div>
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
-                <div style="font-size:2.5rem; font-weight:900; color:var(--nasscom-red);"><span class="counter" data-target="1200">0</span>+</div>
+                <div style="font-size:2.5rem; font-weight:900; color:var(--nasscom-red);"><span class="counter" data-target="1600">0</span>+</div>
                 <div style="font-size:0.9rem; color:var(--text-gray); margin-top:8px; line-height:1.4;">Industry Leaders Made Aware on Industry 4.0 Solutions</div>
             </div>
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
@@ -411,13 +479,28 @@ For MSMEs, it makes enhanced efforts to make them aware about Industry 4.0 and s
             </div>
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
                 <div style="font-size:2.5rem; font-weight:900; color:var(--nasscom-red);"><span class="counter" data-target="500">0</span>+</div>
-                <div style="font-size:0.9rem; color:var(--text-gray); margin-top:8px; line-height:1.4;">Delegation visits</div>
+                <div style="font-size:0.9rem; color:var(--text-gray); margin-top:8px; line-height:1.4;">Delegates Hosted AT AI COE</div>
             </div>
-            <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
-                <i class="fas fa-calendar-check" style="font-size:1.8rem; color:var(--nasscom-red); margin-bottom:10px; display:block;"></i>
-                <div style="font-size:0.9rem; color:var(--text-gray); line-height:1.4;">Demo Days conducted with GNFC, BoB &amp; more</div>
+            
+        </div>
+    </section>
+    <section class="workshop-slider-section">
+        <h2 class="section-title">AI Literacy Workshops for MSME</h2><br>
+        <p class="section-subtitle"><strong>AI CoE makes significant efforts to digitalize the MSMEs with Industry 4.0 and smart manufacturing solutions. For ex. IoT for Machine monitoring, AI for Quality inspection, QR code-based track and trace of inventory etc. To scale up this effort, CoE partnered with bodies such as National Productivity Council, Quality Council of India and Industry Associations such as GCCI, GSPMA, SGCCI, VCCI, RCCI etc. to educated MSMEs on adoption of smart solutions.</strong></p>
+        <div class="ws-slider-wrapper">
+            <div class="ws-track" id="wsTrack">
+                <div class="ws-slide"><img src="focus/indi1.jpeg" alt="AI Workshop for MSMEs"></div>
+                <div class="ws-slide"><img src="focus/indi2.jpeg" alt="AI Workshop for MSMEs"></div>
+                <div class="ws-slide"><img src="focus/indi3.jpeg" alt="AI Workshop for MSMEs"></div>
+                <div class="ws-slide"><img src="focus/indi4.jpeg" alt="AI Workshop for MSMEs"></div>
+                <div class="ws-slide"><img src="focus/indi5.jpeg" alt="AI Workshop for MSMEs"></div>
+            <div class="ws-slide"><img src="focus/indi6.jpeg" alt="AI Workshop for MSMEs"></div>
+            <div class="ws-slide"><img src="focus/indi7.jpeg" alt="AI Workshop for MSMEs"></div>
+            <div class="ws-slide"><img src="focus/indi8.jpeg" alt="AI Workshop for MSMEs"></div>
+            
             </div>
         </div>
+        <div class="ws-dots" id="wsDots"></div>
     </section>
 
     <!-- ===== FAQs ===== -->
@@ -660,7 +743,7 @@ For MSMEs, it makes enhanced efforts to make them aware about Industry 4.0 and s
             const animateCounter = (counter) => {
                 const target = parseInt(counter.getAttribute('data-target'), 10);
                 let current = 0;
-                const duration = 4000; 
+                const duration = 2500; 
                 const frameRate = 1000 / 60; 
                 const totalFrames = Math.round(duration / frameRate);
                 const increment = target / totalFrames;
@@ -693,6 +776,58 @@ For MSMEs, it makes enhanced efforts to make them aware about Industry 4.0 and s
 
             counters.forEach(c => observer.observe(c));
         });
+        (function() {
+            const track = document.getElementById('wsTrack');
+            const dotsContainer = document.getElementById('wsDots');
+            const slides = track ? track.querySelectorAll('.ws-slide') : [];
+            const total = slides.length;
+            if (!track || total === 0) return;
+
+            const visibleCount = () => window.innerWidth <= 768 ? 1 : 3;
+            let current = 0;
+            let autoTimer;
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const pages = Math.ceil(total / visibleCount());
+                for (let i = 0; i < pages; i++) {
+                    const d = document.createElement('span');
+                    d.className = 'ws-dot' + (i === 0 ? ' active' : '');
+                    dotsContainer.appendChild(d);
+                }
+            }
+
+            function updateDots() {
+                const vc = visibleCount();
+                const activePage = Math.round(current / vc);
+                dotsContainer.querySelectorAll('.ws-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === activePage);
+                });
+            }
+
+            function goTo(idx) {
+                const vc = visibleCount();
+                const maxIdx = total - vc;
+                current = Math.max(0, Math.min(idx, maxIdx));
+                const slideW = slides[0].offsetWidth + 15;
+                track.style.transform = `translateX(-${current * slideW}px)`;
+                updateDots();
+            }
+
+            function next() {
+                const vc = visibleCount();
+                if (current + vc >= total) {
+                    goTo(0);
+                } else {
+                    goTo(current + vc);
+                }
+            }
+
+            window.addEventListener('resize', () => { buildDots(); goTo(0); });
+
+            buildDots();
+            autoTimer = setInterval(next, 4000);
+        })();
     </script>
 </body>
 </html>
