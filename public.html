@@ -292,9 +292,21 @@
         @media (max-width: 768px) {
             .ws-slide { min-width: calc(100% - 0px); margin-right: 15px; }
         }
+        /* Sticky footer: keep footer pinned to the bottom on short pages,
+           without altering footer styling or content spacing above it */
+        html { height: 100%; }
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-wrap { flex: 1 0 auto; }
+        footer.new-footer { flex-shrink: 0; }
     </style>
 </head>
 <body>
+    <div class="page-wrap">
 
         <header class="master-header">
         <div class="top-branding-strip">
@@ -725,7 +737,9 @@
         </div>
     </section>
 
-            <footer class="image-mapped-footer new-footer">
+    </div><!-- /.page-wrap -->
+
+    <footer class="image-mapped-footer new-footer">
         <!-- Top CTA bar -->
         <div class="footer-cta-bar">
             <div class="footer-cta-inner">
