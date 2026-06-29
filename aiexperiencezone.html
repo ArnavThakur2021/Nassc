@@ -27,6 +27,10 @@
             object-fit: cover;
             object-position: center;
         }
+        .page-banner .banner-video {
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
+        }
         /* ===== AUTO-SLIDING BANNER IMAGE SLIDER (ex1-ex8) ===== */
         .page-banner .banner-slider {
             position: absolute;
@@ -51,8 +55,7 @@
         .page-banner .banner-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10, 25, 47, 0.62) 0%, rgba(155, 32, 32, 0.52) 100%);
-        }
+           }
         .page-banner .banner-content {
             position: relative;
             z-index: 2;
@@ -60,19 +63,19 @@
         }
         .page-banner h1 {
             font-size: 2.8rem;
-            color: #fafafa;
             font-weight: 800;
             margin-bottom: 0;
-            text-shadow: 0 2px 14px rgba(0,0,0,0.55);
             letter-spacing: -0.01em;
+            color: #7b1010;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.55), 0 2px 6px rgba(0, 0, 0, 0.35);
         }
         .page-banner p {
-            
             max-width: 800px;
             margin: 14px auto 0 auto;
             font-size: 1.15rem;
-            color: #ffff;
+            color: #000;
             line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85), 0 0 6px rgba(255, 255, 255, 0.55);
         }
         /* ===== CONTENT WRAPPER ===== */
         .content-section {
@@ -516,7 +519,7 @@
                         <ul class="dropdown-menu solid-dropdown">
                             <!-- <li><a href="research-reports.html">Research &amp; Reports</a></li> -->
                             <li><a href="case-studies.html">Case Studies</a></li>
-                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
                         </ul>
                     </li>
@@ -536,21 +539,14 @@
 
     <!-- ===== PAGE BANNER ===== -->
     <section class="page-banner">
-        <div class="banner-slider">
-            <img src="aiez/ex1.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex2.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex3.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex4.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex5.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex6.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex7.JPG" alt="AI Experience Zone">
-            <img src="aiez/ex8.JPG" alt="AI Experience Zone">
-        </div>
+        <video autoplay muted loop playsinline class="banner-bg banner-video">
+            <source src="innerbanner.mp4" type="video/mp4" />
+            innerbanner
+        </video>
         <div class="banner-overlay"></div>
         <div class="banner-content">
             <h1>Explore the Future At The AI Experience Zone</h1>
             <p><strong>Immerse yourself in a first-of-its-kind AI Experience Zone, showcasing cutting-edge AI applications revolutionising industries and public services across Gujarat and beyond.</strong></p>
-    
         </div>
     </section>
 
@@ -592,9 +588,7 @@
     <!-- ===== PHOTO GALLERY ===== -->
     <section class="gallery-section">
         <div class="gallery-inner">
-            <div class="aiz-section-label" style="color:#38bdf8; text-align:center;">Photos of the AI Experience Zone</div>
-            <h2 class="gallery-heading">A Glimpse Inside the AI Experience Zone</h2>
-
+            <h2 class="gallery-heading">A Glimpse Inside the AI Experience Zone</h2><br>
             <div class="gallery-grid">
                 <!-- Main large photo: e1 = VR/Immersive demo -->
                 <div class="gallery-item main-photo">

@@ -339,10 +339,77 @@
             font-size: 1rem;
             line-height: 1.5;
         }
+        /* ===== TESTIMONIAL SLIDER (coverflow) ===== */
+        .testimonial-slider {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .testimonial-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .testimonial-slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.78);
+            transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.85s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .testimonial-slide .testimonial-card {
+            width: 100%;
+            max-width: 720px;
+            margin: 0;
+        }
+        .testimonial-slide.is-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 3;
+            pointer-events: auto;
+        }
+        .testimonial-slide.is-prev {
+            opacity: 0.28;
+            transform: translateX(-60%) scale(0.82);
+            z-index: 2;
+        }
+        .testimonial-slide.is-next {
+            opacity: 0.28;
+            transform: translateX(60%) scale(0.82);
+            z-index: 2;
+        }
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 22px;
+        }
+        .t-dot {
+            width: 11px;
+            height: 11px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: #d8cfc2;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .t-dot.active {
+            background: #6e1313;
+            transform: scale(1.2);
+        }
         @media (max-width: 768px) {
             .testimonial-card { padding: 30px 24px; border-radius: 18px; }
             .testimonial-text { font-size: 1rem; }
             .testimonial-quote-mark { font-size: 3.6rem; }
+            .testimonial-slide.is-prev { transform: translateX(-74%) scale(0.8); opacity: 0.2; }
+            .testimonial-slide.is-next { transform: translateX(74%) scale(0.8); opacity: 0.2; }
         }
 
         /* ===== IMPACT CREATED : designer red gradient boxes ===== */
@@ -405,7 +472,7 @@
                         <ul class="dropdown-menu solid-dropdown">
                             <!-- <li><a href="research-reports.html">Research &amp; Reports</a></li> -->
                             <li><a href="case-studies.html">Case Studies</a></li>
-                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
                         </ul>
                     </li>
@@ -544,17 +611,42 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
             </div>
         </div>
         </section>
-    <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+    <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px;">
         <h2 class="section-title">What Industry Leaders Say About Us</h2><br>
-        <div class="testimonial-card">
-            <span class="testimonial-quote-mark">&#8220;</span>
-            <p class="testimonial-text">I personally see immersive technologies as a powerful enabler for bridging the gap between research and real-world understanding. The AR/VR use case facilitated by the AI CoE has transformed a complex R&amp;D journey into an intuitive and impactful experience for industry, academia, and policymakers alike. The support in onboarding the right technology partner has been pivotal in delivering this outcome.</p>
-            <div class="testimonial-author">Ms. Deepali Plawat,<br>Senior Deputy Director, ATIRA</div>
+        <div class="testimonial-slider">
+            <div class="testimonial-track">
+                <div class="testimonial-slide is-active">
+                    <div class="testimonial-card">
+                        <span class="testimonial-quote-mark">&#8220;</span>
+                        <p class="testimonial-text">I personally see immersive technologies as a powerful enabler for bridging the gap between research and real-world understanding. The AR/VR use case facilitated by the AI CoE has transformed a complex R&amp;D journey into an intuitive and impactful experience for industry, academia, and policymakers alike. The support in onboarding the right technology partner has been pivotal in delivering this outcome.</p>
+                        <div class="testimonial-author">Ms. Deepali Plawat,<br>Senior Deputy Director, ATIRA</div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <span class="testimonial-quote-mark">&#8220;</span>
+                        <p class="testimonial-text">I personally see immersive technologies as a powerful enabler for bridging the gap between research and real-world understanding. The AR/VR use case facilitated by the AI CoE has transformed a complex R&amp;D journey into an intuitive and impactful experience for industry, academia, and policymakers alike. The support in onboarding the right technology partner has been pivotal in delivering this outcome.</p>
+                        <div class="testimonial-author">Ms. Deepali Plawat,<br>Senior Deputy Director, ATIRA</div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <span class="testimonial-quote-mark">&#8220;</span>
+                        <p class="testimonial-text">I personally see immersive technologies as a powerful enabler for bridging the gap between research and real-world understanding. The AR/VR use case facilitated by the AI CoE has transformed a complex R&amp;D journey into an intuitive and impactful experience for industry, academia, and policymakers alike. The support in onboarding the right technology partner has been pivotal in delivering this outcome.</p>
+                        <div class="testimonial-author">Ms. Deepali Plawat,<br>Senior Deputy Director, ATIRA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <button class="t-dot active" type="button" aria-label="Show testimonial 1"></button>
+                <button class="t-dot" type="button" aria-label="Show testimonial 2"></button>
+                <button class="t-dot" type="button" aria-label="Show testimonial 3"></button>
+            </div>
         </div>
         </section>
 
     <!-- ===== IMPACT NUMBERS ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+    <section class="content-section" style="background-color: #f8fafc; padding: 15px 20px; ">
         <h2 class="section-title">Impact Created</h2>
         <div class="impact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 25px; margin-top: 30px;">
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
@@ -575,11 +667,13 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
             </div>
             
         </div>
-    </section>
-    <section class="workshop-slider-section">
-        <h2 class="section-title">AI Literacy Workshops for MSME</h2><br>
+    </section><br>
+    <section class="content-section" style="margin-top: 60px; margin-bottom: 80px;">
+        <h2 class="section-title">AI Literacy Workshops for MSME</h2>
+    <!--<section class="workshop-slider-section">
+        <h2 class="section-title">AI Literacy Workshops for MSME</h2><br>-->
         <p class="section-subtitle"><strong>AI CoE makes significant efforts to digitalize the MSMEs with Industry 4.0 and smart manufacturing solutions. For ex. IoT for Machine monitoring, AI for Quality inspection, QR code-based track and trace of inventory etc. To scale up this effort, CoE partnered with bodies such as National Productivity Council, Quality Council of India and Industry Associations such as GCCI, GSPMA, SGCCI, VCCI, RCCI etc. to educated MSMEs on adoption of smart solutions.</strong></p>
-        <div class="ws-slider-wrapper">
+        <br><div class="ws-slider-wrapper">
             <div class="ws-track" id="wsTrack">
                 <div class="ws-slide"><img src="focus/indi1.jpeg" alt="AI Workshop for MSMEs"></div>
                 <div class="ws-slide"><img src="focus/indi2.jpeg" alt="AI Workshop for MSMEs"></div>
@@ -736,7 +830,7 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
         <div class="footer-cta-bar">
             <div class="footer-cta-inner">
                 <div>
-                    <h3 class="footer-cta-heading">If you are exploring AI adoption seriously — not experimentally — AI CoE is designed for you.</h3>
+                    <h3 class="footer-cta-heading">If you are exploring AI adoption seriously not experimentally AI CoE is designed for you.</h3>
                 </div>
                 <a href="contact-us.html" class="footer-cta-btn">
                     Get in Touch <i class="fas fa-arrow-right"></i>
@@ -777,12 +871,12 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
 
                 <!-- Knowledge Hub -->
                 <div class="footer-col link-column-area">
-                    <h4>Knowledge Hub</h4>
-                    <ul>
-                        <li><a href="case-studies.html">Case Studies</a></li>
-                        <li><a href="tech-trends.html">Tech Trends</a></li>
-                        <li><a href="newsletters.html">Newsletters</a></li>
-                    </ul>
+                    <h4 style="margin-top:28px">Follow Us</h4>
+                    <div class="footer-social-row">
+                        <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="fsoc-btn fsoc-li"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="fsoc-btn fsoc-yt"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="fsoc-btn fsoc-tw"><i class="fab fa-x-twitter"></i></a>
+                    </div>
                 </div>
                 <!-- Contact -->
                 <div class="footer-col footer-contact-col">
@@ -919,6 +1013,60 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
 
             buildDots();
             autoTimer = setInterval(next, 4000);
+        })();
+
+        /* ===== Testimonial coverflow slider ("What Industry Leaders Say About Us") ===== */
+        (function () {
+            var slider = document.querySelector('.testimonial-slider');
+            if (!slider) return;
+            var slides = Array.prototype.slice.call(slider.querySelectorAll('.testimonial-slide'));
+            var dots = slider.querySelectorAll('.t-dot');
+            var n = slides.length;
+            if (n < 2) return;
+
+            var index = 0;
+            var timer = null;
+            var DELAY = 3000;
+
+            function render() {
+                slides.forEach(function (s, i) {
+                    s.classList.remove('is-active', 'is-prev', 'is-next');
+                    if (i === index) s.classList.add('is-active');
+                    else if (i === (index - 1 + n) % n) s.classList.add('is-prev');
+                    else if (i === (index + 1) % n) s.classList.add('is-next');
+                });
+                dots.forEach(function (d, di) {
+                    d.classList.toggle('active', di === index);
+                });
+            }
+            function go(i) { index = (i + n) % n; render(); }
+            function next() { go(index + 1); }
+            function start() { stop(); timer = setInterval(next, DELAY); }
+            function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+            function setHeight() {
+                var h = 0;
+                slides.forEach(function (s) {
+                    var card = s.querySelector('.testimonial-card');
+                    if (card) h = Math.max(h, card.offsetHeight);
+                });
+                if (h) slider.style.height = (h + 30) + 'px';
+            }
+
+            dots.forEach(function (d, di) {
+                d.addEventListener('click', function () { go(di); start(); });
+            });
+
+            /* Pause on hover so the centre quote can be read */
+            slider.addEventListener('mouseenter', stop);
+            slider.addEventListener('mouseleave', start);
+
+            window.addEventListener('resize', setHeight);
+            window.addEventListener('load', setHeight);
+
+            setHeight();
+            render();
+            start();
         })();
     </script>
 </body>

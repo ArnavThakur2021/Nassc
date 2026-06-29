@@ -100,9 +100,9 @@
         .startup-card {
             background: #ffffff;
             border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #690000;
             padding: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            box-shadow: 0 4px 10px rgba(42, 40, 40, 0.01);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -270,6 +270,9 @@
         }
         .modal-body {
             padding: 30px;
+        }
+        #mentorBioBody {
+            padding-top: 44px;
         }
         .form-group-row {
             margin-bottom: 20px;
@@ -455,6 +458,16 @@
             border-top-color: #ffd9a8;
         }
 
+        /* ===== HOW IT WORKS : centre the boxes ===== */
+        .howitworks-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .howitworks-grid .perk-card {
+            flex: 0 1 320px;
+        }
+
         /* ===== MENTOR CARDS : photo + name + title + LinkedIn + Learn More ===== */
         .mentor-card .mentor-bio { display: none; }
         .mentor-card {
@@ -634,7 +647,7 @@
                         <ul class="dropdown-menu solid-dropdown">
                             <!-- <li><a href="research-reports.html">Research &amp; Reports</a></li> -->
                             <li><a href="case-studies.html">Case Studies</a></li>
-                            <li><a href="tech-trends.html">Tech Trends</a></li>
+                            <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
                         </ul>
                     </li>
@@ -704,7 +717,7 @@
     </section>
 
     <!-- ===== STARTUPS PORTFOLIO ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 60px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+    <section class="content-section" style="background-color: #f8fafc; padding: 40px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
         <h2 class="section-title">Startups Accelerated Till Date : </h2>
         <p style="color: var(--text-gray); margin-bottom: 10px; text-align:center;">The GrowX program currently houses <strong>22 high-impact deep-tech startups</strong>.</p>
 
@@ -799,11 +812,22 @@
    
 
     <!-- ===== MENTORSHIP ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 60px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+    <section class="content-section" style="background-color: #f8fafc; padding: 20px 20px; border-radius: 12px; ">
         <h2 class="section-title">Mentorship for GrowX Accelerated Startups</h2>
-        <p style="color: var(--text-gray); max-width: 850px; margin: 0 auto 30px auto; text-align: center;">Connect directly with experienced industry leaders through personalized one-on-one sessions designed to explore technical challenges and business strategies. This program offers startups an invaluable chance to navigate market dynamics, uncover emerging trends, and gain insights that drive meaningful growth.</p>
-
-        <div class="split-layout" style="align-items: start;">
+        <p style="color: var(--text-gray); max-width:auto; margin: 0 ; text-align: left;"><strong>Connect directly with experienced industry leaders through personalized one-on-one sessions designed to explore technical challenges and business strategies. This program offers startups an invaluable chance to navigate market dynamics, uncover emerging trends, and gain insights that drive meaningful growth.</strong></p>
+        <br><h2>How It Works : </h2>
+        <div class="growx-perks-grid activities-grid howitworks-grid">
+            <div class="perk-card">
+                <p>Startups share their key challenges and mentorship needs in advance to have an open, focused discussion.</p>
+            </div>
+            <div class="perk-card">
+                <p>A curated meeting is facilitated by the CoE focal point to ensure productive and meaningful dialogue.</p>
+            </div>
+            <div class="perk-card">
+                <p>Actionable insights and next steps are documented and shared with the startup to support ongoing progress.</p>
+            </div>
+        </div><br><br>
+        <!--<div class="split-layout" style="align-items: start;">
             <div>
                 <h3 style="font-size: 1.35rem; color: var(--dark-navy); font-weight: 700; margin-bottom: 15px;">How It Works</h3>
                 <ul class="structured-list">
@@ -812,11 +836,11 @@
                     <li>Actionable insights and next steps are documented and shared with the startup to support ongoing progress.</li>
                 </ul>
             </div>
-        </div>
-
+        </div>-->
+        <h2 class="section-title"class="section-title">Mentors Available For Startups</h2>
         <div style="margin-top: 40px;">
             <div class="mentors-grid">
-
+                
                 <!-- Mentor: Abhinav Malaviya -->
                 <div class="mentor-card">
                     <div class="mentor-photo"><img src="Mentor Profiles/CA Abhinav Malavia.jpg" alt="CA Abhinav Malaviya"></div>
@@ -826,7 +850,7 @@
                         <a href="https://www.linkedin.com/search/results/all/?keywords=CA%20Abhinav%20Malaviya" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of CA Abhinav Malaviya">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="Mentor Profiles/CA Abhinav Malavia Profile.pdf" target="_blank" rel="noopener" class="mentor-learn-btn">
+                        <a href="Mentor Profiles/Abhinav Malaviya Profile.pdf" target="_blank" rel="noopener" class="mentor-learn-btn">
                             Learn More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -1132,9 +1156,13 @@
                         <a href="https://www.linkedin.com/in/jigish-patel-0a0896394/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Jigish Patel">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="Mentor Profiles/Santosh Panday Prof.pdf Prof.pdf" target="_blank" rel="noopener" class="mentor-learn-btn">
+                        <a href="javascript:void(0)" class="mentor-learn-btn">
                             Learn More <i class="fas fa-arrow-right"></i>
                         </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <h5>About</h5>
+                        <p>Mr. Jigish Mukundray Patel is a distinguished aerospace professional with over 35 years of service at ISRO, where he held key leadership roles including Group Director of Structural Test Systems Group (STSG) and Head of the Advanced Manufacturing Department (AMD) at the Space Applications Centre, Ahmedabad. <br>Throughout his illustrious career, Mr. Patel contributed to more than 100 successful space missions, working alongside some of the world's best scientific minds. <br>He is known for his deep expertise in aerospace systems design optimization, precision manufacturing, structural testing, and high-reliability hardware validation. <br>His work has helped shape India's space capabilities and advanced scientific infrastructure.</p>
                     </div>
                     </div>
 
@@ -1439,6 +1467,17 @@
         </div>
     </footer>
 
+    <!-- ===== MENTOR BIO POP-UP ===== -->
+    <div id="mentorBioModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'mentorBioModal')">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="mentorBioName">Mentor Profile</h3>
+                <button class="close-modal-btn" onclick="closeModal('mentorBioModal')">&times;</button>
+            </div>
+            <div class="modal-body mentor-bio" id="mentorBioBody"></div>
+        </div>
+    </div>
+
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
@@ -1465,6 +1504,39 @@
                 closeModal(modal.id);
             }
         }
+
+        /* ===== Mentor "Learn More" -> open bio in a pop-up ===== */
+        function openMentorBio(btn) {
+            const card = btn.closest('.mentor-card');
+            if (!card) return false;
+            const bio = card.querySelector('.mentor-bio');
+            if (!bio || !bio.innerHTML.trim()) return false; // no embedded bio -> let the link open as before
+            const nameEl = card.querySelector('.mentor-name');
+            const titleEl = card.querySelector('.mentor-title');
+            document.getElementById('mentorBioName').textContent = nameEl ? nameEl.textContent.trim() : 'Mentor Profile';
+            let bodyHtml = '';
+            if (titleEl && titleEl.textContent.trim()) {
+                bodyHtml += '<p style="font-weight:700;color:var(--dark-navy);margin-bottom:16px;">' + titleEl.innerHTML + '</p>';
+            }
+            bodyHtml += bio.innerHTML;
+            const bodyEl = document.getElementById('mentorBioBody');
+            bodyEl.innerHTML = bodyHtml;
+            bodyEl.scrollTop = 0;
+            openModal('mentorBioModal');
+            return true;
+        }
+
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.mentor-learn-btn');
+            if (!btn) return;
+            if (openMentorBio(btn)) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal('mentorBioModal');
+        });
 
         document.addEventListener("DOMContentLoaded", () => {
             const counters = document.querySelectorAll('.counter');

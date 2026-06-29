@@ -1902,7 +1902,7 @@ nav ul li:nth-child(7) a { animation: navItemDrop 0.4s 0.86s ease both; }
 /* --- TILES --- */
 .tiles-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
 
-.tiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.tiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: start; }
 
 .info-tile {
     border-radius: 12px;
@@ -2877,12 +2877,14 @@ footer {
     max-width: 1160px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
     gap: 48px;
 }
 
-/* Brand / logos column — takes half the footer width */
-.footer-brand-col { }
+/* 5-column placement: logo spans cols 1-2, col 3 empty, links col 4, contact col 5 */
+.footer-brand-col { grid-column: 1 / span 2; }
+.link-column-area { grid-column: 4; }
+.footer-contact-col { grid-column: 5; }
 
 .footer-initiative-label {
     font-size: 0.72rem;
@@ -3043,6 +3045,7 @@ footer {
 /* Footer responsive */
 @media (max-width: 1024px) {
     .footer-main-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .footer-brand-col, .link-column-area, .footer-contact-col { grid-column: auto; }
 }
 @media (max-width: 600px) {
     .footer-main-grid { grid-template-columns: 1fr; gap: 32px; }
