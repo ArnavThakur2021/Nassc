@@ -409,7 +409,35 @@ header nav ul .dropdown-menu li a:hover {
     width: 20px;
     text-align: center;
 }
+/* Fix header alignment and ensure absolute centring */
+.top-branding-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically centers both left and right blocks */
+    padding: 10px 24px;
+}
 
+.logo-left-block, 
+.logo-right-block {
+    display: flex;
+    align-items: center;    /* Vertically centers contents internally */
+    justify-content: center; /* Horizontally centers contents internally */
+    gap: 15px;               /* Clean distribution spacing */
+}
+
+/* Ensure empty image placeholders don't generate weird ghost margins or offsets */
+.logo-right-block img[src=""], 
+.logo-right-block img:not([src]) {
+    display: none !important;
+}
+
+/* Force image scaling to behave centered across all viewports */
+.logo-right-block .secondary-logo {
+    display: block;
+    object-fit: contain;
+    height: auto;
+    max-height: 46px; /* Keeps dimensions stable and perfectly proportioned */
+}
 /* =============================================
    PRESERVED PREMIUM COUNTER HOVER MECHANICS
    ============================================= */
