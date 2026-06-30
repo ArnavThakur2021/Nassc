@@ -2905,14 +2905,12 @@ footer {
     max-width: 1160px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 48px;
 }
 
-/* 5-column placement: logo spans cols 1-2, col 3 empty, links col 4, contact col 5 */
-.footer-brand-col { grid-column: 1 / span 2; }
-.link-column-area { grid-column: 4; }
-.footer-contact-col { grid-column: 5; }
+/* Brand / logos column — takes half the footer width */
+.footer-brand-col { }
 
 .footer-initiative-label {
     font-size: 0.72rem;
@@ -3073,7 +3071,6 @@ footer {
 /* Footer responsive */
 @media (max-width: 1024px) {
     .footer-main-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-    .footer-brand-col, .link-column-area, .footer-contact-col { grid-column: auto; }
 }
 @media (max-width: 600px) {
     .footer-main-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -3087,7 +3084,7 @@ footer {
 
 .yt-videos-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
