@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Studies - NASSCOM Center of Excellence - IoT &amp; AI</title>
+    <title>Resources - NASSCOM Center of Excellence - IoT &amp; AI</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
@@ -164,142 +164,39 @@
             .case-thumb { height: 185px; }
         }
 
-        /* ===== NEWSLETTER ===== */
-        .newsletter-section { max-width: 1200px; margin: 38px auto 70px; padding: 0 20px; }
-        .nl-cover {
-            width: 100%;
-            margin: 0;
-            line-height: 0;
-        }
-        .nl-cover img {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-        .nl-feature {
+        /* ===== RESOURCES GRID (3 per row) ===== */
+        .resources-grid {
             display: grid;
-            grid-template-columns: minmax(260px, 0.85fr) 1.15fr;
-            gap: 46px;
-            align-items: center;
-            background: linear-gradient(135deg, #fbfcfe 0%, #f4f7fb 100%);
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(10,25,47,0.06);
-        }
-        .nl-feature-image {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 14px 34px rgba(88,18,18,0.18);
-            line-height: 0;
-        }
-        .nl-feature-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-        .nl-feature-text { display: flex; flex-direction: column; }
-        .nl-eyebrow {
-            display: inline-block;
-            align-self: flex-start;
-            background: rgba(88,18,18,0.08);
-            color: var(--nasscom-red);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 6px 13px;
-            border-radius: 20px;
-            margin-bottom: 16px;
-        }
-        .nl-feature-text h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--dark-navy);
-            line-height: 1.2;
-            margin: 0 0 14px 0;
-        }
-        .nl-feature-text p {
-            font-size: 1.02rem;
-            color: #475569;
-            line-height: 1.65;
-            margin: 0 0 26px 0;
-        }
-        .nl-read-now {
-            align-self: flex-start;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--nasscom-red);
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            font-size: 0.98rem;
-            font-weight: 700;
-            font-family: inherit;
-            padding: 14px 28px;
-            border-radius: 30px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
-            box-shadow: 0 8px 20px rgba(88,18,18,0.22);
-        }
-        .nl-read-now:hover { transform: translateY(-2px); gap: 15px; box-shadow: 0 12px 26px rgba(88,18,18,0.3); }
-
-        /* ===== NEWSLETTER GRID ===== */
-        .nl-grid-heading {
-            margin: 56px 0 6px 0;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--dark-navy);
-        }
-        .nl-grid-sub { color: #64748b; font-size: 0.98rem; margin: 0 0 30px 0; }
-        .newsletter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            margin-top: 10px;
         }
-        .nl-card {
+        .resources-grid .case-thumb {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: #ffffff;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 6px 20px rgba(10,25,47,0.05);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border-bottom: 1px solid #e2e8f0;
         }
-        .nl-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 18px 38px rgba(88,18,18,0.16);
-            border-color: var(--nasscom-red);
-        }
-        .nl-thumb {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 3.4;
-            overflow: hidden;
-            background: #f1f5f9;
-        }
-        .nl-thumb-pdf {
+        .resources-grid .case-thumb img {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: calc(100% + 30px); /* shove the PDF viewer's scrollbar past the clipped edge */
-            height: 100%;
-            border: 0;
-            display: block;
-            background: #ffffff;
-            pointer-events: none; /* let clicks fall through to the card */
+            inset: 0;
+            object-fit: contain;
+            object-position: center;
+            padding: 12px;
+            box-sizing: border-box;
         }
-        .nl-pdf-badge {
+        .thumb-fallback-icon {
+            font-size: 3.4rem;
+            color: rgba(10, 25, 47, 0.22);
+        }
+        .case-link-badge {
             position: absolute;
             top: 12px;
             right: 12px;
-            background: rgba(88,18,18,0.92);
+            background: rgba(10, 25, 47, 0.92);
             color: #ffffff;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             font-weight: 800;
             letter-spacing: 0.06em;
             padding: 5px 11px;
@@ -308,89 +205,11 @@
             align-items: center;
             gap: 6px;
         }
-        .nl-card-body {
-            padding: 20px 22px 22px 22px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
+        @media (max-width: 900px) {
+            .resources-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        .nl-card-month { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--nasscom-red); margin-bottom: 6px; }
-        .nl-card-title { font-size: 1.08rem; font-weight: 800; color: var(--dark-navy); line-height: 1.4; margin: 0 0 18px 0; }
-        .nl-card-cta {
-            margin-top: auto;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--nasscom-red);
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: gap 0.3s ease;
-        }
-        .nl-card:hover .nl-card-cta { gap: 13px; }
-        .nl-card-cta i { font-size: 0.78rem; }
-
-        /* ===== PDF POPUP MODAL ===== */
-        .nl-modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(10,25,47,0.72);
-            backdrop-filter: blur(3px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.28s ease, visibility 0.28s ease;
-        }
-        .nl-modal-overlay.active { opacity: 1; visibility: visible; }
-        .nl-modal-box {
-            width: min(960px, 100%);
-            height: min(90vh, 1000px);
-            background: #ffffff;
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.45);
-            transform: translateY(16px) scale(0.985);
-            transition: transform 0.28s ease;
-        }
-        .nl-modal-overlay.active .nl-modal-box { transform: translateY(0) scale(1); }
-        .nl-modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            padding: 14px 18px;
-            background: var(--dark-navy, #0a192f);
-            color: #ffffff;
-        }
-        .nl-modal-title { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .nl-modal-title i { color: #ff5a5f; }
-        .nl-modal-actions { display: flex; align-items: center; gap: 8px; }
-        .nl-modal-btn {
-            width: 38px; height: 38px;
-            display: inline-flex; align-items: center; justify-content: center;
-            border-radius: 9px;
-            border: none;
-            background: rgba(255,255,255,0.12);
-            color: #ffffff;
-            font-size: 0.95rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s ease;
-        }
-        .nl-modal-btn:hover { background: rgba(255,255,255,0.26); }
-        .nl-modal-body { flex: 1; background: #525659; }
-        .nl-modal-body iframe { width: 100%; height: 100%; border: 0; display: block; }
-
-        @media (max-width: 860px) {
-            .nl-feature { grid-template-columns: 1fr; gap: 28px; padding: 26px; }
-            .nl-feature-image { max-width: 320px; margin: 0 auto; }
-            .nl-feature-text h2 { font-size: 1.6rem; }
-            .nl-modal-box { height: 86vh; }
+        @media (max-width: 600px) {
+            .resources-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -452,10 +271,12 @@
         <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
     </div>-->
 
-    <!-- ===== Newsletter cover (full width) ===== -->
-    <!--<div class="nl-cover">
-        <img src="newsletter-cover.png" alt="AI CoE Newsletter Cover">
-    </div>-->
+    <!-- ===== PAGE BANNER ===== -->
+    <!--<section class="page-banner">
+        <div class="banner-content">
+            <h1>Impact Stories & Case Studies</h1>
+         </div>
+    </section>-->
     <section class="page-banner">
         <video autoplay muted loop playsinline class="banner-bg banner-video">
             <source src="innerbanner.mp4" type="video/mp4" />
@@ -463,72 +284,75 @@
         </video>
         <div class="banner-overlay"></div>
         <div class="banner-content">
-            <h1>Newsletter</h1>
+            <h1>Blogs  &  Posts</h1>
             </div>
     </section>
 
-    <!-- ===== Newsletter ===== -->
-    <section class="newsletter-section">
+    <!-- ===== BLOGS, POSTS & PUBLICATIONS ===== -->
+    <section class="content-section">
+        <div class="resources-grid">
 
-        <!-- The three newsletters -->
-        <div class="newsletter-grid">
+            <!-- 1. AI CoE Story (PDF) -->
+            <a href="res/AI CoE Story.pdf" target="_blank" rel="noopener" class="case-card">
+                <div class="case-thumb">
+                    <img src="res/thumb-story.jpg" alt="India's AI Vision Gains Momentum in Gujarat's GIFT City">
+                    <span class="case-pdf-badge"><i class="fas fa-file-pdf"></i></span>
+                </div>
+                <div class="case-body">
+                    <h3 class="case-title">India&rsquo;s AI Vision Gains Momentum in Gujarat&rsquo;s GIFT City</h3>
+                    <span class="case-cta">Read Article <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
 
-            <div class="nl-card" onclick="openNewsletter('res/AI CoE March Newsletter.pdf', 'March 2026')">
-                <div class="nl-thumb">
-                    <iframe class="nl-thumb-pdf" src="res/AI CoE March Newsletter.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH" loading="lazy" tabindex="-1" title="March 2026 cover"></iframe>
-                    <span class="nl-pdf-badge"><i class="fas fa-file-pdf"></i> PDF</span>
+            <!-- 2. LinkedIn Article -->
+            <a href="https://www.linkedin.com/pulse/beyond-compliance-building-intelligent-osd-plants-ai-dhaval-kanojiya-gu1af/" target="_blank" rel="noopener" class="case-card">
+                <div class="case-thumb">
+                    <img src="res/li-beyond.png" alt="Beyond Compliance: Building Intelligent OSD Plants with AI">
+                    <span class="case-link-badge"><i class="fab fa-linkedin-in"></i> </span>
                 </div>
-                <div class="nl-card-body">
-                    <span class="nl-card-month">March 2026</span>
-                    <h4 class="nl-card-title">Investor Connect, AI in Textiles &amp; Agentic AI Readiness</h4>
-                    <span class="nl-card-cta">Read Now <i class="fas fa-arrow-right"></i></span>
+                <div class="case-body">
+                    <h3 class="case-title">Beyond Compliance: Building Intelligent OSD Plants with AI</h3>
+                    <span class="case-cta">View Post <i class="fas fa-arrow-right"></i></span>
                 </div>
-            </div>
+            </a>
 
-            <div class="nl-card" onclick="openNewsletter('res/AI CoE February Newsletter.pdf', 'February 2026')">
-                <div class="nl-thumb">
-                    <iframe class="nl-thumb-pdf" src="res/AI CoE February Newsletter.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH" loading="lazy" tabindex="-1" title="February 2026 cover"></iframe>
-                    <span class="nl-pdf-badge"><i class="fas fa-file-pdf"></i> PDF</span>
+            <!-- 3. LinkedIn Post -->
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7311228044348637184/" target="_blank" rel="noopener" class="case-card">
+                <div class="case-thumb">
+                    <img src="res/li-feed.png" alt="Featured post from the AI CoE ecosystem on LinkedIn">
+                    <span class="case-link-badge"><i class="fab fa-linkedin-in"></i> </span>
                 </div>
-            
-                <div class="nl-card-body">
-                    <span class="nl-card-month">February 2026</span>
-                    <h4 class="nl-card-title">IndiaAI Impact Summit, Citizen-centric Deployments &amp; Innovation Challenge IV</h4>
-                    <span class="nl-card-cta">Read Now <i class="fas fa-arrow-right"></i></span>
+                <div class="case-body">
+                    <h3 class="case-title">How Industry 4.0 is transforming manufacturing</h3>
+                    <span class="case-cta">View Post <i class="fas fa-arrow-right"></i></span>
                 </div>
-            </div>
+            </a>
+            <!-- 4. AI Innovation Challenge Blog (PDF) -->
+            <a href="res/AI-IC Blog Final.pdf" target="_blank" rel="noopener" class="case-card">
+                <div class="case-thumb">
+                    <img src="aiic.jpeg" alt="From Industries to Public Services:<br> AI Innovation Challenge Bridges Tech and Real-World Impact">
+                    <span class="case-pdf-badge"><i class="fas fa-file-pdf"></i> </span>
+                </div>
+                <div class="case-body">
+                    <h3 class="case-title">From Industries to Public Services: AI Innovation Challenge Bridges Tech and Real-World Impact</h3>
+                    <span class="case-cta">Read Article <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
 
-            <div class="nl-card" onclick="openNewsletter('res/AI CoE January Newsletter.pdf', 'January 2026')">
-                <div class="nl-thumb">
-                    <iframe class="nl-thumb-pdf" src="res/AI CoE January Newsletter.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH" loading="lazy" tabindex="-1" title="January 2026 cover"></iframe>
-                    <span class="nl-pdf-badge"><i class="fas fa-file-pdf"></i> PDF</span>
+            <!-- 5. LinkedIn Article -->
+            <a href="https://www.linkedin.com/pulse/evolution-ai-industry-40-whats-next-dhaval-kanojiya-mowbf/" target="_blank" rel="noopener" class="case-card">
+                <div class="case-thumb">
+                    <img src="res/li-evolution.png" alt="The Evolution of AI &amp; Industry 4.0 - What's Next?">
+                    <span class="case-link-badge"><i class="fab fa-linkedin-in"></i></span>
                 </div>
-                <div class="nl-card-body">
-                    <span class="nl-card-month">January 2026</span>
-                    <h4 class="nl-card-title">AI CoE Turns One — A Year of AI Adoption in Gujarat</h4>
-                    <span class="nl-card-cta">Read Now <i class="fas fa-arrow-right"></i></span>
+                <div class="case-body">
+                    <h3 class="case-title">The Evolution of AI &amp; Industry 4.0 &mdash; What&rsquo;s Next?</h3>
+                    <span class="case-cta">View Post <i class="fas fa-arrow-right"></i></span>
                 </div>
-            </div>
+            </a>
 
         </div>
     </section>
-
-    <!-- ===== PDF Popup Modal ===== -->
-    <div class="nl-modal-overlay" id="nlModal" onclick="if(event.target===this)closeNewsletter()">
-        <div class="nl-modal-box">
-            <div class="nl-modal-header">
-                <span class="nl-modal-title"><i class="fas fa-file-pdf"></i><span id="nlModalTitle">Newsletter</span></span>
-                <div class="nl-modal-actions">
-                    <a class="nl-modal-btn" id="nlModalOpen" href="#" target="_blank" title="Open in new tab"><i class="fas fa-up-right-from-square"></i></a>
-                    <a class="nl-modal-btn" id="nlModalDownload" href="#" download title="Download"><i class="fas fa-download"></i></a>
-                    <button class="nl-modal-btn" onclick="closeNewsletter()" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="nl-modal-body">
-                <iframe id="nlModalFrame" src="" title="Newsletter PDF"></iframe>
-            </div>
-        </div>
-    </div>
 
     <footer class="image-mapped-footer new-footer">
         <!-- Top CTA bar -->
@@ -617,26 +441,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        function openNewsletter(file, label) {
-            var frame = document.getElementById('nlModalFrame');
-            frame.src = file + '#view=FitH';
-            document.getElementById('nlModalTitle').textContent = 'Newsletter — ' + label;
-            document.getElementById('nlModalDownload').href = file;
-            document.getElementById('nlModalOpen').href = file;
-            document.getElementById('nlModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeNewsletter() {
-            document.getElementById('nlModal').classList.remove('active');
-            document.getElementById('nlModalFrame').src = '';
-            document.body.style.overflow = '';
-        }
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeNewsletter();
-        });
-    </script>
 
 </body>
 </html>

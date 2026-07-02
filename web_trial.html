@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Studies - NASSCOM Center of Excellence - IoT &amp; AI</title>
-
+    <title>AI & Deep-Tech Startups - NASSCOM Center of Excellence - IoT & AI</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <style>
+        /* Supplementary specific layout configuration overrides for rich text components */
         .page-banner {
             position: relative;
             width: 100%;
@@ -26,35 +27,11 @@
             object-fit: cover;
             object-position: center;
         }
-        .page-banner .banner-video {
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 100%);
-        }
-        /* ===== AUTO-SLIDING BANNER IMAGE SLIDER (ex1-ex8) ===== */
-        .page-banner .banner-slider {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .page-banner .banner-slider img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            opacity: 0;
-        }
-        .page-banner .banner-slider img.aiez-active {
-            opacity: 0.85;
-        }
         .page-banner .banner-overlay {
             position: absolute;
             inset: 0;
-           }
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.62) 0%, rgba(155, 32, 32, 0.52) 100%);
+        }
         .page-banner .banner-content {
             position: relative;
             z-index: 2;
@@ -62,112 +39,602 @@
         }
         .page-banner h1 {
             font-size: 2.8rem;
+            color: #fafafa;
             font-weight: 800;
             margin-bottom: 0;
+            text-shadow: 0 2px 14px rgba(0,0,0,0.55);
             letter-spacing: -0.01em;
-            color: #7b1010;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.55), 0 2px 6px rgba(0, 0, 0, 0.35);
         }
         .page-banner p {
             max-width: 800px;
             margin: 14px auto 0 auto;
             font-size: 1.15rem;
-            color: #000;
+            color: #ffff;
             line-height: 1.6;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.85), 0 0 6px rgba(255, 255, 255, 0.55);
         }
         .content-section {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
-        .case-studies-grid {
+        .growx-perks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+        .perk-card {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--dark-navy);
+            transition: transform 0.3s ease, border-top-color 0.3s ease;
+        }
+        .perk-card:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--nasscom-red);
+        }
+        .perk-card i {
+            font-size: 2.2rem;
+            color: var(--nasscom-red);
+            margin-bottom: 15px;
+        }
+        .perk-card h3 {
+            font-size: 1.15rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .perk-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+         .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 40px;
+            align-items: start; /* each card sizes to itself, so a hovered card growing doesn't resize its neighbours */
         }
-        .case-card {
+        .startup-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1.5px solid var(--nasscom-red);
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .startup-card:hover {
+            background: var(--nasscom-red);
+            border-color: var(--nasscom-red);
+            box-shadow: 0 12px 28px rgba(88, 18, 18, 0.28);
+        }
+        .startup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--nasscom-red);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .startup-card:hover::before {
+            opacity: 0; /* whole card is red on hover, so the accent bar isn't needed */
+        }
+        .startup-name {
+            font-size: 1.3rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+            margin-bottom: 0;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+        .startup-name i {
+            font-size: 0.9rem;
+            color: var(--nasscom-red);
+            transition: color 0.3s ease;
+        }
+        .startup-card:hover .startup-name,
+        .startup-card:hover .startup-name i {
+            color: #ffffff;
+        }
+        .startup-desc {
+            font-size: 0.95rem;
+            color: #ffffff;
+            line-height: 1.6;
+            text-align: justify;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+        }
+        .startup-card:hover .startup-desc {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 14px;
+        }
+        @media (max-width: 900px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        .structured-list {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        .structured-list li {
+            margin-bottom: 12px;
+            position: relative;
+            list-style-type: none;
+            line-height: 1.6;
+            color: #334155;
+        }
+        .structured-list li::before {
+            content: "■";
+            color: var(--nasscom-red);
+            font-size: 0.7rem;
+            position: absolute;
+            left: -18px;
+            top: 2px;
+        }
+        .structured-list strong {
+            color: var(--dark-navy);
+        }
+        .action-block-card {
             background: #ffffff;
             border-radius: 12px;
-            overflow: hidden;
-            text-decoration: none;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             border: 1px solid #e2e8f0;
-            box-shadow: 0 6px 20px rgba(10,25,47,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .case-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 18px 38px rgba(88,18,18,0.16);
+        .action-block-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .action-block-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .btn-nasscom-primary {
+            background-color: var(--nasscom-red);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .btn-nasscom-primary:hover {
+            background-color: var(--nasscom-red-dark);
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .modal-container {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            background: var(--dark-navy);
+            color: #ffffff;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .close-modal-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .close-modal-btn:hover {
+            opacity: 1;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        #mentorBioBody {
+            padding-top: 44px;
+        }
+        .form-group-row {
+            margin-bottom: 20px;
+        }
+        .form-group-row label {
+            display: block;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-group-row input, .form-group-row select, .form-group-row textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #334155;
+            transition: border-color 0.2s;
+        }
+        .form-group-row input:focus, .form-group-row select:focus, .form-group-row textarea:focus {
+            outline: none;
             border-color: var(--nasscom-red);
         }
-        .case-thumb {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: #0a192f;
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
         }
-        .case-thumb img {
+        .process-step {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(155, 32, 32, 0.1);
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            line-height: 1;
+        }
+        .process-step h4 {
+            font-size: 1.1rem;
+            color: var(--dark-navy);
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-right: 30px;
+        }
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+        /* ===== MENTOR PROFILE CARDS ===== */
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 30px;
+            margin-top: 10px;
+        }
+        .mentor-card {
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            padding: 32px 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .mentor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(10, 25, 47, 0.08);
+        }
+        .mentor-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 18px auto;
+            border: 3px solid var(--nasscom-red);
+            background: #f1f5f9;
+        }
+        .mentor-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center top;
             display: block;
-            transition: transform 0.45s ease;
         }
-        .case-card:hover .case-thumb img { transform: scale(1.05); }
-        .case-pdf-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(88,18,18,0.92);
-            color: #ffffff;
-            font-size: 0.7rem;
+        .mentor-name {
+            font-size: 1.2rem;
+            color: var(--dark-navy);
             font-weight: 800;
-            letter-spacing: 0.06em;
-            padding: 5px 11px;
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            text-align: center;
+            margin-bottom: 4px;
         }
-        .case-body {
-            padding: 22px 22px 24px 22px;
+        .mentor-title {
+            font-size: 0.88rem;
+            color: var(--nasscom-red);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.45;
+        }
+        .mentor-bio {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            text-align: justify;
+        }
+        .mentor-bio p {
+            margin-bottom: 12px;
+        }
+        .mentor-bio p:last-child {
+            margin-bottom: 0;
+        }
+        .mentor-bio h5 {
+            color: var(--dark-navy);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 18px 0 8px 0;
+        }
+        .mentor-bio h5:first-child {
+            margin-top: 0;
+        }
+        .mentor-bio ul {
+            padding-left: 18px;
+            margin: 0 0 12px 0;
+        }
+        .mentor-bio ul li {
+            margin-bottom: 5px;
+        }
+        .mentor-bio a {
+            color: var(--nasscom-red);
+            word-break: break-all;
+        }
+
+        /* ===== WHY GROWX : centre the trailing row + red hover ===== */
+        .why-growx-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 35px;
+        }
+        .why-growx-grid .perk-card {
+            flex: 0 1 calc(25% - 18.75px);
+            min-width: 260px;
+        }
+        .why-growx-grid .perk-card:hover {
+            background: linear-gradient(135deg, var(--nasscom-red) 0%, #581212 100%);
+            border-top-color: #581212;
+        }
+        .why-growx-grid .perk-card:hover i,
+        .why-growx-grid .perk-card:hover h3,
+        .why-growx-grid .perk-card:hover p {
+            color: #ffffff;
+        }
+
+        /* ===== ACTIVITIES FOR STARTUPS : red gradient cards ===== */
+        .activities-grid .perk-card {
+            background: linear-gradient(135deg, #a51f1f 0%, #581212 100%);
+            border-top-color: #a51f1f;
+            box-shadow: 0 6px 18px rgba(88, 18, 18, 0.18);
+        }
+        .activities-grid .perk-card h3,
+        .activities-grid .perk-card p {
+            color: #ffffff;
+        }
+        .activities-grid .perk-card i {
+            color: #ffd9a8;
+        }
+        .activities-grid .perk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 34px rgba(88, 18, 18, 0.30);
+            border-top-color: #ffd9a8;
+        }
+
+        /* ===== HOW IT WORKS : centre the boxes ===== */
+        .howitworks-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .howitworks-grid .perk-card {
+            flex: 0 1 320px;
+        }
+
+        /* ===== MENTOR CARDS : photo + name + title + LinkedIn + Learn More ===== */
+        .mentor-card .mentor-bio { display: none; }
+        .mentor-card {
             display: flex;
             flex-direction: column;
-            flex: 1;
+            padding: 22px 24px;          /* reduced height */
         }
-        .case-title {
-            font-size: 1.12rem;
-            font-weight: 800;
-            color: var(--dark-navy);
-            line-height: 1.42;
-            margin: 0 0 16px 0;
+        .mentor-photo {
+            width: 168px;                /* larger image */
+            height: 168px;
+            margin: 0 auto 14px auto;
         }
-        .case-cta {
+        .mentor-photo img {
+            filter: grayscale(100%);     /* B&W by default */
+            transition: filter 0.45s ease;
+        }
+        .mentor-card:hover .mentor-photo img {
+            filter: grayscale(0%);       /* colour on hover */
+        }
+        .mentor-title { margin-bottom: 14px; }
+        .mentor-actions {
             margin-top: auto;
+            padding-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+        .mentor-linkedin {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a66c2;
+            color: #ffffff;
+            font-size: 1.05rem;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .mentor-linkedin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(10, 102, 194, 0.35);
+        }
+        .mentor-learn-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--nasscom-red);
+            padding: 10px 22px;
+            background: var(--nasscom-red);
+            color: #ffffff !important;
             font-weight: 700;
-            font-size: 0.92rem;
-            transition: gap 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
-        .case-card:hover .case-cta { gap: 13px; }
-        .case-cta i { font-size: 0.82rem; }
+        .mentor-learn-btn:hover {
+            background: var(--nasscom-red-dark);
+            transform: translateY(-2px);
+        }
+        .mentor-learn-btn i { font-size: 0.8rem; }
+        /* ===== STARTUP ACTIVITIES : 3-up automatic image slider ===== */
+        .startup-slider {
+            position: relative;
+            max-width: 1200px;
+            margin: 35px auto 0 auto;
+        }
+        .startup-slider-viewport {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .startup-slider-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .startup-slide {
+            min-width: calc(33.333% - 10px);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .startup-slide img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+        .startup-slider-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 22px;
+        }
+        .ss-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .ss-dot.active {
+            background: var(--nasscom-red);
+            transform: scale(1.25);
+        }
+        .ss-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(10, 25, 47, 0.45);
+            color: #ffffff;
+            font-size: 1.05rem;
+            cursor: pointer;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.25s ease;
+        }
+        .ss-arrow:hover { background: var(--nasscom-red); }
+        .ss-prev { left: 12px; }
+        .ss-next { right: 12px; }
         @media (max-width: 768px) {
-            .page-banner h1 { font-size: 2rem; }
-            .case-thumb { height: 185px; }
+            .startup-slide { min-width: 100%; margin-right: 15px; }
+            .startup-slide img { height: 220px; }
+            .ss-arrow { width: 38px; height: 38px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="master-header">
+        <header class="master-header">
         <div class="top-branding-strip">
             <div class="logo-left-block">
                 <a href="index.html" class="logo-link-wrapper">
@@ -216,33 +683,729 @@
         </div>
     </header>
 
-    <div class="social-sidebar">
+    <!--<div class="social-sidebar">
         <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
         <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
-    </div>
+    </div>-->
 
-    <!-- ===== PAGE BANNER ===== -->
-    <!--<section class="page-banner">
-        <div class="banner-content">
-            <h1>News Letter</h1>
-         </div>
-    </section>-->
     <section class="page-banner">
-        <video autoplay muted loop playsinline class="banner-bg banner-video">
-            <source src="innerbanner.mp4" type="video/mp4" />
-            innerbanner
-        </video>
+        <img src="focus/scp.png" alt="Empowering Startups with AI" class="banner-bg">
         <div class="banner-overlay"></div>
         <div class="banner-content">
-            <h1>Newsletter</h1>
+            <h1>GrowX Acceleration Program</h1>
+            <p ><strong>GrowX is an acceleration program that dedicatedly works with AI & deep-tech startups and engages them in building digital solutions for various industries and citizen-centric challenges.</strong></p>
+
+        </div>
+    </section>
+    <!-- ===== WHY GROWX ===== -->
+    <section class="content-section">
+        
+        <h2 class="section-title">Why GrowX : </h2>
+        <div class="growx-perks-grid why-growx-grid">
+            <div class="perk-card">
+                <i class="fas fa-route"></i>
+                <h3>GTM Support</h3>
+                <p>Strategic assistance navigating marketing, corporate partnerships, and procurement channels.</p>
             </div>
+            <div class="perk-card">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h3>Funding Support</h3>
+                <p>Facilitated connections to venture capitals, angel networks, and government grant schemes.</p>
+            </div>
+            
+            <div class="perk-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Solution Showcase Opportunities</h3>
+                <p>Platforms to present and demonstrate solutions at summits, demo days, and industry events.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-user-tie"></i>
+                <h3>Mentorship</h3>
+                <p>One-on-one advising sessions with industry executives to solve operational and scaling challenges.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-vr-cardboard"></i>
+                <h3>AI Experience Zone</h3>
+                <p>Dedicated display space to showcase solutions to incoming client and government networks.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-microchip"></i>
+                <h3>Computing Infrastructure</h3>
+                <p>Access to processing resources to build, optimize, and evaluate heavy AI models.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-laptop-house"></i>
+                <h3>Co-Working Space</h3>
+                <p>Plug-and-play office space located within the high-tech GIFT City ecosystem.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- ===== Newsletter grid ===== -->
+    
 
+   
 
-    <footer class="image-mapped-footer new-footer">
+    <!-- ===== MENTORSHIP ===== -->
+    <section class="content-section" style="background-color: #f8fafc; padding: 20px 20px; border-radius: 12px; ">
+        <h2 class="section-title">Mentorship for GrowX Accelerated Startups</h2>
+        <p style="color: var(--text-gray); max-width:auto; margin: 0 ; text-align: left;"><strong>Connect directly with experienced industry leaders through personalized one-on-one sessions designed to explore technical challenges and business strategies. This program offers startups an invaluable chance to navigate market dynamics, uncover emerging trends, and gain insights that drive meaningful growth.</strong></p>
+        <br><h2>How It Works : </h2>
+        <div class="growx-perks-grid activities-grid howitworks-grid">
+            <div class="perk-card">
+                <p>1. Startups share their key challenges and mentorship needs in advance to have an open, focused discussion.</p>
+            </div>
+            <div class="perk-card">
+                <p>2. A curated meeting is facilitated by the CoE focal point to ensure productive and meaningful dialogue.</p>
+            </div>
+            <div class="perk-card">
+                <p>3. Actionable insights and next steps are documented and shared with the startup to support ongoing progress.</p>
+            </div>
+        </div><br><br>
+        <!--<div class="split-layout" style="align-items: start;">
+            <div>
+                <h3 style="font-size: 1.35rem; color: var(--dark-navy); font-weight: 700; margin-bottom: 15px;">How It Works</h3>
+                <ul class="structured-list">
+                    <li>Startups share their key challenges and mentorship needs in advance to have an open, focused discussion.</li>
+                    <li>A curated meeting is facilitated by the CoE focal point to ensure productive and meaningful dialogue.</li>
+                    <li>Actionable insights and next steps are documented and shared with the startup to support ongoing progress.</li>
+                </ul>
+            </div>
+        </div>-->
+        <h2 class="section-title"class="section-title">Mentors Available For Startups</h2>
+        <div style="margin-top: 40px;">
+            <div class="mentors-grid">
+                
+                <!-- Mentor: Abhinav Malaviya -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/CA Abhinav Malavia.jpg" alt="CA Abhinav Malaviya"></div>
+                    <div class="mentor-name">CA Abhinav Malaviya</div>
+                    <div class="mentor-title">Managing Partner, J K Patel &amp; Associates | Managing Director, The United Coop. Bank Ltd.</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/abhinav--malviya/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of CA Abhinav Malaviya">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Abhinav Malaviya Profile.pdf" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                    
+                        <h5>Experience</h5>
+                        <ul>
+                            <li>(1). J K Patel &amp; Associates, Chartered Accountants — Managing Partner since January 2024</li>
+                            <li>(2). The United Coop. Bank Ltd. — Managing Director since September 2024</li>
+                            <li>(3). Chinmay Finlease Ltd. — Independent Director since May 2024</li>
+                            <li>(4). D G S M &amp; Co., Chartered Accountants — Partner, 2015 - 2023</li>
+                            <li>(5). The Ahmedabad District Coop. Bank Ltd. — Assistant General Manager, 2013 - 2015</li>
+                        </ul>
+
+                        <h5>Assignments Managed</h5>
+                        <p>With over 14 years of experience as a Chartered Accountant, I have provided comprehensive Auditing, Advisory, and Management Consultancy Services across various domains. My expertise encompasses providing GST Consulting and conducting Pre, Internal, Concurrent and Statutory Audits, ensuring compliance with taxation laws, and delivering value-added insights. I have served renowned clients from diverse industries, helping them achieve financial integrity and regulatory compliance. My work includes identifying control weaknesses, optimizing operational efficiencies, and advising on strategic decisions, which has been instrumental in enhancing clients' financial performance and governance standards.</p>
+
+                        <h5>Expertise</h5>
+                        <ul>
+                            <li>Goods &amp; Service Act</li>
+                            <li>Reserve Bank of India Act</li>
+                            <li>Banking Regulation Act</li>
+                            <li>Income Tax Act</li>
+                            <li>Companies Act</li>
+                        </ul>
+
+                        <h5>Skills Summary</h5>
+                        <ul>
+                            <li>Investment Consulting</li>
+                            <li>Startup Consulting</li>
+                            <li>Fund Raising</li>
+                            <li>Merger &amp; Acquisition</li>
+                            <li>GST Consulting</li>
+                            <li>Audits</li>
+                            <li>Independent Director</li>
+                        </ul>
+
+                        <h5>Education</h5>
+                        <p>I. Gujarat University</p>
+                        <ul>
+                            <li>(1). Bachelor of Commerce - 2005</li>
+                            <li>(2). Master of Commerce - 2008</li>
+                            <li>(3). Bachelor of Law - 2015</li>
+                        </ul>
+                        <p>II. The Institute of Chartered Accountants of India</p>
+                        <ul>
+                            <li>(1). Chartered Accountant - 2011</li>
+                            <li>(2). Diploma in Information System Audit - 2019</li>
+                        </ul>
+                        <p>III. The Institute of Company Secretaries of India</p>
+                        <ul>
+                            <li>(1). Company Secretary - 2013</li>
+                        </ul>
+
+                        <h5>Certifications</h5>
+                        <p>I. The Indian Institute of Bankers</p>
+                        <ul>
+                            <li>(1). Junior Associate</li>
+                            <li>(2). Certified Associate</li>
+                        </ul>
+                        <p>II. The Institute of Chartered Accountants of India</p>
+                        <ul>
+                            <li>(1). Certificate Course Concurrent Audit of Banks</li>
+                            <li>(2). Certificate Course on Goods and Service Tax</li>
+                            <li>(3). Certificate Course on Forensic Accounting and Fraud Detection</li>
+                            <li>(4). Certificate Course on Public Finance &amp; Government Accounting</li>
+                            <li>(5). Certificate Course on UAE CorporateTax</li>
+                            <li>(6). Certificate Course on AI for CA's (AICA-Level-1)</li>
+                            <li>(7). Certificate Course on Indian Accounting Standards (Ind AS)</li>
+                        </ul>
+
+                        <h5>Attributes</h5>
+                        <ul>
+                            <li>Speaker at various forums on the topics of Bank Audits, GST, Financial Markets, Startups, Investment Strategies</li>
+                            <li>Associated with reputed organizations for Mentoring Startups.</li>
+                            <li>Fitness Enthusiast</li>
+                        </ul>
+
+                        <h5>Prestigious Positions</h5>
+                        <p>The Institute of Chartered Accountants of India, Ahmedabad Branch of WIRC</p>
+                        <ul>
+                            <li>(1). Managing Committee Member, 2022-2023 — Chairman of Information Technology &amp; Sports Sub-Committees</li>
+                            <li>(2). Secretary, 2023-2024</li>
+                            <li>(3). Managing Committee Member, 2024-2025 — Chairman of Continuing Professional Education &amp; Sports Sub-Committees</li>
+                            <li>(4). Managing Committee Member, 2025-2026 — Chairman of Indirect Tax &amp; Banking and Financial Services Sub-Committees</li>
+                        </ul>
+
+                        <h5>Language</h5>
+                        <p>English, Hindi, Gujarati</p>
+                    </div>
+                </div>
+
+                <!-- Mentor: Gopi Jatin Trivedi -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Gopi Jatin Trivedi_2025.jpeg" alt="Ms. Gopi Jatin Trivedi"></div>
+                    <div class="mentor-name">Ms. Gopi Jatin Trivedi</div>
+                    <div class="mentor-title">Senior Partner, Y. J. Trivedi &amp; Co. | Honorary Secretary, Ahmedabad Management Association (AMA)</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/gopi-jatin-trivedi-3a6a0957/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Ms. Gopi Jatin Trivedi">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Gopi Trivedi_Profile_2026 _brief.docx" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p><strong>Ms. Gopi Jatin Trivedi</strong> is an accomplished Intellectual Property professional with extensive experience in leading and managing multidisciplinary teams across all facets of IP law. As a Senior Partner, she plays a central role in strategic planning and decision-making, driving sustained growth, operational excellence, and client-focused outcomes. She provides strategic leadership in IP Valuation &amp; Management, guiding the protection, commercialization, and monetization of intellectual assets. Her <strong>forte</strong> encompasses patent prosecution and litigation, including opposition proceedings, strategic advisory services, licensing, and valuation, complemented by comprehensive IP management and long-term strategic planning.</p>
+                        <p>Ms. Trivedi is a sought-after speaker who has delivered insightful sessions at prestigious national and international seminars, workshops, and conferences. She is actively engaged with leading international IP organizations, participating in global conferences and serving on committees. Currently, she serves as <strong>Honorary Secretary, Ahmedabad Management Association (AMA)</strong>.</p>
+                        <p>Her leadership and execution capabilities have been widely recognized, most notably in <strong>2018</strong>, when <strong>Y. J. Trivedi &amp; Co.</strong> achieved a <strong>World Record for filing the highest number of patents in a single day</strong>, underscoring her expertise, precision, and ability to deliver at scale.</p>
+                    </div>
+                </div>
+
+                <!-- Mentor: Jay Amin -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Jay Amin.jpg" alt="Jay Amin"></div>
+                    <div class="mentor-name">Jay Amin</div>
+                    <div class="mentor-title">Client Partner (VP) – Strategy, Fractal</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/jay-amin-77093b14/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Jay Amin">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Jay Amin Details.docx" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p>Jay Amin is Client Partner (VP) – Strategy at Fractal, with 13+ years of experience across Fractal, Lodha Group and The Boston Consulting Group. His work spans corporate strategy, business transformation, product strategy, investor readiness, enterprise AI adoption and AI-led value creation.</p>
+                        <p>At Fractal, Jay has worked with founders and leadership team on growth, public markets readiness, AI product strategy, enterprise client engagement and transformation initiatives. As a mentor, he brings a practical, outcome-driven perspective to help founders sharpen value propositions, strengthen enterprise readiness and scale AI-led solutions.</p>
+                    </div>
+                </div>
+
+                <!-- Mentor: Jemin Tanna -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Jemin Tanna.png" alt="Jemin Tanna"></div>
+                    <div class="mentor-name">Jemin Tanna</div>
+                    <div class="mentor-title">Chief Business AI Architect – APJ</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/jemin-tanna-91a12234/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Jemin Tanna">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Jemin Tanna.docx" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p>Engineering Leader for Agentic Enterprise AI | Smart Manufacturing | ICF PCC Executive Coach</p>
+                        <p>For over 20 years, I have helped organizations transform products, platforms, and business operations through technology innovation, engineering excellence, and human-centered leadership.</p>
+                        <p>B.E | MBA | Masters in Counseling Psychology | ICF PCC Executive Coach | Yoga Teacher</p>
+                        <p>I have driven Enterprise AI and Smart Manufacturing initiatives, enabling AI-first transformation across manufacturing and enterprise ecosystems. My focus spans GenAI, enterprise architecture, cloud platforms, data and AI strategies, and large-scale adoption programs that translate emerging technologies into measurable business outcomes.</p>
+                        <p>Previously, I held leadership roles across Tata Electronics, Siemens Digital Industries, and SAP, leading product strategy, engineering organizations, cloud transformation programs, innovation portfolios, and enterprise modernization initiatives.</p>
+                        <h5>Domain</h5>
+                        <p>Manufacturing, Supply Chain, Human Capital Management, Retail, Healthcare, Finance, Public Sector, Professional Services, and Enterprise Portfolio &amp; Project Management (EPPM).</p>
+                        <h5>Areas of Expertise</h5>
+                        <p>Enterprise AI &amp; GenAI • Smart Manufacturing • Product &amp; Platform Strategy • Cloud, Data &amp; AI Architecture • Edge Computing • OT–IT Convergence • AI Governance • Digital Transformation • Executive Coaching.</p>
+                        <h5>Technology Experience</h5>
+                        <p>AWS, Databricks, SAP Business AI, SAP BTP, S/4HANA, Industrial Edge, RAG Architectures, Vector Databases, MLOps, Enterprise Platforms, and Hybrid Cloud Architectures.</p>
+                        <h5>Highlights</h5>
+                        <p>Led AI literacy and adoption initiatives impacting 50,000+ employees, built and led engineering organizations of ~300 professionals globally, established Centers of Excellence across AI, Cloud, UX, IoT and Emerging Technologies, and filed multiple patents in manufacturing analytics, AI, and enterprise software.</p>
+                        <p>I am passionate about helping leaders, startups, and enterprises align technology, culture, and strategy to create sustainable transformation and business value.</p>
+                    </div>
+                </div>
+
+                <!-- Mentor: Mayuresh Raut -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Mayuresh Raut.png" alt="Mayuresh Raut"></div>
+                    <div class="mentor-name">Mayuresh Raut</div>
+                    <div class="mentor-title">Co-Founder &amp; Managing Partner, Seafund</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/mayureshrraut/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Mayuresh Raut">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Mayuresh Raut.docx" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p>He has over 29 years of leadership experience with global clients in Data Science &amp; Analytics &amp; Consulting in Financial Services, Manufacturing &amp; Healthcare, working for MNCs like GE, IBM &amp; Novozymes &amp; family owned businesses &amp; start-ups spread across US, Europe &amp; India.</p>
+                        <p>Started my career managing the family construction business. This was a trial by fire in learning how to manage stakeholders with conflicting views, lead a business to manage the short &amp; long term business objectives, churn a business portfolio to manage cash flows without losing sight of the financial returns for the company &amp; manage local &amp; federal regulatory authorities.</p>
+                        <p>Have been part of startups, incubating &amp; managing operations within multi-billion dollar companies, turning around businesses &amp; providing successful exists to stakeholders. I have led transformational change management initiatives that have pivoted the way companies are run &amp; have had a huge impact on the personnel &amp; business strategies.</p>
+                        <p>His experience in the offshoring space spans from practices like Analytics to Business Advisory Services to Finance &amp; Accounting and Procurement, both on the third party &amp; captive side across Financial Services, Manufacturing &amp; Life Sciences.</p>
+                        <p>Completed a senior leadership program from INSEAD as part of key talent retention &amp; also as a pause for perspective initiative to explore how best to utilize the remaining portion of my professional life.</p>
+                        <p>He has been investing in startups for more than 15 years, along with an active interest in mapping the startup ecosystem, mentoring leaders &amp; companies. The VC fund fits in seamlessly as a culmination of all these activities.</p>
+                        <h5>Specialties</h5>
+                        <p>Startups, Technology, Venture Capital, Strategy Development &amp; Implementation, Business Analytics, Change Management, Fund Raising, Leading Businesses across geographies &amp; cultures, Project Management, Competency Development &amp; Organization Design.</p>
+                    </div>
+                </div>
+
+                <!-- Mentor: Nikhil Malhotra -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Nikhil Malhotra.webp" alt="Nikhil Malhotra"></div>
+                    <div class="mentor-name">Nikhil Malhotra</div>
+                    <div class="mentor-title">Chief Innovation Officer &amp; Global Head of AI, Tech Mahindra | Creator, Maker's Lab</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/nickmalhotra/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Nikhil Malhotra">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Nikhil Malhotra Profile.pptx" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p>Nikhil Malhotra is the Chief Innovation Officer and Global Head of AI at Tech Mahindra, and the visionary creator of Maker's Lab—an award-winning innovation ecosystem designed to reimagine the future of technology through research, experimentation, and co-creation. With over 25 years of experience, Nikhil has built a distinguished career at the intersection of advanced research, applied innovation, and business transformation.</p>
+                        <p>A lifelong researcher at heart, Nikhil leads Tech Mahindra's strategic initiatives in Artificial Intelligence and Quantum Computing, driving both cutting-edge research and real-world enterprise translation. In his role, he partners closely with CXOs, governments, and global institutions to explore the "art of the possible" in an increasingly complex and dynamic digital landscape.</p>
+                        <p>Nikhil's contributions have been widely recognized, including multiple honors at the Innovation Congress (2020, 2021, and 2023) as one of India's most innovative leaders. He is also a TEDx speaker and the author of Courage: The Journey of an Innovator, where he shares insights on leadership, resilience, and breakthrough thinking.</p>
+                        <p>Under his leadership, Maker's Lab has delivered several pioneering achievements—from discovering therapeutic molecules against COVID-19 using a combination of computational and experimental approaches, to conceptualizing India's first "meta bank." A strong advocate of inclusive technology, Nikhil has long championed the vision of enabling machines to understand and communicate in India's diverse linguistic landscape.</p>
+                        <p>This vision has materialized through Project Indus, a flagship initiative to build an Indic Large Language Model (LLM). The project has positioned Tech Mahindra as a key contributor to the India AI mission—the only Global System Integrator (GSI) in the program. The open-sourced Indus model has gained significant traction and ranks among the most downloaded AI models in India.</p>
+                        <p>Nikhil holds a Master's degree in Computing with a specialization in Distributed Systems from the Royal Melbourne Institute of Technology (RMIT), Australia. Beyond technology, he is deeply passionate about physics and the fundamental nature of intelligence and computation.</p>
+                        <p>He currently resides in Pune with his wife Shalini and their two sons, Angad and Rudra.</p>
+                        <p><em>An Innovator, Futurist, Author, TEDx Speaker, Father and a Dog lover</em></p>
+                        <p>"We are reminded of the limitless-ness of Human curiosity, when we see man and machine create marvels for the future together" – Nikhil Malhotra</p>
+                        <h5>Book</h5>
+                        <p><a href="https://www.amazon.in/-/hi/Nikhil-Malhotra/dp/1639976671" target="_blank" rel="noopener">Courage: The Inside Story of an Innovator's Breakthrough</a></p>
+                        <h5>TEDx Videos</h5>
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=e1ROG9VUNVM" target="_blank" rel="noopener">youtube.com/watch?v=e1ROG9VUNVM</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=YW8flbHGs_Y" target="_blank" rel="noopener">youtube.com/watch?v=YW8flbHGs_Y</a></li>
+                        </ul>
+                        <h5>Media Links</h5>
+                        <ul>
+                            <li><a href="https://economictimes.indiatimes.com/tech/software/tech-mahindra-university-of-sydney-to-develop-next-gen-technology-solutions/articleshow/68007771.cms" target="_blank" rel="noopener">economictimes.indiatimes.com — Tech Mahindra &amp; University of Sydney to develop next-gen technology solutions</a></li>
+                            <li><a href="https://indiaai.in/article/the-quantum-ai-qai-entanglement" target="_blank" rel="noopener">indiaai.in — The Quantum AI (QAI) Entanglement</a></li>
+                            <li><a href="https://indiaai.in/article/fundamentals-of-nlp-research-in-sanskrit" target="_blank" rel="noopener">indiaai.in — Fundamentals of NLP Research in Sanskrit</a></li>
+                            <li><a href="https://www.expresscomputer.in/cloud/nikhil-malhotra-of-tech-mahindra-says-that-data-is-new-fuel-and-ai-is-the-new-electricity/53481/" target="_blank" rel="noopener">expresscomputer.in — Data is the new fuel and AI is the new electricity</a></li>
+                        </ul>
+                        <h5>Media Story</h5>
+                        <ul>
+                            <li><a href="https://www.channelnewsasia.com/news/video-on-demand/in-conversation-fy1920/nikhil-malhotra-robot-builder-researcher-12053202" target="_blank" rel="noopener">channelnewsasia.com — Nikhil Malhotra, Robot Builder &amp; Researcher</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mentor: Sanjay Desai -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Sanjay Desai.jpg" alt="Sanjay Desai"></div>
+                    <div class="mentor-name">Sanjay Desai</div>
+                    <div class="mentor-title">MD, RBD Engineers Pvt. Ltd.</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/sanjayrdesai/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Sanjay Desai">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Sanjay Desai Profile.docx" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p>Managing a premier OEM manufacturing unit specializing in Gray Iron castings for 34+ years.</p>
+                        <p>Actively guiding engineering research and industrial training for students and emerging tech talent.</p>
+                        <p>Board member and evaluator for startup ecosystems at Nirma University, I-Hub (Srujan) and Vishwakarma Engineering College.</p>
+                    </div>
+                </div>
+
+                <!-- Mentor: Santosh Panday -->
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Santosh Pandey.jpg" alt="Santosh Panday"></div>
+                    <div class="mentor-name">Santosh Panday</div>
+                    <div class="mentor-title">Industry 4.0 Leader | Digital Manufacturing Strategist | Industrial AI Mentor</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/santosh-panday/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Santosh Panday">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="Mentor Profiles/Santosh Panday Prof.pdf" target="_blank" rel="noopener" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <p>Santosh Panday is a globally recognized authority in manufacturing digital transformation, with 18 years of experience leading large-scale technology and Industry 4.0 initiatives across sectors like Chemicals, cements, metals, polymers, textiles, power and carbon black. He has played a pivotal role in shaping and executing digital strategies that have transformed legacy operations into smart, sustainable, and value-driven enterprises.</p>
+                        <h5>He is a</h5>
+                        <ul>
+                            <li>Certified Energy Auditor – Bureau of Energy Efficiency (BEE), Ministry of Power, Government of India</li>
+                            <li>Certified Industrial Cybersecurity Practitioner – with hands-on expertise in securing converged OT-IT ecosystems</li>
+                            <li>Keynote speakers in global forums of Smart manufacturing, process optimization and Industrial AI</li>
+                            <li>Awardee – Smart Manufacturing Summit India Award 2022, Brainalytics India (Manufacturing Excellence &amp; Thought Leadership)</li>
+                            <li>Recipient – Digital Transformation Summit India Award 2022, Exito (Contribution to Manufacturing Digital Transformation)</li>
+                            <li>Pro bono technology advisor to nonprofits driving grassroots and sustainability efforts</li>
+                        </ul>
+                        <h5>Core Areas of Expertise</h5>
+                        <ul>
+                            <li>Industrial AI &amp; Predictive Analytics – Building hybrid model both domain and machine learning-driven solutions for maintenance, process optimization, and energy efficiency. Developd unique framework of self-serviced AI driven Manufacturing Analytics with GenAI and Agentic approach.</li>
+                            <li>Industrial DataOps &amp; Knowledge Graphs – Designing scalable, contextual data infrastructure for real-time insights</li>
+                            <li>Digital Manufacturing Strategy – Driving end-to-end roadmaps for smart factories, IIoT adoption, and value realization</li>
+                            <li>Energy &amp; Asset Performance Management – Delivering measurable impact through compressed air optimization and reduced specific energy consumption</li>
+                            <li>Cybersecure Digital Adoption – Leading secure digitalization efforts aligned with global standards</li>
+                            <li>Global Leadership – Expert in building and mentoring high-performance cross-functional global teams to accelerate digital transformation and innovation</li>
+                        </ul>
+                        <p>As a mentor, Santosh brings a unique combination of technical depth, strategic vision, and grassroots execution. He can support startups in:</p>
+                        <ul>
+                            <li>Refining their product-market fit for industrial applications</li>
+                            <li>Shaping scalable, secure, and enterprise-ready solutions</li>
+                            <li>Co-creating high-impact POCs with industry and academia partners</li>
+                            <li>Aligning technology with ROI and operational value</li>
+                            <li>Navigating the challenges of stakeholder alignment in complex industrial environments</li>
+                        </ul>
+                        <p>With an Electrical Engineering background (specialized in Energy Management from IIT Bombay), an MBA from NMIMS, and hands-on experience in enterprise-scale transformation, Santosh is passionate about helping startups succeed in the next wave of Industrial AI and Industry 4.0 innovation.</p>
+                    </div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-photo"><img src="Mentor Profiles/Jigish Patel.jpeg" alt="Jigish Patel"></div>
+                    <div class="mentor-name">Jigish Patel</div>
+                    <div class="mentor-title">Director Project & Innovation - Siddhi Engineers | Former Group Director - STSG & Head -AMD, ISRO</div>
+                    <div class="mentor-actions">
+                        <a href="https://www.linkedin.com/in/jigish-patel-0a0896394/" target="_blank" rel="noopener" class="mentor-linkedin" aria-label="LinkedIn profile of Jigish Patel">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="mentor-learn-btn">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="mentor-bio">
+                        <h5>About</h5>
+                        <p>Mr. Jigish Mukundray Patel is a distinguished aerospace professional with over 35 years of service at ISRO, where he held key leadership roles including Group Director of Structural Test Systems Group (STSG) and Head of the Advanced Manufacturing Department (AMD) at the Space Applications Centre, Ahmedabad. <br>Throughout his illustrious career, Mr. Patel contributed to more than 100 successful space missions, working alongside some of the world's best scientific minds. <br>He is known for his deep expertise in aerospace systems design optimization, precision manufacturing, structural testing, and high-reliability hardware validation. <br>His work has helped shape India's space capabilities and advanced scientific infrastructure.</p>
+                    </div>
+                    </div>
+
+            </div>
+        </div>
+    </section>
+       <!-- ===== ACTIVITIES and PHOTOS ===== -->
+    <section class="content-section">
+        <h2 class="section-title">Activities for Startups : </h2>
+        <div class="growx-perks-grid activities-grid">
+            <div class="perk-card">
+                <i class="fas fa-tv"></i>
+                <h3>Demo Day</h3>
+                <p>The CoE, in collaboration with government departments and industry associations, conducts Demo Days where startups present their solutions directly to their target audience — generating market access and potential leads.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Masterclass</h3>
+                <p>Innovation masterclasses covering critical subjects including Intellectual Property Rights, Investment Funding, Cloud Computing, Product-Market Fit, Design Validation, and more.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-handshake"></i>
+                <h3>Investors Meet &amp; Showcase</h3>
+                <p>Opportunities at events like the Regional AI Summit and AI CoE Inauguration, as well as the AI Experience Zone, to connect with investors and showcase solutions to a wide audience.</p>
+            </div>
+        </div>
+
+        <!-- Automatic 3-up startup activities image slider (startup1.jpeg - startup8.jpeg) -->
+        <div class="startup-slider" id="startupSlider">
+            <div class="startup-slider-viewport">
+                <div class="startup-slider-track" id="startupSliderTrack">
+                    <div class="startup-slide"><img src="focus/startup1.jpg" alt="Startup activity 1"></div>
+                    <div class="startup-slide"><img src="focus/startup2.jpg" alt="Startup activity 2"></div>
+                    <div class="startup-slide"><img src="focus/startup3.jpg" alt="Startup activity 3"></div>
+                    <div class="startup-slide"><img src="focus/startup4.jpg" alt="Startup activity 4"></div>
+                    <div class="startup-slide"><img src="focus/startup5.jpg" alt="Startup activity 5"></div>
+                    <div class="startup-slide"><img src="focus/startup6.jpg" alt="Startup activity 6"></div>
+                    <div class="startup-slide"><img src="focus/startup7.jpg" alt="Startup activity 7"></div>
+                    <div class="startup-slide"><img src="focus/startup8.jpeg" alt="Startup activity 8"></div>
+                </div>
+                <button class="ss-arrow ss-prev" id="ssPrev" aria-label="Previous slide">&#10094;</button>
+                <button class="ss-arrow ss-next" id="ssNext" aria-label="Next slide">&#10095;</button>
+            </div>
+            <div class="startup-slider-dots" id="startupSliderDots"></div>
+        </div>
+    </section>
+
+    <!-- ===== ELIGIBILITY + APPLICATION ===== 
+    <section class="content-section">
+        <div class="split-layout">
+            <div>
+                <h3 style="font-size: 1.5rem; color: var(--dark-navy); font-weight: 800; margin-bottom: 15px;">Eligibility Criteria</h3>
+                <ul class="structured-list">
+                    <li>The startup should be incorporated as a Private Limited Company, Partnership Firm, or Limited Liability Partnership (LLP).</li>
+                    <li>Turnover should be less than INR 100 Crores in any of the previous financial years.</li>
+                    <li>An entity shall be considered a startup up to 10 years from the date of incorporation.</li>
+                    <li>The startup should be working towards innovation or improvement of existing products, services, or processes and have the potential to generate employment or create wealth.</li>
+                    <li>An entity formed by splitting up or reconstruction of an existing business shall not be considered a startup.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size: 1.5rem; color: var(--dark-navy); font-weight: 800; margin-bottom: 15px;">Application Process</h3>
+                <div class="process-flow" style="grid-template-columns: 1fr; gap: 15px;">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <h4>Submit Application</h4>
+                        <p>Fill the form below along with your pitch deck through the online portal.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <h4>Review</h4>
+                        <p>Applications are reviewed by the AI CoE team for innovation and fit.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <h4>Discussion</h4>
+                        <p>Shortlisted startups are invited for a 30-minute session to discuss their solution and acceleration requirements.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <h4>Onboarding</h4>
+                        <p>Selected startups complete onboarding formalities and officially join the GrowX program.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+    <!-- ===== STARTUPS PORTFOLIO ===== -->
+    <section class="content-section" style="background-color: #f8fafc; padding: 60px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+        <h2 class="section-title">Startups Accelerated Till Date : </h2>
+        <p style="color: var(--text-gray); margin-bottom: 10px; text-align:center;">The GrowX program currently houses <strong>22 high-impact deep-tech startups</strong>.</p>
+
+        <div class="portfolio-grid">
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-cube"></i> Atomo Innovation</div>
+                <div class="startup-desc">Indigenous, AI-powered edge computing hardware built for real-time industrial automation. Low power, scalable, interoperable, and made for harsh industrial environments.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-users-cog"></i> Bigdatamatica Solutions</div>
+                <div class="startup-desc">An AI driven multi-agent platform to automate support, streamline search, and enable faster, cost-effective decision making.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-dna"></i> Biolex Advisory</div>
+                <div class="startup-desc">Catalyst for genome-edited agri-tech, bridging science, policy, and law for responsible innovation.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-eye"></i> Bipolar Factory</div>
+                <div class="startup-desc">AI-powered video intelligence that transforms CCTV networks into real-time, actionable insight platforms.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-file-invoice"></i> Cognifirst Technologies</div>
+                <div class="startup-desc">A proprietary no-code Enterprise AI platform that helps enterprises and governments extract insights and automate document workflows from unstructured documents — reducing costs, improving compliance.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-notes-medical"></i> Docyantra</div>
+                <div class="startup-desc">AI-powered healthcare tools that enhance clinical decisions, ease admin load, and improve access to equitable care.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-road"></i> HanuAI Pvt. Ltd.</div>
+                <div class="startup-desc">An AI-powered road digitization platform for real-time defect detection and smarter infrastructure decision-making.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-comment-dots"></i> Ignited Wings Technology</div>
+                <div class="startup-desc">Voice-first Agentic AI platform that automates workflows and improves decision-making for enterprises and government.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-phone-alt"></i> iQud</div>
+                <div class="startup-desc">An AI voice assistant platform that automates patient calls and scheduling to streamline healthcare operations.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-gavel"></i> Karma AI</div>
+                <div class="startup-desc">AI-powered legal assistant built for Police, Prisons, and Prosecutors to automate drafting, research, and casework.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-network-wired"></i> Lambodaray AiTech</div>
+                <div class="startup-desc">An AI &amp; IoT platform delivering real-time operational intelligence for manufacturing, utilities, and smart infrastructure.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-heartbeat"></i> LarkAI Healthcare</div>
+                <div class="startup-desc">Affordable, AI-IoT medical devices for continuous cardiopulmonary monitoring and early anomaly detection.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-search-plus"></i> MSense AI</div>
+                <div class="startup-desc">An AI-powered visual and acoustic inspection platform ensuring zero-defect manufacturing and productivity gains.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-user-check"></i> Quantian Technologies</div>
+                <div class="startup-desc">An AI-powered platform for managing remote and distributed workforce with real-time tracking, automation, and productivity insights.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-plane"></i> Sydorg</div>
+                <div class="startup-desc">AI-powered air traffic and weather intelligence platform for safer, smarter, and sustainable aviation management.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-balance-scale"></i> SettleSense</div>
+                <div class="startup-desc">An AI-powered dispute resolution platform delivering fast, affordable, and enforceable outcomes with legal intelligence.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-utensils"></i> UdyogYantra</div>
+                <div class="startup-desc">An AI-powered platform to digitize and optimize food production and distribution with industrial precision.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-seedling"></i> Upjao Agrotech</div>
+                <div class="startup-desc">AI-powered Grain Quality Assessment for fairer agri-trade.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-industry"></i> Workroom Automation</div>
+                <div class="startup-desc">A Unified AI platform to digitize, automate, and optimize factory operations with real-time intelligence and traceability.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-child"></i> Yogify Smart Yoga Mats</div>
+                <div class="startup-desc">Smart yoga mat combining AI-driven posture tracking and personalized guidance for structured practice at home.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-camera"></i> ZBox Technologies</div>
+                <div class="startup-desc">Helping industries improve product quality by using smart camera systems.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA BUTTONS ===== -->
+    <section class="content-section">
+        <div class="split-layout" style="grid-template-columns: 1fr ; gap: 40px;">
+            <div class="action-block-card">
+                <div>
+                    <h3>Apply for GrowX Program</h3>
+                    <p>We are consistently on the lookout for AI &amp; deep-tech startups willing to transform public services and solve real-world challenges. If you have an efficient, cost-effective, and innovative solution — join GrowX for market access, investment opportunities, and more.</p>
+                </div>
+                <button class="btn-nasscom-primary" onclick="openModal('startupModal')">
+                    <i class="fas fa-rocket"></i> Apply for GrowX Program
+                </button>
+            </div>
+            <!--<div class="action-block-card">
+                <div>
+                    <h3>Join as a Mentor</h3>
+                    <p>We are always eager to collaborate with passionate mentors who want to contribute to the growth of India's vibrant startup ecosystem. We're particularly interested in experts in Go-to-Market Strategy, Business Development, Technology, and Product Management.</p>
+                </div>
+                <button class="btn-nasscom-primary" onclick="openModal('mentorModal')">
+                    <i class="fas fa-handshake"></i> Join as a Mentor
+                </button>
+            </div>-->
+            
+        </div>
+    </section>
+
+    
+
+    <div id="startupModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'startupModal')">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Apply for GrowX Program</h3>
+                <button class="close-modal-btn" onclick="closeModal('startupModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="startupForm" onsubmit="handleFormSubmission(event)">
+                    <div class="form-group-row">
+                        <label>Name *</label>
+                        <input type="text" required placeholder="e.g., Amit Patel">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Designation *</label>
+                        <input type="text" required placeholder="e.g., Co-Founder &amp; CEO">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Startup Name *</label>
+                        <input type="text" required placeholder="e.g., NexaVision Robotics Pvt Ltd">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Website URL *</label>
+                        <input type="url" required placeholder="https://nexavision.ai">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Owner LinkedIn Profile *</label>
+                        <input type="url" required placeholder="https://linkedin.com/in/founderprofile">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Contact Number *</label>
+                        <input type="tel" required placeholder="e.g., +91 99887 76655">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Email *</label>
+                        <input type="email" required placeholder="e.g., contact@nexavision.ai">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Pitch Deck (Link) *</label>
+                        <input type="url" required placeholder="Google Drive / DocSend / Dropbox link">
+                    </div>
+                    <div class="form-group-row">
+                        <label>What are your expectations from the GrowX Program? *</label>
+                        <textarea rows="4" required placeholder="Describe what you're looking for — compute resources, co-working space, GTM support, investor connections, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn-nasscom-primary">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="mentorModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'mentorModal')">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Join as a Mentor</h3>
+                <button class="close-modal-btn" onclick="closeModal('mentorModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="mentorForm" onsubmit="handleFormSubmission(event)">
+                    <div class="form-group-row">
+                        <label>Name *</label>
+                        <input type="text" required placeholder="e.g., Dr. Rajesh Kumar">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Designation *</label>
+                        <input type="text" required placeholder="e.g., Chief Technology Officer">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Organisation *</label>
+                        <input type="text" required placeholder="e.g., DeepData Labs">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Contact Number *</label>
+                        <input type="tel" required placeholder="e.g., +91 98765 43210">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Email *</label>
+                        <input type="email" required placeholder="e.g., rajesh@deepdatalabs.com">
+                    </div>
+                    <div class="form-group-row">
+                        <label>LinkedIn URL *</label>
+                        <input type="url" required placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    <div class="form-group-row">
+                        <label>Expertise Area *</label>
+                        <select required>
+                            <option value="">-- Select Area --</option>
+                            <option value="gtm">Go-to-Market Strategy</option>
+                            <option value="bizdev">Business Development</option>
+                            <option value="tech">Technology</option>
+                            <option value="prod">Product Management</option>
+                        </select>
+                    </div>
+                    <div class="form-group-row">
+                        <label>How would you like to contribute? *</label>
+                        <textarea rows="4" required placeholder="Describe how you'd like to support startups..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-nasscom-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+        <footer class="image-mapped-footer new-footer">
         <!-- Top CTA bar -->
         <div class="footer-cta-bar">
             <div class="footer-cta-inner">
@@ -255,6 +1418,8 @@
             </div>
         </div>
 
+      
+
         <!-- Main footer grid -->
         <div class="footer-main-wrap">
             <div class="footer-main-grid">
@@ -264,32 +1429,29 @@
                     <p class="footer-initiative-label">An Initiative of</p>
                     <div class="footer-logos-row">
                         <div class="footer-logo-pill">
-                            <img src="dst_logo.jpg" alt="DST Gujarat" onerror="this.parentElement.innerHTML='<span class='flogo-text'>DST Gujarat</span>'">
+                            <img src="dst_logo.jpg" alt="DST Gujarat" onerror="this.parentElement.innerHTML='<span class=\'flogo-text\'>DST Gujarat</span>'">
                         </div>
                         <div class="footer-logo-pill">
-                            <img src="gil_logo.jpg" alt="GIL" onerror="this.parentElement.innerHTML='<span class='flogo-text'>GIL</span>'">
+                            <img src="gil_logo.jpg" alt="GIL" onerror="this.parentElement.innerHTML='<span class=\'flogo-text\'>GIL</span>'">
                         </div>
                     </div>
-                    <p class="footer-initiative-label" style="margin-top:16px ">In Collaboration with</p>
+                    <p class="footer-initiative-label" style="margin-top:16px">In Collaboration with</p>
                     <div class="footer-logos-row logos-row-solo">
                         <div class="footer-logo-pill">
-                            <img src="nasscom-logo.png" alt="NASSCOM CoE" onerror="this.parentElement.innerHTML='<span class='flogo-text'>NASSCOM CoE</span>'">
+                            <img src="nasscom-logo.png" alt="NASSCOM CoE" onerror="this.parentElement.innerHTML='<span class=\'flogo-text\'>NASSCOM CoE</span>'">
                         </div>
                     </div>
                     <div class="footer-logos-row">
-
                         <div class="footer-logo-pill">
-                            <img src="microsoft.png" alt="Microsoft" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Microsoft</span>'">
+                            <img src="microsoft.png" alt="Microsoft" onerror="this.parentElement.innerHTML='<span class=\'flogo-text\'>Microsoft</span>'">
                         </div>
                         <div class="footer-logo-pill">
-                            <img src="google.png" alt="Google" onerror="this.parentElement.innerHTML='<span class='flogo-text'>Google</span>'">
+                            <img src="google.webp" alt="Google" onerror="this.parentElement.innerHTML='<span class=\'flogo-text\'>Google</span>'">
                         </div>
                     </div>
                 </div>
 
-
-
-                <!-- Knowledge Hub -->
+                <!-- Follow Us -->
                 <div class="footer-col link-column-area">
                     <h4 style="margin-top:28px">Follow Us</h4>
                     <div class="footer-social-row">
@@ -330,5 +1492,186 @@
         </div>
     </footer>
 
+    <!-- ===== MENTOR BIO POP-UP ===== -->
+    <div id="mentorBioModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'mentorBioModal')">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="mentorBioName">Mentor Profile</h3>
+                <button class="close-modal-btn" onclick="closeModal('mentorBioModal')">&times;</button>
+            </div>
+            <div class="modal-body mentor-bio" id="mentorBioBody"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            alert("Thank you. Your records have been captured successfully. The AI CoE Acceleration Team will review your dossier and update you shortly.");
+            event.target.reset();
+            const modal = event.target.closest('.modal-overlay');
+            if (modal) {
+                closeModal(modal.id);
+            }
+        }
+
+        /* ===== Mentor "Learn More" -> open bio in a pop-up ===== */
+        function openMentorBio(btn) {
+            const card = btn.closest('.mentor-card');
+            if (!card) return false;
+            const bio = card.querySelector('.mentor-bio');
+            if (!bio || !bio.innerHTML.trim()) return false; // no embedded bio -> let the link open as before
+            const nameEl = card.querySelector('.mentor-name');
+            const titleEl = card.querySelector('.mentor-title');
+            document.getElementById('mentorBioName').textContent = nameEl ? nameEl.textContent.trim() : 'Mentor Profile';
+            let bodyHtml = '';
+            if (titleEl && titleEl.textContent.trim()) {
+                bodyHtml += '<p style="font-weight:700;color:var(--dark-navy);margin-bottom:16px;">' + titleEl.innerHTML + '</p>';
+            }
+            bodyHtml += bio.innerHTML;
+            const bodyEl = document.getElementById('mentorBioBody');
+            bodyEl.innerHTML = bodyHtml;
+            bodyEl.scrollTop = 0;
+            openModal('mentorBioModal');
+            return true;
+        }
+
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.mentor-learn-btn');
+            if (!btn) return;
+            if (openMentorBio(btn)) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal('mentorBioModal');
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            const animateCounter = (counter) => {
+                const target = parseInt(counter.getAttribute('data-target'), 10);
+                let current = 0;
+                const duration = 3000; 
+                const frameRate = 1000 / 60; 
+                const totalFrames = Math.round(duration / frameRate);
+                const increment = target / totalFrames;
+                
+                let frame = 0;
+                const update = () => {
+                    frame++;
+                    current += increment;
+                    
+                    if (frame < totalFrames) {
+                        counter.innerText = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                requestAnimationFrame(update);
+            };
+
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetCounter = entry.target;
+                        animateCounter(targetCounter);
+                        observer.unobserve(targetCounter);
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(c => observer.observe(c));
+        });
+
+        // ===== Automatic 3-up startup activities image slider =====
+        (function () {
+            const track = document.getElementById('startupSliderTrack');
+            const dotsContainer = document.getElementById('startupSliderDots');
+            const sliderEl = document.getElementById('startupSlider');
+            const slides = track ? track.querySelectorAll('.startup-slide') : [];
+            const total = slides.length;
+            if (!track || total === 0) return;
+
+            const visibleCount = () => window.innerWidth <= 768 ? 1 : 3;
+            let current = 0;
+            let autoTimer;
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const pages = Math.ceil(total / visibleCount());
+                for (let i = 0; i < pages; i++) {
+                    const d = document.createElement('span');
+                    d.className = 'ss-dot' + (i === 0 ? ' active' : '');
+                    d.addEventListener('click', () => { goTo(i * visibleCount()); resetTimer(); });
+                    dotsContainer.appendChild(d);
+                }
+            }
+
+            function updateDots() {
+                const vc = visibleCount();
+                const activePage = Math.round(current / vc);
+                dotsContainer.querySelectorAll('.ss-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === activePage);
+                });
+            }
+
+            function goTo(idx) {
+                const vc = visibleCount();
+                const maxIdx = Math.max(0, total - vc);
+                current = Math.max(0, Math.min(idx, maxIdx));
+                const slideW = slides[0].offsetWidth + 15;
+                track.style.transform = 'translateX(-' + (current * slideW) + 'px)';
+                updateDots();
+            }
+
+            function next() {
+                const vc = visibleCount();
+                if (current + vc >= total) { goTo(0); } else { goTo(current + vc); }
+            }
+
+            function prev() {
+                const vc = visibleCount();
+                if (current - vc < 0) { goTo(Math.max(0, total - vc)); } else { goTo(current - vc); }
+            }
+
+            function startTimer() { autoTimer = setInterval(next, 4000); }
+            function stopTimer() { clearInterval(autoTimer); }
+            function resetTimer() { stopTimer(); startTimer(); }
+
+            const nextBtn = document.getElementById('ssNext');
+            const prevBtn = document.getElementById('ssPrev');
+            if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetTimer(); });
+            if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetTimer(); });
+            if (sliderEl) {
+                sliderEl.addEventListener('mouseenter', stopTimer);
+                sliderEl.addEventListener('mouseleave', startTimer);
+            }
+
+            window.addEventListener('resize', () => { buildDots(); goTo(0); });
+
+            buildDots();
+            startTimer();
+        })();
+    </script>
 </body>
 </html>

@@ -431,10 +431,60 @@
         .impact-grid > div > div:last-child {
             color: rgba(255, 255, 255, 0.9) !important;
         }
+        /* ===== RIGHT-SIDE SECTION NAVIGATION ===== */
+        html { scroll-behavior: smooth; }
+        [id^="sec-"] { scroll-margin-top: 130px; }
+        .section-nav {
+            position: fixed; top: 50%; right: 16px; transform: translateY(-50%);
+            z-index: 900; display: flex; flex-direction: column; gap: 9px; padding: 9px 7px;
+            background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(6px);
+            border: 1px solid rgba(226, 232, 240, 0.7); border-radius: 34px;
+            box-shadow: 0 8px 24px rgba(10, 25, 47, 0.10);
+        }
+        .section-nav-item {
+            position: relative; width: 37px; height: 37px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--nasscom-red); background: rgba(255, 255, 255, 0.65);
+            border: 1.5px solid rgba(237, 218, 218, 0.8); text-decoration: none; font-size: 0.85rem;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+        }
+        #heroCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;          /* Keeps animation behind text and pictures */
+    pointer-events: none; /* Allows clicks to pass through to buttons/links behind it */
+}
+
+/* Ensure your page container or main sections do not have solid background 
+   colors if you want the animation to show through their free areas. */
+body {
+    background-color: #ffffff; /* Or your preferred theme background color */
+    position: relative;
+}
+
+section, main {
+    position: relative;
+    z-index: 1; /* Places content on a layer above the canvas background */
+}
+        .section-nav-item:hover { transform: translateX(-3px); background: var(--nasscom-red); color: #ffffff; border-color: var(--nasscom-red); }
+        .section-nav-item.active { background: var(--nasscom-red); color: #ffffff; border-color: var(--nasscom-red); box-shadow: 0 4px 12px rgba(88, 18, 18, 0.35); }
+        .section-nav-label {
+            position: absolute; right: calc(100% + 12px); top: 50%;
+            transform: translateY(-50%) translateX(6px); white-space: nowrap;
+            background: var(--dark-navy); color: #ffffff; font-size: 0.8rem; font-weight: 600;
+            padding: 6px 12px; border-radius: 6px; opacity: 0; pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .section-nav-label::after { content: ''; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); border: 6px solid transparent; border-left-color: var(--dark-navy); }
+        .section-nav-item:hover .section-nav-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+        @media (max-width: 992px) { .section-nav { display: none; } }
     </style>
 </head>
 <body>
-
+    <canvas id="heroCanvas"></canvas>
         <header class="master-header">
         <div class="top-branding-strip">
             <div class="logo-left-block">
@@ -475,6 +525,7 @@
                             <li><a href="case-studies.html">Case Studies</a></li>
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
+                            <li><a href="blog.html">Blogs</a></li>
                         </ul>
                     </li>
                     <li><a href="about.html">About</a></li>
@@ -490,6 +541,16 @@
         <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
     </div>--->
 
+
+    <!-- ===== RIGHT-SIDE SECTION NAVIGATION ===== -->
+    <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
+        <a href="#sec-engage" class="section-nav-item" data-target="sec-engage"><i class="fas fa-handshake"></i><span class="section-nav-label">Engage</span></a>
+        <a href="#sec-impact-stories" class="section-nav-item" data-target="sec-impact-stories"><i class="fas fa-trophy"></i><span class="section-nav-label">Impact Stories</span></a>
+        <a href="#sec-testimonials" class="section-nav-item" data-target="sec-testimonials"><i class="fas fa-quote-right"></i><span class="section-nav-label">Testimonials</span></a>
+        <a href="#sec-impact" class="section-nav-item" data-target="sec-impact"><i class="fas fa-chart-line"></i><span class="section-nav-label">Impact</span></a>
+        <a href="#sec-workshops" class="section-nav-item" data-target="sec-workshops"><i class="fas fa-chalkboard-teacher"></i><span class="section-nav-label">Workshops</span></a>
+        <a href="#sec-faqs" class="section-nav-item" data-target="sec-faqs"><i class="fas fa-circle-question"></i><span class="section-nav-label">FAQs</span></a>
+    </nav>
 
     <section class="page-banner">
         <img src="focus/icp.png" alt="Empowering Industries with AI" class="banner-bg">
@@ -535,68 +596,16 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
     </section>-->
 
     <!-- ===== HOW WE ENGAGE ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px;height:580px;">
+    <section class="content-section" id="sec-engage" style=" padding: 55px 20px;height:580px;">
         
         <h2 class="section-title">How an Enterprise Can Engage with AI CoE</h2>
-        <img src="focus/industry.jpeg" alt="Engage with AI CoE" class="banner-bg" style="border-radius:10px; padding:30px; border-left:5px ;width:1200px;align-items: center; ">
+        <img src="focus/industry.jpeg" alt="Engage with AI CoE" class="banner-bg" style="border-radius:10px; padding:10px; border-left:5px ;width:1150px;align-items: center; ">
 
-        <!--<div class="engage-grid">
-
-            <div style="background:#fff; border-radius:10px; padding:30px; border-left:5px solid var(--nasscom-red); box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div style="font-size:0.75rem; font-weight:800; color:var(--nasscom-red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Step 1</div>
-                <h4 style="font-size:1.1rem; color:var(--dark-navy); font-weight:800; margin-bottom:12px;">EXPLORE — Identify High-Impact Opportunities</h4>
-                <ul class="structured-list">
-                    <li>Deep-dive into business processes and operations</li>
-                    <li>Identify inefficiencies and AI-ready functions</li>
-                    <li>Conduct stakeholder interviews and process mapping</li>
-                </ul>
-            </div>
-
-            <div style="background:#fff; border-radius:10px; padding:30px; border-left:5px solid var(--nasscom-red); box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div style="font-size:0.75rem; font-weight:800; color:var(--nasscom-red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Step 2</div>
-                <h4 style="font-size:1.1rem; color:var(--dark-navy); font-weight:800; margin-bottom:12px;">STRATEGIZE — Plan for Scalable Success</h4>
-                <ul class="structured-list">
-                    <li>Define AI vision, outcomes, and priorities</li>
-                    <li>Run design-thinking workshops with internal teams</li>
-                    <li>Create a roadmap covering short-term wins and long-term capability</li>
-                </ul>
-            </div>
-
-            <div style="background:#fff; border-radius:10px; padding:30px; border-left:5px solid var(--nasscom-red); box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div style="font-size:0.75rem; font-weight:800; color:var(--nasscom-red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Step 3</div>
-                <h4 style="font-size:1.1rem; color:var(--dark-navy); font-weight:800; margin-bottom:12px;">SOURCE — Find the Right AI Solutions</h4>
-                <ul class="structured-list">
-                    <li>Finalise requirements and success KPIs</li>
-                    <li>Scout and validate high-quality AI startups</li>
-                    <li>Design proof-of-value (PoV) and pilot execution models</li>
-                </ul>
-            </div>
-
-            <div style="background:#fff; border-radius:10px; padding:30px; border-left:5px solid var(--nasscom-red); box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div style="font-size:0.75rem; font-weight:800; color:var(--nasscom-red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Step 4</div>
-                <h4 style="font-size:1.1rem; color:var(--dark-navy); font-weight:800; margin-bottom:12px;">IMPLEMENT — Deliver Business Value</h4>
-                <ul class="structured-list">
-                    <li>Support PoC and pilot implementation</li>
-                    <li>Ensure alignment with IT and operational teams</li>
-                    <li>Establish performance metrics and governance</li>
-                </ul>
-            </div>
-
-            <div style="background:#fff; border-radius:10px; padding:30px; border-left:5px solid var(--nasscom-red); box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div style="font-size:0.75rem; font-weight:800; color:var(--nasscom-red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Step 5</div>
-                <h4 style="font-size:1.1rem; color:var(--dark-navy); font-weight:800; margin-bottom:12px;">ENABLE — Build Internal AI Capability</h4>
-                <ul class="structured-list">
-                    <li>Run capability-building programs</li>
-                    <li>Define AI champion roles across functions</li>
-                    <li>Set up governance for ethics, data, and reuse</li>
-                </ul>
-            </div>
-
-        </div>-->
+        
     </section>
 
     <!-- ===== IMPACT STORIES ===== -->
-     <section class="content-section" style="margin-top: 60px; margin-bottom: 80px;">
+     <section class="content-section" id="sec-impact-stories" style="margin-top: 60px; margin-bottom: 80px;">
         <h2 class="section-title">Impact Stories</h2>
         <div class="story-container">
             
@@ -614,8 +623,8 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
             </div>
         </div>
         </section>
-    <section class="content-section" style="background-color: #f8fafc; padding: 55px 20px;">
-        <h2 class="section-title">What Industry Leaders Say About Us</h2><br>
+    <section class="content-section" id="sec-testimonials" style="padding: 55px 20px;">
+        <h2 class="section-title">Testimonials From Industry Leaders </h2><br>
         <div class="testimonial-slider">
             <div class="testimonial-track">
                 <div class="testimonial-slide is-active">
@@ -649,7 +658,7 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
         </section>
 
     <!-- ===== IMPACT NUMBERS ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 15px 20px; ">
+    <section class="content-section" id="sec-impact" style="padding: 15px 20px; ">
         <h2 class="section-title">Impact Created</h2>
         <div class="impact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 25px; margin-top: 30px;">
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top:4px solid var(--nasscom-red);">
@@ -671,7 +680,7 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
             
         </div>
     </section><br>
-    <section class="content-section" style="margin-top: 60px; margin-bottom: 80px;">
+    <section class="content-section" id="sec-workshops" style="margin-top: 60px; margin-bottom: 80px;">
         <h2 class="section-title">AI Literacy Workshops for MSME</h2>
     <!--<section class="workshop-slider-section">
         <h2 class="section-title">AI Literacy Workshops for MSME</h2><br>-->
@@ -693,7 +702,7 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
     </section>
 
     <!-- ===== FAQs ===== -->
-    <section class="content-section" style="margin-bottom: 80px;">
+    <section class="content-section" id="sec-faqs" style="margin-bottom: 80px;">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <div class="faq-accordion">
 
@@ -789,6 +798,7 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
                         <li>Gujarat Informatics Limited</li>
                         <li>NASSCOM</li>
                         <li>Microsoft</li>
+                        <li>Google</li>
                     </ul>
                 </div>
             </div>
@@ -805,18 +815,7 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
 
             <div class="faq-item">
                 <div class="faq-header" onclick="toggleFaq(this)">
-                    9. How does an industry leader get started?
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-content">
-                    <p>To get started, we simply set up a meeting with the concerned person in the team so you can have a one-on-one discussion about the challenges you're facing and how AI can help resolve them.</p>
-                    <p style="margin-top:12px;"><a href="contact-us.html" style="color:var(--nasscom-red); font-weight:600; text-decoration:none;">Get in touch with us →</a></p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-header" onclick="toggleFaq(this)">
-                    10. Why engage now?
+                    9. Why engage now?
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-content">
@@ -824,7 +823,16 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
                     <p style="margin-top:10px;">AI CoE helps you move from exploration to execution — without guesswork.</p>
                     </div>
             </div>
-
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    10. How does an industry leader get started?
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-content">
+                    <p>To get started, we simply set up a meeting with the concerned person in the team so you can have a one-on-one discussion about the challenges you're facing and how AI can help resolve them.</p>
+                    <p style="margin-top:12px;"><a href="contact-us.html" style="color:var(--nasscom-red); font-weight:600; text-decoration:none;">Get in touch with us →</a></p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1072,5 +1080,95 @@ It also empowers MSMEs with Industry 4.0 awareness and handholding for adoption,
             start();
         })();
     </script>
+    <script>
+        // ===== Right-side section nav scroll-spy =====
+        (function () {
+            const navItems = Array.from(document.querySelectorAll(".section-nav-item"));
+            if (!navItems.length) return;
+            const sections = navItems.map(i => document.getElementById(i.dataset.target)).filter(Boolean);
+            function setActive(id) { navItems.forEach(it => it.classList.toggle("active", it.dataset.target === id)); }
+            const observer = new IntersectionObserver((entries) => {
+                const vis = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (vis.length) setActive(vis[0].target.id);
+            }, { rootMargin: "-140px 0px -55% 0px", threshold: 0 });
+            sections.forEach(s => observer.observe(s));
+            navItems.forEach(it => it.addEventListener("click", () => setActive(it.dataset.target)));
+        })();
+    </script>
+    <script>
+/* Neural-network particle background field */
+(function() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles;
+    const mouse = {x: -9999, y: -9999};
+
+    function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', () => { resize(); init(); });
+    
+    // Tracks mouse moving across the background viewport
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    function init() {
+        const count = Math.max(60, Math.floor((W * H) / 12000)); // Controlled density for background usability
+        particles = Array.from({length: count}, () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.55,
+            vy: (Math.random() - 0.5) * 0.55,
+            r: Math.random() * 1.8 + 0.6,
+            alpha: Math.random() * 0.6 + 0.35
+        }));
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const DIST = 130, MOUSE_DIST = 160;
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const dx = mouse.x - p.x, dy = mouse.y - p.y;
+            const md = Math.hypot(dx, dy);
+            if (md < MOUSE_DIST && md > 0) {
+                p.vx += dx / md * 0.012;
+                p.vy += dy / md * 0.012;
+            }
+            const spd = Math.hypot(p.vx, p.vy);
+            if (spd > 1.8) { p.vx = p.vx/spd*1.8; p.vy = p.vy/spd*1.8; }
+            for (let j = i + 1; j < particles.length; j++) {
+                const q = particles[j];
+                const ex = p.x - q.x, ey = p.y - q.y;
+                const d = Math.hypot(ex, ey);
+                if (d < DIST) {
+                    const t = 1 - d / DIST;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.strokeStyle = "rgba(15,50,120," + (t * 0.25) + ")"; // Slightly softer opacity for global background
+                    ctx.lineWidth = t * 1.5;
+                    ctx.stroke();
+                }
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(15,50,120," + (p.alpha * 0.7) + ")";
+            ctx.fill();
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        }
+        requestAnimationFrame(draw);
+    }
+
+    resize(); init(); draw();
+})();
+</script>
 </body>
 </html>

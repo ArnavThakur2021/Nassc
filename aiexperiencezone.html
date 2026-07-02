@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -477,6 +476,123 @@
             .why-card-img { min-height: 160px; }
             .aiz-section-title { font-size: 1.6rem; }
         }
+        /* ===== SCHEDULE APPOINTMENT MODAL ===== */
+        .aez-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        .aez-modal-overlay.open { display: flex; }
+        .aez-modal {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 92vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+            animation: aezFadeIn 0.3s ease;
+        }
+        @keyframes aezFadeIn {
+            from { opacity: 0; transform: translateY(-18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .aez-modal-header {
+            background: var(--dark-navy);
+            color: #ffffff;
+            padding: 20px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .aez-modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .aez-modal-header p {
+            margin: 4px 0 0 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .aez-close-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+        }
+        .aez-close-btn:hover { opacity: 1; }
+        .aez-modal-body { padding: 26px 28px 30px; }
+        .aez-field { margin-bottom: 18px; }
+        .aez-field label {
+            display: block;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 7px;
+            font-size: 0.92rem;
+        }
+        .aez-field label .req { color: var(--nasscom-red); }
+        .aez-field input,
+        .aez-field select,
+        .aez-field textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #334155;
+            background: #ffffff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .aez-field textarea { resize: vertical; min-height: 90px; }
+        .aez-field input:focus,
+        .aez-field select:focus,
+        .aez-field textarea:focus {
+            outline: none;
+            border-color: var(--nasscom-red);
+            box-shadow: 0 0 0 3px rgba(88, 18, 18, 0.10);
+        }
+        .aez-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .aez-submit-btn {
+            width: 100%;
+            margin-top: 6px;
+            background: var(--nasscom-red);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .aez-submit-btn:hover { background: var(--nasscom-red-dark); transform: translateY(-1px); }
+        @media (max-width: 560px) {
+            .aez-row { grid-template-columns: 1fr; gap: 0; }
+        }
     </style>
 </head>
 <body>
@@ -519,6 +635,7 @@
                             <li><a href="case-studies.html">Case Studies</a></li>
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
+                            <li><a href="blog.html">Blogs</a></li>
                         </ul>
                     </li>
                     <li><a href="about.html">About</a></li>
@@ -661,7 +778,7 @@
                 <div class="solution-card">
                     <img src="aiez/ailifebot.png" alt="AI LifeBOT" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>AI LifeBOT</h4>
+                        <h4>AI Smart Health Assistant</h4>
                         <p>Presents 'Meera', a multi-lingual conversational AI avatar handling center assistance workflows.</p>
                     </div>
                 </div>
@@ -669,14 +786,14 @@
                 <div class="solution-card">
                     <img src="aiez/alveofit.jpg" alt="Alveofit" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Alveofit</h4>
+                        <h4>Digital Spirometry (Bluetooth-enabled medical diagnostic device)</h4>
                         <p>Creates ecosystem-connected digital spirometers for real-time diagnostic testing of lung health.</p>
                     </div>
                 </div>
                 <div class="solution-card">
                     <img src="aiez/autobit.png" alt="Autobit" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Autobit</h4>
+                        <h4>IoT-based Machine Health Monitoring Solution</h4>
                         <p>Delivers continuous IoT machinery asset telematics to predict errors and minimize factory downtime.</p>
                     </div>
                 </div>
@@ -684,7 +801,7 @@
                 <div class="solution-card">
                     <img src="aiez/datennwissen.png" alt="Daten N Wissen" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Daten N Wissen</h4>
+                        <h4>Smart Video Analytics Platform</h4>
                         <p>Builds intelligent video analytics systems for automated enterprise security and compliance tracking.</p>
                     </div>
                 </div>
@@ -692,7 +809,7 @@
                 <div class="solution-card">
                     <img src="aiez/exposit.jpg" alt="ExposIT" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>ExposIT</h4>
+                        <h4>AR-VR Training</h4>
                         <p>Provides immersive AR/VR simulation frameworks for safe, risk-free enterprise operator training.</p>
                     </div>
                 </div>
@@ -700,28 +817,28 @@
                 <div class="solution-card">
                     <img src="aiez/factriai.png" alt="Factri Al" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Factri Al</h4>
+                        <h4>AI Based Monitoring Software</h4>
                         <p>Builds live shop-floor monitoring software to track throughput and eliminate manufacturing bottlenecks.</p>
                     </div>
                 </div>
                 <div class="solution-card">
                     <img src="aiez/forushealthcare.png" alt="Forus Healthcare" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Forus Healthcare</h4>
+                        <h4>AI-Powered Retinal Imaging and Diagnostic System</h4>
                         <p>Offers portable, AI-driven retinal screening devices for rapid diagnostic workflows in remote regions.</p>
                     </div>
                 </div>
                 <div class="solution-card">
                     <img src="aiez/medprime.jpg" alt="Medprime" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Medprime</h4>
+                        <h4>Digital Microscope with Annotation and Sharing Capabilities</h4>
                         <p>Engineers digital microscopy systems that capture and securely stream high-resolution remote pathology slides.</p>
                     </div>
                 </div>
                 <div class="solution-card">
                     <img src="aiez/nuverse.jpg" alt="NUverse" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>NUverse</h4>
+                        <h4>AI-Powered Contactless Health Scanner</h4>
                         <p>Designs smart smartphone-compatible biosensor tools that securely stream key patient hemodynamic indicators.</p>
                     </div>
                 </div>
@@ -729,7 +846,7 @@
                 <div class="solution-card">
                     <img src="aiez/orangewoodlabs.png" alt="Orangewood Labs" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Orangewood Labs</h4>
+                        <h4>Collaborative Robot (Co-Bot) with Environmental Sensing</h4>
                         <p>Develops advanced, indigenous cognitive robots built for precision micro-assembly alongside human workers.</p>
                     </div>
                 </div>
@@ -737,14 +854,14 @@
                 <div class="solution-card">
                     <img src="aiez/plutomen.jpg" alt="Plutomen" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Plutomen</h4>
+                        <h4>Augmented Reality (AR) – Remote Collaboration via Wearable Device</h4>
                         <p>Provides AR/VR spatial productivity tools for guided operations on complex factory shop floors.</p>
                     </div>
                 </div>
                 <div class="solution-card">
                     <img src="aiez/upjao.jpg" alt="Upjao" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Upjao</h4>
+                        <h4>AI-Based Grain Quality Analysis System</h4>
                         <p>Provides an AI vision platform to automate instant crop grain classification and market-fair grading.</p>
                     </div>
                 </div>
@@ -752,7 +869,7 @@
                 <div class="solution-card">
                     <img src="aiez/zbox.jpg" alt="Zbox" class="solution-thumb">
                     <div class="solution-card-body">
-                        <h4>Zbox</h4>
+                        <h4>AI-Based Quality Assurance System</h4>
                         <p>Deploys computer-vision and AI platforms for real-time automated production defect detection.</p>
                     </div>
                 </div>
@@ -764,10 +881,10 @@
         <div class="footer-cta-bar">
             <div class="footer-cta-inner">
                 <div>
-                    <h3 class="footer-cta-heading">Ready to Experience AI Up Close?</h3>
+                    <h3 class="footer-cta-heading">Ready to Experience AI Up Close ?</h3>
                 </div>
-                <a href="contact-us.html" class="footer-cta-btn">
-                    Get in Touch <i class="fas fa-arrow-right"></i>
+                <a href="contact-us.html" class="footer-cta-btn" onclick="openAezModal(); return false;">
+                    Schedule A Visit <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -858,7 +975,87 @@
                 slides[current].classList.add('aiez-active');
             }, 2000);
         })();
+        // ===== Schedule Appointment modal =====
+        function openAezModal() {
+            document.getElementById('aezModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeAezModal() {
+            document.getElementById('aezModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function aezOutsideClick(e) {
+            if (e.target.id === 'aezModal') closeAezModal();
+        }
+        function aezSubmit(e) {
+            e.preventDefault();
+            alert('Thank you! Your appointment request has been received.');
+            e.target.reset();
+            closeAezModal();
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeAezModal();
+        });
     </script>
+
+    <!-- ===== SCHEDULE APPOINTMENT MODAL ===== -->
+    <div id="aezModal" class="aez-modal-overlay" onclick="aezOutsideClick(event)">
+        <div class="aez-modal">
+            <div class="aez-modal-header">
+                <div>
+                    <h3>Schedule a Visit</h3>
+                </div>
+                <button class="aez-close-btn" onclick="closeAezModal()" aria-label="Close">&times;</button>
+            </div>
+            <div class="aez-modal-body">
+                <form id="aezForm" onsubmit="aezSubmit(event)">
+                    <div class="aez-field">
+                        <label>I am <span class="req">*</span></label>
+                        <select required>
+                            <option value="">-- Select --</option>
+                            <option value="industry"> a Industry Expert</option>
+                            <option value="government">a Government Official</option>
+                            <option value="startup">a Startup</option>
+                            <option value="academia">a Academia</option>
+                        </select>
+                    </div>
+                    <div class="aez-field">
+                        <label>Name <span class="req">*</span></label>
+                        <input type="text" required placeholder="e.g., Rahul Sharma">
+                    </div>
+                    <div class="aez-field">
+                        <label>Organization / Department <span class="req">*</span></label>
+                        <input type="text" required placeholder="e.g., ABC Technologies Pvt. Ltd. / Dept. of Science &amp; Technology">
+                    </div>
+                    <div class="aez-field">
+                        <label>Designation <span class="req">*</span></label>
+                        <input type="text" required placeholder="e.g., Product Manager">
+                    </div>
+                    <div class="aez-row">
+                        <div class="aez-field">
+                            <label>Email <span class="req">*</span></label>
+                            <input type="email" required placeholder="e.g., rahul@company.com">
+                        </div>
+                        <div class="aez-field">
+                            <label>Phone <span class="req">*</span></label>
+                            <input type="tel" required placeholder="e.g., +91 98765 43210">
+                        </div>
+                    </div>
+                    <div class="aez-field">
+                        <label>Suggested Date <span class="req">*</span></label>
+                        <input type="date" required>
+                    </div>
+                    <div class="aez-field">
+                        <label>Purpose of Visit</label>
+                        <textarea placeholder="Briefly tell us what you'd like to see or discuss during your visit."></textarea>
+                    </div>
+                    <button type="submit" class="aez-submit-btn">
+                        <i class="fas fa-calendar-check"></i> Request Appointment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

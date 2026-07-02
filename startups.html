@@ -630,9 +630,112 @@
             .startup-slide img { height: 220px; }
             .ss-arrow { width: 38px; height: 38px; font-size: 1rem; }
         }
+        /* ===== RIGHT-SIDE SECTION NAVIGATION ===== */
+        html { scroll-behavior: smooth; }
+        #sec-why, #sec-mentorship, #sec-mentors, #sec-activities, #sec-portfolio, #sec-apply {
+            scroll-margin-top: 130px; /* keep section titles clear of the sticky header */
+        }
+        .section-nav {
+            position: fixed;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            padding: 9px 7px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            border-radius: 34px;
+            box-shadow: 0 8px 24px rgba(10, 25, 47, 0.10);
+        }
+        .section-nav-item {
+            position: relative;
+            width: 37px;
+            height: 37px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--nasscom-red);
+            background: rgba(255, 255, 255, 0.65);
+            border: 1.5px solid rgba(237, 218, 218, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+        }
+        .section-nav-item:hover {
+            transform: translateX(-3px);
+            background: var(--nasscom-red);
+            color: #ffffff;
+            border-color: var(--nasscom-red);
+        }
+        .section-nav-item.active {
+            background: var(--nasscom-red);
+            color: #ffffff;
+            border-color: var(--nasscom-red);
+            box-shadow: 0 4px 12px rgba(88, 18, 18, 0.35);
+        }
+        /* hover tooltip label to the left of each box */
+        .section-nav-label {
+            position: absolute;
+            right: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%) translateX(6px);
+            white-space: nowrap;
+            background: var(--dark-navy);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .section-nav-label::after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: var(--dark-navy);
+        }
+        #heroCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;          /* Keeps animation behind text and pictures */
+    pointer-events: none; /* Allows clicks to pass through to buttons/links behind it */
+}
+
+/* Ensure your page container or main sections do not have solid background 
+   colors if you want the animation to show through their free areas. */
+body {
+    background-color: #ffffff; /* Or your preferred theme background color */
+    position: relative;
+}
+
+section, main {
+    position: relative;
+    z-index: 1; /* Places content on a layer above the canvas background */
+}
+        .section-nav-item:hover .section-nav-label {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+        @media (max-width: 992px) {
+            .section-nav { display: none; } /* hide on tablets/phones to avoid overlap */
+        }
     </style>
 </head>
 <body>
+    <canvas id="heroCanvas"></canvas>
 
         <header class="master-header">
         <div class="top-branding-strip">
@@ -674,6 +777,7 @@
                             <li><a href="case-studies.html">Case Studies</a></li>
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
+                            <li><a href="blog.html">Blogs</a></li>
                         </ul>
                     </li>
                     <li><a href="about.html">About</a></li>
@@ -689,6 +793,28 @@
         <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
     </div>-->
 
+    <!-- ===== RIGHT-SIDE SECTION NAVIGATION ===== -->
+    <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
+        <a href="#sec-why" class="section-nav-item" data-target="sec-why">
+            <i class="fas fa-star"></i><span class="section-nav-label">Why GrowX</span>
+        </a>
+        <a href="#sec-mentorship" class="section-nav-item" data-target="sec-mentorship">
+            <i class="fas fa-comments"></i><span class="section-nav-label">Mentorship</span>
+        </a>
+        <a href="#sec-mentors" class="section-nav-item" data-target="sec-mentors">
+            <i class="fas fa-users"></i><span class="section-nav-label">Mentors</span>
+        </a>
+        <a href="#sec-activities" class="section-nav-item" data-target="sec-activities">
+            <i class="fas fa-calendar-check"></i><span class="section-nav-label">Activities</span>
+        </a>
+        <a href="#sec-portfolio" class="section-nav-item" data-target="sec-portfolio">
+            <i class="fas fa-cubes"></i><span class="section-nav-label">Startups</span>
+        </a>
+        <a href="#sec-apply" class="section-nav-item" data-target="sec-apply">
+            <i class="fas fa-paper-plane"></i><span class="section-nav-label">Apply</span>
+        </a>
+    </nav>
+
     <section class="page-banner">
         <img src="focus/scp.png" alt="Empowering Startups with AI" class="banner-bg">
         <div class="banner-overlay"></div>
@@ -699,25 +825,10 @@
         </div>
     </section>
     <!-- ===== WHY GROWX ===== -->
-    <section class="content-section">
+    <section class="content-section" id="sec-why">
         
         <h2 class="section-title">Why GrowX : </h2>
         <div class="growx-perks-grid why-growx-grid">
-            <div class="perk-card">
-                <i class="fas fa-microchip"></i>
-                <h3>Computing Infrastructure</h3>
-                <p>Access to processing resources to build, optimize, and evaluate heavy AI models.</p>
-            </div>
-            <div class="perk-card">
-                <i class="fas fa-laptop-house"></i>
-                <h3>Co-Working Space</h3>
-                <p>Plug-and-play office space located within the high-tech GIFT City ecosystem.</p>
-            </div>
-            <div class="perk-card">
-                <i class="fas fa-vr-cardboard"></i>
-                <h3>AI Experience Zone</h3>
-                <p>Dedicated display space to showcase solutions to incoming client and government networks.</p>
-            </div>
             <div class="perk-card">
                 <i class="fas fa-route"></i>
                 <h3>GTM Support</h3>
@@ -728,116 +839,41 @@
                 <h3>Funding Support</h3>
                 <p>Facilitated connections to venture capitals, angel networks, and government grant schemes.</p>
             </div>
+            
+            <div class="perk-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Solution Showcase Opportunities</h3>
+                <p>Platforms to present and demonstrate solutions at summits, demo days, and industry events.</p>
+            </div>
             <div class="perk-card">
                 <i class="fas fa-user-tie"></i>
                 <h3>Mentorship</h3>
                 <p>One-on-one advising sessions with industry executives to solve operational and scaling challenges.</p>
             </div>
             <div class="perk-card">
-                <i class="fas fa-bullhorn"></i>
-                <h3>Solution Showcase Opportunities</h3>
-                <p>Platforms to present and demonstrate solutions at summits, demo days, and industry events.</p>
+                <i class="fas fa-vr-cardboard"></i>
+                <h3>AI Experience Zone</h3>
+                <p>Dedicated display space to showcase solutions to incoming client and government networks.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-microchip"></i>
+                <h3>Computing Infrastructure</h3>
+                <p>Access to processing resources to build, optimize, and evaluate heavy AI models.</p>
+            </div>
+            <div class="perk-card">
+                <i class="fas fa-laptop-house"></i>
+                <h3>Co-Working Space</h3>
+                <p>Plug-and-play office space located within the high-tech GIFT City ecosystem.</p>
             </div>
         </div>
     </section>
 
-    <!-- ===== STARTUPS PORTFOLIO ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 60px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
-        <h2 class="section-title">Startups Accelerated Till Date : </h2>
-        <p style="color: var(--text-gray); margin-bottom: 10px; text-align:center;">The GrowX program currently houses <strong>22 high-impact deep-tech startups</strong>.</p>
-
-        <div class="portfolio-grid">
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-cube"></i> Atomo Innovation</div>
-                <div class="startup-desc">Indigenous, AI-powered edge computing hardware built for real-time industrial automation. Low power, scalable, interoperable, and made for harsh industrial environments.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-users-cog"></i> Bigdatamatica Solutions</div>
-                <div class="startup-desc">An AI driven multi-agent platform to automate support, streamline search, and enable faster, cost-effective decision making.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-dna"></i> Biolex Advisory</div>
-                <div class="startup-desc">Catalyst for genome-edited agri-tech, bridging science, policy, and law for responsible innovation.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-eye"></i> Bipolar Factory</div>
-                <div class="startup-desc">AI-powered video intelligence that transforms CCTV networks into real-time, actionable insight platforms.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-file-invoice"></i> Cognifirst Technologies</div>
-                <div class="startup-desc">A proprietary no-code Enterprise AI platform that helps enterprises and governments extract insights and automate document workflows from unstructured documents — reducing costs, improving compliance.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-notes-medical"></i> Docyantra</div>
-                <div class="startup-desc">AI-powered healthcare tools that enhance clinical decisions, ease admin load, and improve access to equitable care.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-road"></i> HanuAI Pvt. Ltd.</div>
-                <div class="startup-desc">An AI-powered road digitization platform for real-time defect detection and smarter infrastructure decision-making.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-comment-dots"></i> Ignited Wings Technology</div>
-                <div class="startup-desc">Voice-first Agentic AI platform that automates workflows and improves decision-making for enterprises and government.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-phone-alt"></i> iQud</div>
-                <div class="startup-desc">An AI voice assistant platform that automates patient calls and scheduling to streamline healthcare operations.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-gavel"></i> Karma AI</div>
-                <div class="startup-desc">AI-powered legal assistant built for Police, Prisons, and Prosecutors to automate drafting, research, and casework.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-network-wired"></i> Lambodaray AiTech</div>
-                <div class="startup-desc">An AI &amp; IoT platform delivering real-time operational intelligence for manufacturing, utilities, and smart infrastructure.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-heartbeat"></i> LarkAI Healthcare</div>
-                <div class="startup-desc">Affordable, AI-IoT medical devices for continuous cardiopulmonary monitoring and early anomaly detection.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-search-plus"></i> MSense AI</div>
-                <div class="startup-desc">An AI-powered visual and acoustic inspection platform ensuring zero-defect manufacturing and productivity gains.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-user-check"></i> Quantian Technologies</div>
-                <div class="startup-desc">An AI-powered platform for managing remote and distributed workforce with real-time tracking, automation, and productivity insights.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-plane"></i> Sydorg</div>
-                <div class="startup-desc">AI-powered air traffic and weather intelligence platform for safer, smarter, and sustainable aviation management.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-balance-scale"></i> SettleSense</div>
-                <div class="startup-desc">An AI-powered dispute resolution platform delivering fast, affordable, and enforceable outcomes with legal intelligence.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-utensils"></i> UdyogYantra</div>
-                <div class="startup-desc">An AI-powered platform to digitize and optimize food production and distribution with industrial precision.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-seedling"></i> Upjao Agrotech</div>
-                <div class="startup-desc">AI-powered Grain Quality Assessment for fairer agri-trade.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-industry"></i> Workroom Automation</div>
-                <div class="startup-desc">A Unified AI platform to digitize, automate, and optimize factory operations with real-time intelligence and traceability.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-child"></i> Yogify Smart Yoga Mats</div>
-                <div class="startup-desc">Smart yoga mat combining AI-driven posture tracking and personalized guidance for structured practice at home.</div>
-            </div>
-            <div class="startup-card">
-                <div class="startup-name"><i class="fas fa-camera"></i> ZBox Technologies</div>
-                <div class="startup-desc">Helping industries improve product quality by using smart camera systems.</div>
-            </div>
-        </div>
-    </section>
+    
 
    
 
     <!-- ===== MENTORSHIP ===== -->
-    <section class="content-section" style="background-color: #f8fafc; padding: 20px 20px; border-radius: 12px; ">
+    <section class="content-section" id="sec-mentorship" style=" padding: 20px 20px; border-radius: 12px; ">
         <h2 class="section-title">Mentorship for GrowX Accelerated Startups</h2>
         <p style="color: var(--text-gray); max-width:auto; margin: 0 ; text-align: left;"><strong>Connect directly with experienced industry leaders through personalized one-on-one sessions designed to explore technical challenges and business strategies. This program offers startups an invaluable chance to navigate market dynamics, uncover emerging trends, and gain insights that drive meaningful growth.</strong></p>
         <br><h2>How It Works : </h2>
@@ -862,7 +898,7 @@
                 </ul>
             </div>
         </div>-->
-        <h2 class="section-title"class="section-title">Mentors Available For Startups</h2>
+        <h2 class="section-title" id="sec-mentors">Mentors Available For Startups</h2>
         <div style="margin-top: 40px;">
             <div class="mentors-grid">
                 
@@ -1193,7 +1229,7 @@
         </div>
     </section>
        <!-- ===== ACTIVITIES and PHOTOS ===== -->
-    <section class="content-section">
+    <section class="content-section" id="sec-activities">
         <h2 class="section-title">Activities for Startups : </h2>
         <div class="growx-perks-grid activities-grid">
             <div class="perk-card">
@@ -1273,10 +1309,106 @@
             </div>
         </div>
     </section>-->
+    <!-- ===== STARTUPS PORTFOLIO ===== -->
+    <section class="content-section" id="sec-portfolio" style=" padding: 30px 20px; border-radius: 12px;">
+        <h2 class="section-title">Startups Accelerated Till Date : </h2>
+        <p style="color: var(--text-gray); margin-bottom: 10px; text-align:center;">The GrowX program currently houses <strong>22 high-impact deep-tech startups</strong>.</p>
+
+        <div class="portfolio-grid">
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-satellite-dish"></i> AccionLand</div>
+                <div class="startup-desc">Transforms satellite, SAR, drone, GIS, and climate data into decision-ready platforms for flood early warning, climate resilience, water management, and infrastructure planning.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-cow"></i> Adisver Innovations</div>
+                <div class="startup-desc">Built Paushtika AI, India&rsquo;s first AI-powered cattle health &amp; nutrition platform, using IoT smart ear tags and a LoRaWAN network to detect illness up to 48 hours before symptoms &mdash; even without internet.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-robot"></i> AI Agent Force</div>
+                <div class="startup-desc">Deploys human-like AI agents that automate repetitive business operations, promoting &ldquo;mindfulness at work&rdquo; through intelligent digital assistants.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-cube"></i> Atomo Innovation</div>
+                <div class="startup-desc">Indigenous, AI-powered edge computing hardware built for real-time industrial automation. Low power, scalable, interoperable, and made for harsh industrial environments.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-file-invoice"></i> Cognifirst Technologies</div>
+                <div class="startup-desc">A proprietary no-code Enterprise AI platform that helps enterprises and governments extract insights and automate document workflows from unstructured documents &mdash; reducing costs, improving compliance.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-brain"></i> Corpeight Labs</div>
+                <div class="startup-desc">An Ahmedabad-based AI-first deep-tech startup enabling cost-effective, privacy-preserving AI for Indian SMBs and government. Its flagship Shodh delivers secure, context-aware AI for knowledge management and workflow automation across cloud, hybrid, and on-premise.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-eye"></i> Daten &amp; Wissen</div>
+                <div class="startup-desc">Delivers AI across computer vision, predictive analytics, NLP, and generative AI &mdash; including intelligent video analytics, custom models, and enterprise automation for banking, FMCG, pharma, and education.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-microphone-lines"></i> dBee AI</div>
+                <div class="startup-desc">A full-stack private voice AI platform offering sovereign, self-learning intelligence, building multilingual voice agents deployable on-premise for data privacy and compliance.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-road"></i> HanuAI Pvt. Ltd.</div>
+                <div class="startup-desc">An AI-powered road digitization platform for real-time defect detection and smarter infrastructure decision-making.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-comment-dots"></i> Ignited Wings Technology</div>
+                <div class="startup-desc">Voice-first Agentic AI platform that automates workflows and improves decision-making for enterprises and government.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-phone-alt"></i> iQud</div>
+                <div class="startup-desc">An AI voice assistant platform that automates patient calls and scheduling to streamline healthcare operations.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-gavel"></i> Karma AI</div>
+                <div class="startup-desc">AI-powered legal assistant built for Police, Prisons, and Prosecutors to automate drafting, research, and casework.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-network-wired"></i> Lambodaray AiTech</div>
+                <div class="startup-desc">An AI &amp; IoT platform delivering real-time operational intelligence for manufacturing, utilities, and smart infrastructure.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-code"></i> Lemtoj Infotech</div>
+                <div class="startup-desc">A technology company building scalable, secure digital solutions &mdash; web and mobile apps, e-commerce, AI-driven tools, and custom software with a focus on UI/UX, automation, and cloud.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-video"></i> NXON AI</div>
+                <div class="startup-desc">Builds AI-driven CCTV systems on a hybrid edge + cloud architecture, with proactive AI alerts, natural-language video search, and STQC-compliant hardware that cuts total cost of ownership by up to 60%.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-building"></i> SigmaValue</div>
+                <div class="startup-desc">India&rsquo;s first AI-powered real estate intelligence ecosystem, offering valuation, data intelligence, and simulation built on verified, government-registered transaction data. DPIIT-recognized.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-file-audio"></i> Silent Infotech</div>
+                <div class="startup-desc">Maker of the Remi8 AI Recorder, turning raw audio into structured summaries, tasks, and templates with speaker isolation and intent recognition &mdash; plus privacy-first offline and on-premise deployment.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-shield-halved"></i> Suronex Cloudsafe</div>
+                <div class="startup-desc">An AI-enabled cloud compliance &amp; security platform for enterprises and MSPs, providing unified visibility and automated security across multi-cloud environments (IaaS, PaaS, SaaS).</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-plane"></i> Sydorg</div>
+                <div class="startup-desc">AI-powered air traffic and weather intelligence platform for safer, smarter, and sustainable aviation management.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-utensils"></i> UdyogYantra</div>
+                <div class="startup-desc">An AI-powered platform to digitize and optimize food production and distribution with industrial precision.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-seedling"></i> Upjao Agrotech</div>
+                <div class="startup-desc">AI-powered Grain Quality Assessment for fairer agri-trade.</div>
+            </div>
+            <div class="startup-card">
+                <div class="startup-name"><i class="fas fa-headset"></i> Varahi Technologies</div>
+                <div class="startup-desc">Building next-generation Voice AI agents for recruitment and learning, positioning AI as a co-pilot to help users build a &ldquo;second brain&rdquo;.</div>
+            </div>
+        </div>
+    </section>
 
     <!-- ===== CTA BUTTONS ===== -->
-    <section class="content-section">
-        <div class="split-layout" style="grid-template-columns: 1fr 1fr; gap: 40px;">
+    <section class="content-section" id="sec-apply">
+        <div class="split-layout" style="grid-template-columns: 1fr; justify-content: center; gap: 10px;">
             <div class="action-block-card">
                 <div>
                     <h3>Apply for GrowX Program</h3>
@@ -1286,7 +1418,7 @@
                     <i class="fas fa-rocket"></i> Apply for GrowX Program
                 </button>
             </div>
-            <div class="action-block-card">
+            <!--<div class="action-block-card">
                 <div>
                     <h3>Join as a Mentor</h3>
                     <p>We are always eager to collaborate with passionate mentors who want to contribute to the growth of India's vibrant startup ecosystem. We're particularly interested in experts in Go-to-Market Strategy, Business Development, Technology, and Product Management.</p>
@@ -1294,7 +1426,7 @@
                 <button class="btn-nasscom-primary" onclick="openModal('mentorModal')">
                     <i class="fas fa-handshake"></i> Join as a Mentor
                 </button>
-            </div>
+            </div>-->
             
         </div>
     </section>
@@ -1405,7 +1537,7 @@
 
         <footer class="image-mapped-footer new-footer">
         <!-- Top CTA bar -->
-        <div class="footer-cta-bar">
+        <!--<div class="footer-cta-bar">
             <div class="footer-cta-inner">
                 <div>
                     <h3 class="footer-cta-heading">Ready to turn your ideas into impact ?</h3>
@@ -1414,7 +1546,7 @@
                     Get in Touch <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-        </div>
+        </div>-->
 
       
 
@@ -1670,6 +1802,107 @@
             buildDots();
             startTimer();
         })();
+
+        // ===== Section-nav active-state scroll spy =====
+        (function () {
+            const navItems = Array.from(document.querySelectorAll('.section-nav-item'));
+            if (!navItems.length) return;
+            const sections = navItems
+                .map(item => document.getElementById(item.dataset.target))
+                .filter(Boolean);
+
+            function setActive(id) {
+                navItems.forEach(item => item.classList.toggle('active', item.dataset.target === id));
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                // pick the entry nearest the top that is intersecting
+                const visible = entries
+                    .filter(e => e.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible.length) setActive(visible[0].target.id);
+            }, { rootMargin: '-140px 0px -55% 0px', threshold: 0 });
+
+            sections.forEach(sec => observer.observe(sec));
+
+            // click gives immediate feedback
+            navItems.forEach(item => item.addEventListener('click', () => setActive(item.dataset.target)));
+        })();
     </script>
+    <script>
+/* Neural-network particle background field */
+(function() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles;
+    const mouse = {x: -9999, y: -9999};
+
+    function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', () => { resize(); init(); });
+    
+    // Tracks mouse moving across the background viewport
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    function init() {
+        const count = Math.max(60, Math.floor((W * H) / 12000)); // Controlled density for background usability
+        particles = Array.from({length: count}, () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.55,
+            vy: (Math.random() - 0.5) * 0.55,
+            r: Math.random() * 1.8 + 0.6,
+            alpha: Math.random() * 0.6 + 0.35
+        }));
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const DIST = 130, MOUSE_DIST = 160;
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const dx = mouse.x - p.x, dy = mouse.y - p.y;
+            const md = Math.hypot(dx, dy);
+            if (md < MOUSE_DIST && md > 0) {
+                p.vx += dx / md * 0.012;
+                p.vy += dy / md * 0.012;
+            }
+            const spd = Math.hypot(p.vx, p.vy);
+            if (spd > 1.8) { p.vx = p.vx/spd*1.8; p.vy = p.vy/spd*1.8; }
+            for (let j = i + 1; j < particles.length; j++) {
+                const q = particles[j];
+                const ex = p.x - q.x, ey = p.y - q.y;
+                const d = Math.hypot(ex, ey);
+                if (d < DIST) {
+                    const t = 1 - d / DIST;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.strokeStyle = "rgba(15,50,120," + (t * 0.25) + ")"; // Slightly softer opacity for global background
+                    ctx.lineWidth = t * 1.5;
+                    ctx.stroke();
+                }
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(15,50,120," + (p.alpha * 0.7) + ")";
+            ctx.fill();
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        }
+        requestAnimationFrame(draw);
+    }
+
+    resize(); init(); draw();
+})();
+</script>
 </body>
 </html>

@@ -289,6 +289,31 @@
             background: var(--nasscom-red);
             transform: scale(1.25);
         }
+        .who-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 20px;
+        }
+        .who-row-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid var(--nasscom-red);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+        }
+        .who-text-block {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        .who-text-block:last-of-type {
+            margin-bottom: 15px;
+        }
+
         @media (max-width: 768px) {
             .ws-slide { min-width: calc(100% - 0px); margin-right: 15px; }
         }
@@ -301,11 +326,111 @@
             display: flex;
             flex-direction: column;
         }
+        #heroCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;          /* Keeps animation behind text and pictures */
+    pointer-events: none; /* Allows clicks to pass through to buttons/links behind it */
+}
+
+/* Ensure your page container or main sections do not have solid background 
+   colors if you want the animation to show through their free areas. */
+body {
+    background-color: #ffffff; /* Or your preferred theme background color */
+    position: relative;
+}
+
+section, main {
+    position: relative;
+    z-index: 1; /* Places content on a layer above the canvas background */
+}
         .page-wrap { flex: 1 0 auto; }
         footer.new-footer { flex-shrink: 0; }
+        /* ===== RIGHT-SIDE SECTION NAVIGATION ===== */
+        html { scroll-behavior: smooth; }
+        [id^="sec-"] { scroll-margin-top: 130px; }
+        .section-nav {
+            position: fixed;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            padding: 9px 7px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            border-radius: 34px;
+            box-shadow: 0 8px 24px rgba(10, 25, 47, 0.10);
+        }
+        .section-nav-item {
+            position: relative;
+            width: 37px;
+            height: 37px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--nasscom-red);
+            background: rgba(255, 255, 255, 0.65);
+            border: 1.5px solid rgba(237, 218, 218, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+        }
+        .section-nav-item:hover {
+            transform: translateX(-3px);
+            background: var(--nasscom-red);
+            color: #ffffff;
+            border-color: var(--nasscom-red);
+        }
+        .section-nav-item.active {
+            background: var(--nasscom-red);
+            color: #ffffff;
+            border-color: var(--nasscom-red);
+            box-shadow: 0 4px 12px rgba(88, 18, 18, 0.35);
+        }
+        .section-nav-label {
+            position: absolute;
+            right: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%) translateX(6px);
+            white-space: nowrap;
+            background: var(--dark-navy);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .section-nav-label::after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: var(--dark-navy);
+        }
+        .section-nav-item:hover .section-nav-label {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+        @media (max-width: 992px) {
+            .section-nav { display: none; }
+        }
     </style>
 </head>
 <body>
+    <canvas id="heroCanvas"></canvas>
     <div class="page-wrap">
 
         <header class="master-header">
@@ -348,6 +473,7 @@
                             <li><a href="case-studies.html">Case Studies</a></li>
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="newsletters.html">Newsletters</a></li>
+                            <li><a href="blog.html">Blogs</a></li>
                         </ul>
                     </li>
                     <li><a href="about.html">About</a></li>
@@ -357,11 +483,21 @@
         </div>
     </header>
 
-        <div class="social-sidebar">
+       <!-- <div class="social-sidebar">
         <a href="https://www.linkedin.com/company/nasscomcoe-iot/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://www.youtube.com/channel/UCld70NKy9MeNp39OWD10DEQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
         <a href="https://www.twitter.com/NASSCOMCoEIoT" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
-    </div>
+    </div>-->
+
+    <!-- ===== RIGHT-SIDE SECTION NAVIGATION ===== -->
+    <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
+        <a href="#sec-approach" class="section-nav-item" data-target="sec-approach"><i class="fas fa-route"></i><span class="section-nav-label">Approach</span></a>
+        <a href="#sec-impact-stories" class="section-nav-item" data-target="sec-impact-stories"><i class="fas fa-trophy"></i><span class="section-nav-label">Impact Stories</span></a>
+        <a href="#sec-usecases" class="section-nav-item" data-target="sec-usecases"><i class="fas fa-list-check"></i><span class="section-nav-label">Use Cases</span></a>
+        <a href="#sec-workshops" class="section-nav-item" data-target="sec-workshops"><i class="fas fa-chalkboard-teacher"></i><span class="section-nav-label">Workshops</span></a>
+        <a href="#sec-impact" class="section-nav-item" data-target="sec-impact"><i class="fas fa-chart-line"></i><span class="section-nav-label">Impact</span></a>
+        <a href="#sec-faqs" class="section-nav-item" data-target="sec-faqs"><i class="fas fa-circle-question"></i><span class="section-nav-label">FAQs</span></a>
+    </nav>
 
     <section class="page-banner">
         <img src="focus/pcp.png" alt="Empowering Public Services with AI" class="banner-bg">
@@ -372,11 +508,22 @@
     </section>
 
     <!-- ===== APPROACH ===== -->
-    <section class="content-section">
-         <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>The Centre helps departments identify, validate, and implement AI solutions that make governance and public services easier and more efficient . It acts as an ecosystem enabler — understanding departmental processes , strategising AI adoption , and guiding end-to-end deployment.</strong></p>
+    <section class="content-section" id="sec-approach">
+        <!--<p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>The Centre helps departments identify, validate, and implement AI solutions that make governance and public services easier and more efficient . It acts as an ecosystem enabler — understanding departmental processes , strategising AI adoption , and guiding end-to-end deployment.</strong></p>
     
         <p style="color: var(--text-gray); max-width: auto; margin-bottom: 35px;text-align: justify;"><strong>AI CoE also conducts workshops and training sessions for government officials to help them understand and drive AI projects — with customised training on AI applications in governance covering both administrative and technical roles.</strong></p>
-       
+    -->
+        <div class="who-rows">
+            <div class="who-row-box">
+                <div class="what-tile">
+                        <p align="left"><strong>The Centre helps departments identify, validate, and implement AI solutions that make governance and public services easier and more efficient . It acts as an ecosystem enabler — understanding departmental processes , strategising AI adoption , and guiding end-to-end deployment.</strong></p>
+                    </div></div>
+            <div class="who-row-box">
+                <div class="what-tile">
+                    <p align="left"><strong>AI CoE also conducts workshops and training sessions for government officials to help them understand and drive AI projects — with customised training on AI applications in governance covering both administrative and technical roles.</strong></p>
+                </div>
+            </div>
+        </div>
         <div class="tech-stack-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
             <div class="tech-card" style="text-align:left; padding: 30px 25px;">
                 <i class="fas fa-search" style="font-size:2rem; color:var(--nasscom-red); margin-bottom:12px; display:block;"></i>
@@ -397,7 +544,7 @@
     </section>
 
     <!-- ===== IMPACT STORY ===== -->
-    <section class="content-section">
+    <section class="content-section" id="sec-impact-stories">
         <h2 class="section-title">Impact Stories</h2>
         <div class="story-container">
             <div class="story-details">
@@ -454,7 +601,7 @@
                 <img src="focus/is3.png" alt="Face Recognition and Real-Time Person Tracking">
             </div>
         </div>
-    <section class="content-section" style="background-color: #f8fafc; padding: 50px 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+    <section class="content-section" id="sec-usecases" style="padding: 50px 20px; border-radius: 12px;">
         <h2 class="section-title">Use Cases Pursued In Public Services</h2>
         <div class="usecase-table-wrapper">
             <table class="usecase-table">
@@ -545,7 +692,7 @@
     </section>
 
     <!-- ===== AI LITERACY WORKSHOP SLIDER ===== -->
-    <section class="workshop-slider-section">
+    <section class="workshop-slider-section" id="sec-workshops">
         <h2 class="section-title">AI Literacy Workshops for Government Officials</h2>
         <p class="section-subtitle">The AI CoE prioritized capacity building among government officials to enable them to understand and effectively drive AI-led initiatives. The CoE conducted training programs for government officials on AI and its applications in governance and public service delivery. These trainings included customized sessions tailored for officials from both administrative and technical functions.</p>
         <div class="ws-slider-wrapper">
@@ -562,7 +709,7 @@
     </section>
     
     <!-- ===== IMPACT CREATED ===== -->
-    <section class="content-section">
+    <section class="content-section" id="sec-impact">
         <h2 class="section-title">Impact Created</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px;">
             <div style="background:#fff; border-radius:10px; padding:30px 20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.04); border-top: 4px solid var(--nasscom-red);">
@@ -585,7 +732,7 @@
     </section>
 
     <!-- ===== FAQs ===== -->
-    <section class="content-section" style="margin-bottom: 80px;">
+    <section class="content-section" id="sec-faqs" style="margin-bottom: 80px;">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <div class="faq-accordion">
 
@@ -595,24 +742,7 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-content">
-                    <p>Government departments engage with AI CoE through a structured approach:</p>
-                    <div class="faq-subheading">Understanding the Challenge and Identifying AI Opportunities</div>
-                    <ul class="structured-list">
-                        <li>Understand in detail the existing departmental processes</li>
-                        <li>Identify inefficiencies and functions where AI can add value</li>
-                        <li>Discuss with key stakeholders, define clear AI objectives, expected outcomes, and priorities</li>
-                    </ul>
-                    <div class="faq-subheading">Finding the Right AI Solutions</div>
-                    <ul class="structured-list">
-                        <li>Finalise functional requirements and success KPIs</li>
-                        <li>Identify and evaluate suitable AI startups and solution providers</li>
-                        <li>Support the department in selecting the right startup to develop the solution</li>
-                    </ul>
-                    <div class="faq-subheading">Implementing AI Solutions</div>
-                    <ul class="structured-list">
-                        <li>Support proof-of-concept and pilot deployments</li>
-                        <li>Ensure alignment with IT and operational teams</li>
-                    </ul>
+                    <img src="focus/pfaq1.png" alt="Government departments engage with AI CoE through a structured approach: 1) Understanding the challenge and identifying AI opportunities, 2) Finding the right AI solutions, 3) Implementing AI solutions" style="display:block; width:100%; max-width:100%; height:auto; border-radius:8px;">
                 </div>
             </div>
 
@@ -632,7 +762,7 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-content">
-                    <p>AI CoE is sector-agnostic. We are currently working on multiple use cases from various departments in the state government including Urban Development, Food &amp; Civil Supplies, Forest &amp; Environment, and more.</p>
+                    <p>AI CoE is sector-agnostic. We are currently working on multiple use cases from various departments in the state government including Urban Development, Food &amp; Civil Supplies, Forest &amp; Environment, and more ; under AI Innovation Challenge.</p>
                     <p style="margin-top:10px;"><a href="aiinnovationchallenge.html" class="inline-link">Click here to know more →</a></p>
                 </div>
             </div>
@@ -660,9 +790,9 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-content">
-                    <p>Till December 2025, AI CoE has initiated 40+ use cases, out of which 25+ are hosted on the AI Innovation Challenge platform. There are 25 startups incubated at CoE — and being connected across the country, CoE has facilitated the showcase of 60 prototypes in various forums.</p>
-                    <p style="margin-top:10px;">After launch, CoE organised 30+ events and workshops for ecosystem building and hosted 40+ delegations at the centre from Government, Foreign delegates, Academia, Industry Associations, and more.</p>
-                    <p style="margin-top:10px;">AI training programs have been conducted for government officials focused on applications in governance and public services — customised for both administrative and technical roles — with 350+ officials trained so far.</p>
+                    <p>Till December 2025, AI CoE has initiated <strong>40+ use cases</strong> , out of which 25+ are hosted on the AI Innovation Challenge platform. There are 25 startups incubated at CoE — and being connected across the country, CoE has facilitated the showcase of 60 prototypes in various forums.</p>
+                    <p style="margin-top:10px;">After launch, CoE organised <strong>30+ events and workshops </strong>for ecosystem building and hosted 40+ delegations at the centre from Government, Foreign delegates, Academia, Industry Associations, and more.</p>
+                    <p style="margin-top:10px;">AI training programs have been conducted for government officials focused on applications in governance and public services — customised for both administrative and technical roles — with <strong>350+ officials trained </strong>so far.</p>
                 </div>
             </div>
 
@@ -678,6 +808,7 @@
                         <li>Gujarat Informatics Limited</li>
                         <li>NASSCOM</li>
                         <li>Microsoft</li>
+                        <li>Google</li>
                     </ul>
                 </div>
             </div>
@@ -935,5 +1066,95 @@
             autoTimer = setInterval(next, 4000);
         })();
     </script>
+    <script>
+        // ===== Right-side section nav scroll-spy =====
+        (function () {
+            const navItems = Array.from(document.querySelectorAll(".section-nav-item"));
+            if (!navItems.length) return;
+            const sections = navItems.map(i => document.getElementById(i.dataset.target)).filter(Boolean);
+            function setActive(id) { navItems.forEach(it => it.classList.toggle("active", it.dataset.target === id)); }
+            const observer = new IntersectionObserver((entries) => {
+                const vis = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (vis.length) setActive(vis[0].target.id);
+            }, { rootMargin: "-140px 0px -55% 0px", threshold: 0 });
+            sections.forEach(s => observer.observe(s));
+            navItems.forEach(it => it.addEventListener("click", () => setActive(it.dataset.target)));
+        })();
+    </script>
+    <script>
+/* Neural-network particle background field */
+(function() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles;
+    const mouse = {x: -9999, y: -9999};
+
+    function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', () => { resize(); init(); });
+    
+    // Tracks mouse moving across the background viewport
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+    function init() {
+        const count = Math.max(60, Math.floor((W * H) / 12000)); // Controlled density for background usability
+        particles = Array.from({length: count}, () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.55,
+            vy: (Math.random() - 0.5) * 0.55,
+            r: Math.random() * 1.8 + 0.6,
+            alpha: Math.random() * 0.6 + 0.35
+        }));
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const DIST = 130, MOUSE_DIST = 160;
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const dx = mouse.x - p.x, dy = mouse.y - p.y;
+            const md = Math.hypot(dx, dy);
+            if (md < MOUSE_DIST && md > 0) {
+                p.vx += dx / md * 0.012;
+                p.vy += dy / md * 0.012;
+            }
+            const spd = Math.hypot(p.vx, p.vy);
+            if (spd > 1.8) { p.vx = p.vx/spd*1.8; p.vy = p.vy/spd*1.8; }
+            for (let j = i + 1; j < particles.length; j++) {
+                const q = particles[j];
+                const ex = p.x - q.x, ey = p.y - q.y;
+                const d = Math.hypot(ex, ey);
+                if (d < DIST) {
+                    const t = 1 - d / DIST;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.strokeStyle = "rgba(15,50,120," + (t * 0.25) + ")"; // Slightly softer opacity for global background
+                    ctx.lineWidth = t * 1.5;
+                    ctx.stroke();
+                }
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(15,50,120," + (p.alpha * 0.7) + ")";
+            ctx.fill();
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        }
+        requestAnimationFrame(draw);
+    }
+
+    resize(); init(); draw();
+})();
+</script>
 </body>
 </html>
